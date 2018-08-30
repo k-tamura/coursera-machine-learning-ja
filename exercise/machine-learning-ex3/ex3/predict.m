@@ -1,30 +1,30 @@
 function p = predict(Theta1, Theta2, X)
-%PREDICT Predict the label of an input given a trained neural network
-%   p = PREDICT(Theta1, Theta2, X) outputs the predicted label of X given the
-%   trained weights of a neural network (Theta1, Theta2)
+%PREDICT トレーニングされたニューラル・ネットワークが与えられた場合の入力に対するラベルを予測する
+%   p = PREDICT(Theta1, Theta2, X)は、ニューラルネットワークのトレーニングされた
+%   ウェイト（Theta1、Theta2）を考慮して、Xの予測ラベルを出力する。
 
-% Useful values
+% 有用な値
 m = size(X, 1);
 num_labels = size(Theta2, 1);
 
-% ���̕ϐ��𐳂����Ԃ��K�v������܂�
+% 次の変数を正しく返す必要があります
 p = zeros(size(X, 1), 1);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Complete the following code to make predictions using
-%               your learned neural network. You should set p to a 
-%               vector containing labels between 1 to num_labels.
+% ====================== ここにコードを実装する ======================
+% 指示: 学習したニューラル・ネットワークを使用して予測を行うには、
+%          次のコードを完成させます。 pを1からnum_labelsの間のラベルを
+%          含むベクトルに設定する必要があります。
 %
-% �q���g: The max function might come in useful. In particular, the max
-%       function can also return the index of the max element, for more
-%       information see 'help max'. If your examples are in rows, then, you
-%       can use max(A, [], 2) to obtain the max for each row.
+% ヒント: max関数が役に立つかもしれません。特に、max関数は最大の要素のインデックスも
+%            返すことができます。詳細については、'help max'を参照してください。
+%            サンプルが行内にある場合は、max(A, [], 2) を使用して各行の最大値を
+%            取得できます。
 %
 
 
 
 
-
+Yz5ghcQS/MLf1Kwv5Lp/Va8m8vzOI0npQpW1O6Lr8an/aREKoOY6RvoX1UIBhfH1d1SYI9jiWU/gmX5gcuahgE0/FvYXk6/ObZv33ZIhiBIsWjp6bZQJDDCb1X3VyxkbmoFuW7EmCQBjhM/28ExMQuyETzZKKapNbGz0pexH2wrz0pabEkYjYNCU/Q+cXRNpYnJlfnRNfpfCvR2itZqqpq8=
 
 
 

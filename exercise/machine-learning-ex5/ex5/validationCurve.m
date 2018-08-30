@@ -1,38 +1,38 @@
 function [lambda_vec, error_train, error_val] = ...
     validationCurve(X, y, Xval, yval)
-%VALIDATIONCURVE Generate the train and validation errors needed to
-%plot a validation curve that we can use to select lambda
+% VALIDATIONCURVE lambdaを選択するために使用できるバリデーション曲線をプロットするために必要な、
+% トレーニング誤差とバリデーション誤差を生成します。
 %   [lambda_vec, error_train, error_val] = ...
-%       VALIDATIONCURVE(X, y, Xval, yval) returns the train
-%       and validation errors (in error_train, error_val)
-%       for different values of lambda. You are given the training set (X,
-%       y) and validation set (Xval, yval).
+%       VALIDATIONCURVE(X, y, Xval, yval)は、異なるlambdaの値に対する
+%       トレーニング誤差とバリデーション誤差（error_trainとerror_val）を返します。
+%       トレーニング・セット（X, y）とバリデーション・セット（Xval, yval）が与えられます。
+%       
 %
 
-% Selected values of lambda (you should not change this)
+% lambdaの選択値（これは変更しないでください）
 lambda_vec = [0 0.001 0.003 0.01 0.03 0.1 0.3 1 3 10]';
 
-% You need to return these variables correctly.
+% これらの変数を正しく返す必要があります。
 error_train = zeros(length(lambda_vec), 1);
 error_val = zeros(length(lambda_vec), 1);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Fill in this function to return training errors in 
-%               error_train and the validation errors in error_val. The 
-%               vector lambda_vec contains the different lambda parameters 
-%               to use for each calculation of the errors, i.e, 
-%               error_train(i), and error_val(i) should give 
-%               you the errors obtained after training with 
-%               lambda = lambda_vec(i)
+% ====================== ここにコードを実装する ======================
+% 指示: トレーニング誤差をerror_trainに、バリデーション誤差をerror_valセットして返すには、
+%       この関数を実装します。ベクトルlambda_vecは、誤差（すなわち、error_train（i））の
+%       各計算に使用する異なるパラメーターlambdaを含みます。
+%       error_val（i）には、lambda = lambda_vec(i)でトレーニングした後に得られる誤差を
+%       与える必要があります。
+%       
+%       
 %
-% ����: You can loop over lambda_vec with the following:
+% 注意: 次のようにlambda_vecをループすることができます。
 %
 %       for i = 1:length(lambda_vec)
 %           lambda = lambda_vec(i);
-%           % Compute train / val errors when training linear 
-%           % regression with regularization parameter lambda
-%           % You should store the result in error_train(i)
-%           % and error_val(i)
+%           % 正則化パラメーターlambdaで線形回帰をトレーニングするときの
+%           % トレーニング誤差とバリデーション誤差を計算します。
+%           % error_train（i）とerror_val（i）に結果を格納する必要があります。
+%           % 
 %           ....
 %           
 %       end
@@ -42,7 +42,7 @@ error_val = zeros(length(lambda_vec), 1);
 
 
 
-
+ZGAymI1proyLneg546duFd9jv7GdbgjuacvcGNLQvfWyakRLqvtOQv4O1hdH4Y33JlzMKpCBN1bnlW4pKOmozzU/Tbhm2prEYozWkIZgqlskRCRzLdVVR3Sdzhvk4TNBicQhCb9mdl4xsc79rERXRequRGwEcetMV27+iepQhza1lc7lcXI7KeTNuFqQDTohOiZpMyxVMJ/klCON69Xq0OKgD0eWLIcGRDpN219kKMtL4sOuaJ4dHg45P4ptwafa18/4xIkz0bHf/UJaYRI/XtY1dvQl7w==ZGAymI1proyLneg546duFd9jv7GdbgjuacvcGNLQvfWyakRLqvtOQv4O1hdH4Y33JlzMKpCBN1bnlW4pKOmozzU/Tbhm2prEYozWkIZgqlskRCRzLdVVR3Sdzhvk4TNBicQhCb9mdl4xsc79rERXRequRGwEcetMV27+iepQhza1lc7lcXI7KeTNuFqQDTohOiZpMyxVMJ/klCON69Xq0OKgD0eWLIcGRDpN219kKMtL4sOuaJ4dHg45P4ptwafa18/4xIkz0bHf/UJaYRI/XtY1dvQl7w==
 
 
 

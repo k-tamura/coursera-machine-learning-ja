@@ -1,8 +1,8 @@
 function visualizeBoundaryLinear(X, y, model)
-%VISUALIZEBOUNDARYLINEAR plots a linear decision boundary learned by the
-%SVM
-%   VISUALIZEBOUNDARYLINEAR(X, y, model) plots a linear decision boundary 
-%   learned by the SVM and overlays the data on it
+%VISUALIZEBOUNDARYLINEAR SVMによって学習された線形決定境界をプロットする
+%
+%   VISUALIZEBOUNDARYLINEAR(X, y, model) は、SVMによって学習された線形決定境界をプロットし、
+%   その上にデータを重ねます
 
 w = model.w;
 b = model.b;

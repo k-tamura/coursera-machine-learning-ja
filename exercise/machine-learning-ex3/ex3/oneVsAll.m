@@ -1,49 +1,49 @@
 function [all_theta] = oneVsAll(X, y, num_labels, lambda)
-% ONEVSALL �����̃��W�X�e�B�b�N��A���ފ���g���[�j���O���A
-% ���ׂĂ̕��ފ���s��all_theta�ɃZ�b�g���ĕԂ��܂��B
-% �����ŁAall_theta��i�Ԗڂ̍s�̓��x��i�̕��ފ�ɑΉ����܂��B
-%   [all_theta] = ONEVSALL(X, y, num_labels, lambda) �́A
-%   num_labels���W�X�e�B�b�N��A���ފ���g���[�j���O���A
-%   �����̕��ފ�̂��ꂼ����s��all_theta�ɃZ�b�g���ĕԂ��܂��B
-%   �����ŁAall_theta��i�Ԗڂ̍s�̓��x��i�̕��ފ�ɑΉ����܂��B
+% ONEVSALL 複数のロジスティック回帰分類器をトレーニングし、
+% すべての分類器を行列all_thetaにセットして返します。
+% ここで、all_thetaのi番目の行はラベルiの分類器に対応します。
+%   [all_theta] = ONEVSALL(X, y, num_labels, lambda) は、
+%   num_labelsロジスティック回帰分類器をトレーニングし、
+%   それらの分類器のそれぞれを行列all_thetaにセットして返します。
+%   ここで、all_thetaのi番目の行はラベルiの分類器に対応します。
 
-% �������̗L�p�ȕϐ�
+% いくつかの有用な変数
 m = size(X, 1);
 n = size(X, 2);
 
-% ���̕ϐ��𐳂����Ԃ��K�v������܂�
+% 次の変数を正しく返す必要があります
 all_theta = zeros(num_labels, n + 1);
 
-% �f�[�^�s��X��1��������
+% データ行列Xに1を加える
 X = [ones(m, 1) X];
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: �������p�����[�^�[lambda��num_labels��
-%         ���W�X�e�B�b�N��A�̕��ފ���g���[�j���O����ɂ́A
-%         ���̃R�[�h�����s����K�v������܂��B
+% ====================== ここにコードを実装する ======================
+% 指示: 正則化パラメーターlambdaでnum_labelsの
+%         ロジスティック回帰の分類器をトレーニングするには、
+%         次のコードを実行する必要があります。
 %
-% �q���g: theta(:) �͗�x�N�g����Ԃ��܂��B
+% ヒント: theta(:) は列ベクトルを返します。
 %
-% �q���g: y == c���g����1��0�̃x�N�g���𓾂邱�Ƃ��ł��܂��B
-%            ���̃x�N�g���́A���̃N���X��true/false��true�ł��邩�ǂ����������܂��B
+% ヒント: y == cを使って1と0のベクトルを得ることができます。
+%            このベクトルは、このクラスのtrue/falseがtrueであるかどうかを示します。
 %
-% ����: ���̉ۑ�ł́A�R�X�g�֐����œK�����邽�߂�fmincg���g�p���邱�Ƃ𐄏����܂��B
-%         for-loop (for c = 1:num_labels) ���g�p���āA�قȂ�N���X�����[�v���邱�Ƃ��ł��܂��B
+% 注意: この課題では、コスト関数を最適化するためにfmincgを使用することを推奨します。
+%         for-loop (for c = 1:num_labels) を使用して、異なるクラスをループすることもできます。
 %
 %
-%         fmincg��fminunc�Ɠ��l�ɓ��삵�܂����A�����̃p�����[�^�[�������ꍇ�ɂ�
-%         �������I�ł��B
+%         fmincgはfminuncと同様に動作しますが、多数のパラメーターを扱う場合には
+%         より効率的です。
 %
-% fmincg�̃R�[�h�̗�:
+% fmincgのコードの例:
 %
-%     % ������theta��ݒ肷��
+%     % 初期のthetaを設定する
 %     initial_theta = zeros(n + 1, 1);
 %     
-%     % fminunc�̃I�v�V������ݒ肷��
+%     % fminuncのオプションを設定する
 %     options = optimset('GradObj', 'on', 'MaxIter', 50);
 % 
-%     % fmincg�����s���čœK��theta���擾����
-%     % ���̊֐���theta�ƃR�X�g��Ԃ�
+%     % fmincgを実行して最適なthetaを取得する
+%     % この関数はthetaとコストを返す
 %     [theta] = ...
 %         fmincg (@(t)(lrCostFunction(t, X, (y == c), lambda)), ...
 %                 initial_theta, options);

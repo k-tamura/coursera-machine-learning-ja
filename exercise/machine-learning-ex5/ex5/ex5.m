@@ -1,40 +1,40 @@
-%% Machine Learning Online Class
-%  Exercise 5 | Regularized Linear Regression and Bias-Variance
+%% 機械学習オンラインクラス
+%  演習 5 | 正則化された線形回帰とバイアス・分散
 %
-%  �w��
+%  指示
 %  ------------
 % 
-%  This file contains code that helps you get started on the
-%  exercise. ���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  次の関数を完成する必要があります。
 %
 %     linearRegCostFunction.m
 %     learningCurve.m
 %     validationCurve.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% =========== �p�[�g 1: Loading and Visualizing Data =============
-%  We start the exercise by first loading and visualizing the dataset. 
-%  The following code will load the dataset into your environment and plot
-%  the data.
+%% =========== パート 1: データのロードと可視化 =============
+%  最初にデータセットを読み込んで可視化することから始めます。
+%  次のコードは、データセットを環境にロードし、データをプロットします。
+%  
 %
 
-% Load Training Data
+% トレーニング・データをロードする
 fprintf('Loading and Visualizing Data ...\n')
 
-% Load from ex5data1: 
-% You will have X, y, Xval, yval, Xtest, ytest in your environment
+% ex5data1からロードする 
+% あなたの環境にはX、Y、Xval、yval、Xtest、ytestができます
 load ('ex5data1.mat');
 
-% m = Number of examples
+% m = サンプルの数
 m = size(X, 1);
 
-% Plot training data
+% トレーニング・データをプロットする
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 xlabel('Change in water level (x)');
 ylabel('Water flowing out of the dam (y)');
@@ -42,9 +42,9 @@ ylabel('Water flowing out of the dam (y)');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 2: Regularized Linear Regression Cost =============
-%  You should now implement the cost function for regularized linear 
-%  regression. 
+%% =========== パート 2: 正則化された線形回帰のコスト =============
+%  正則化された線形回帰のコスト関数を実装する必要があります。
+%  
 %
 
 theta = [1 ; 1];
@@ -56,9 +56,9 @@ fprintf(['Cost at theta = [1 ; 1]: %f '...
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 3: Regularized Linear Regression Gradient =============
-%  You should now implement the gradient for regularized linear 
-%  regression.
+%% =========== パート 3:  正則化された線形回帰の勾配 =============
+%  ここで、正則化された線形回帰の勾配を実装する必要があります。
+%  
 %
 
 theta = [1 ; 1];
@@ -72,16 +72,16 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =========== �p�[�g 4: Train Linear Regression =============
-%  Once you have implemented the cost and gradient correctly, the
-%  trainLinearReg function will use your cost function to train 
-%  regularized linear regression.
+%% =========== パート 4: 線形回帰をトレーニングする =============
+%  コストと勾配を正しく実装すると、trainLinearReg関数はコスト関数を使用して
+%  正規化された線形回帰をトレーニングします。
 % 
-%  Write Up Note: The data is non-linear, so this will not give a great 
-%                 fit.
+% 
+%  注記: データは非線形であるため、これはあまり適合しません。
+%
 %
 
-%  Train linear regression with lambda = 0
+%  lambda = 0で線形回帰をトレーニングする
 lambda = 0;
 [theta] = trainLinearReg([ones(m, 1) X], y, lambda);
 
@@ -97,11 +97,11 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =========== �p�[�g 5: Learning Curve for Linear Regression =============
-%  Next, you should implement the learningCurve function. 
+%% =========== パート 5: 線形回帰の学習曲線 =============
+%  次に、learningCurve関数を実装する必要があります。
 %
-%  Write Up Note: Since the model is underfitting the data, we expect to
-%                 see a graph with "high bias" -- Figure 3 in ex5.pdf 
+%  注記: モデルがデータに適合していないため、「高バイアス」のグラフが表示されます
+%          （図3、ex5.pdf）。
 %
 
 lambda = 0;
@@ -125,29 +125,28 @@ end
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 6: Feature Mapping for Polynomial Regression =============
-%  One solution to this is to use polynomial regression. You should now
-%  complete polyFeatures to map each example into its powers
-%
+%% =========== パート 6: 多項式回帰のフィーチャー・マッピング =============
+%  これに対する1つの解決策は、多項式回帰を使用することです。 これで各サンプルを
+%  その累乗にマッピングするために、polyFeaturesを完成させる必要があります。
 
 p = 8;
 
-% Map X onto Polynomial Features and Normalize
+% Xを多項式のフィーチャーにマッピングして正規化する
 X_poly = polyFeatures(X, p);
-[X_poly, mu, sigma] = featureNormalize(X_poly);  % Normalize
-X_poly = [ones(m, 1), X_poly];                   % Add Ones
+[X_poly, mu, sigma] = featureNormalize(X_poly);  % 正規化
+X_poly = [ones(m, 1), X_poly];                   % １を追加
 
-% Map X_poly_test and normalize (using mu and sigma)
+% X_poly_testをマッピングし、正規化する（muとsigmaを使用）
 X_poly_test = polyFeatures(Xtest, p);
 X_poly_test = bsxfun(@minus, X_poly_test, mu);
 X_poly_test = bsxfun(@rdivide, X_poly_test, sigma);
-X_poly_test = [ones(size(X_poly_test, 1), 1), X_poly_test];         % Add Ones
+X_poly_test = [ones(size(X_poly_test, 1), 1), X_poly_test];         % １を追加
 
-% Map X_poly_val and normalize (using mu and sigma)
+% X_poly_valをマッピングし、正規化する（muとsigmaを使用）
 X_poly_val = polyFeatures(Xval, p);
 X_poly_val = bsxfun(@minus, X_poly_val, mu);
 X_poly_val = bsxfun(@rdivide, X_poly_val, sigma);
-X_poly_val = [ones(size(X_poly_val, 1), 1), X_poly_val];           % Add Ones
+X_poly_val = [ones(size(X_poly_val, 1), 1), X_poly_val];           % １を追加
 
 fprintf('Normalized Training Example 1:\n');
 fprintf('  %f  \n', X_poly(1, :));
@@ -157,17 +156,17 @@ pause;
 
 
 
-%% =========== �p�[�g 7: Learning Curve for Polynomial Regression =============
-%  Now, you will get to experiment with polynomial regression with multiple
-%  values of lambda. The code below runs polynomial regression with 
-%  lambda = 0. You should try running the code with different values of
-%  lambda to see how the fit and learning curve change.
-%
+%% =========== パート 7: 多項式回帰の学習曲線 =============
+%  次に、複数のlambdaの値を使って多項式回帰を試してみましょう。以下のコードは、
+%  lambda = 0の多項式回帰を実行します。lambdaの値を変えてコードを実行して、
+%  適合曲線と学習曲線がどのように変化するかを調べる必要があります。
+%  
+% 
 
 lambda = 0;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
-% Plot training data and fit
+% トレーニングデータをプロットして、フィットさせる
 figure(1);
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 plotFit(min(X), max(X), mu, sigma, theta, p);
@@ -195,10 +194,10 @@ end
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 8: Validation for Selecting Lambda =============
-%  You will now implement validationCurve to test various values of 
-%  lambda on a validation set. You will then use this to select the
-%  "best" lambda value.
+%% =========== パート 8: Lambdaを選択するための検証 =============
+%  ここでvalidationCurveを実装して、バリデーション・セット上のlambdaのさまざまな値をテストします。
+%  これを使用して「最良」のlambda値を選択します。
+%  
 %
 
 [lambda_vec, error_train, error_val] = ...

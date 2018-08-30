@@ -6,11 +6,11 @@ function Z = projectData(X, U, K)
 %   the first K columns of U. It returns the projected examples in Z.
 %
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 Z = zeros(size(X, 1), K);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Compute the projection of the data using only the top K 
+% ====================== ここにコードを実装する ======================
+% 指示: Compute the projection of the data using only the top K 
 %               eigenvectors in U (first K columns). 
 %               For the i-th example X(i,:), the projection on to the k-th 
 %               eigenvector is given as follows:

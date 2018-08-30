@@ -1,23 +1,23 @@
 function g = sigmoidGradient(z)
-%SIGMOIDGRADIENT returns the gradient of the sigmoid function
-%evaluated at z
-%   g = SIGMOIDGRADIENT(z) computes the gradient of the sigmoid function
-%   evaluated at z. This should work regardless if z is a matrix or a
-%   vector. In particular, if z is a vector or matrix, you should return
-%   the gradient for each element.
+%SIGMOIDGRADIENTは、zで評価されたシグモイド関数の勾配を返します
+%
+%   g = SIGMOIDGRADIENT(z)は、zで評価されたシグモイド関数の勾配を計算します。 
+%   これは、zが行列であるかベクトルであるかにかかわらず動作するはずです。
+%   特に、zがベクトルまたは行列の場合、各要素の勾配を返す必要があります。
+%
 
 g = zeros(size(z));
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Compute the gradient of the sigmoid function evaluated at
-%               each value of z (z can be a matrix, vector or scalar).
+% ====================== ここにコードを実装する ======================
+% 指示: zの各値で評価されたシグモイド関数の勾配を計算してください
+%      （zは、行列、ベクトル、またはスカラーになります）。
 
 
 
 
 
 
-
+ZS99mJcg9MHVzuB09+k0V98+/vHfeQDWcsHWVfCj+L3k
 
 
 

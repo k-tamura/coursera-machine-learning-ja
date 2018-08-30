@@ -1,41 +1,41 @@
-%% �@�B�w�K�I�����C���N���X - ���K 4 Neural Network Learning
+%% 機械学習オンラインクラス - 演習 4 ニューラルネットワークの学習
 
-%  �w��
+%  指示
 %  ------------
 % 
-%  This file contains code that helps you get started on the
-%  linear exercise. ���̉��K�ł́A���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  この演習では、次の関数を完成する必要があります。
 % 
 %
 %     sigmoidGradient.m
 %     randInitializeWeights.m
 %     nnCostFunction.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% ���̉��K�Ŏg�p����p�����[�^�[���Z�b�g�A�b�v����
-input_layer_size  = 400;  % 20x20 Input Images of Digits
-hidden_layer_size = 25;   % 25 hidden units
-num_labels = 10;          % 10 labels, from 1 to 10   
-                          % (note that we have mapped "0" to label 10)
+%% この演習で使用するパラメーターをセットアップする
+input_layer_size  = 400;  % 20x20入力の数字画像
+hidden_layer_size = 25;   % 25 隠れユニット
+num_labels = 10;          % 10ラベル（1～10）
+                          % （ラベル10に "0"をマッピングしていることに注意してください）
 
-%% =========== �p�[�g 1: Loading and Visualizing Data =============
-%  We start the exercise by first loading and visualizing the dataset. 
-%  You will be working with a dataset that contains handwritten digits.
+%% =========== パート 1: データのロードと可視化 =============
+%  最初にデータセットを読み込んで可視化することから始めます。
+%  手書き数字を含むデータセットを使用して作業します。
 %
 
-% Load Training Data
+% トレーニングデータをロードする
 fprintf('Loading and Visualizing Data ...\n')
 
 load('ex4data1.mat');
 m = size(X, 1);
 
-% Randomly select 100 data points to display
+% 表示するデータ点をランダムに100個選択する
 sel = randperm(size(X, 1));
 sel = sel(1:100);
 
@@ -45,33 +45,33 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================ �p�[�g 2: Loading Parameters ================
-% In this part of the exercise, we load some pre-initialized 
-% neural network parameters.
+%% ================ パート 2: パラメータのロード ================
+% この演習では、初期化されたニューラル・ネットワークのパラメーターを
+% ロードします。
 
 fprintf('\nLoading Saved Neural Network Parameters ...\n')
 
-% Load the weights into variables Theta1 and Theta2
+% 変数Theta1とTheta2にウェイトをロードする
 load('ex4weights.mat');
 
-% Unroll parameters 
+% パラメータのアンロール
 nn_params = [Theta1(:) ; Theta2(:)];
 
-%% ================ �p�[�g 3: Compute Cost (Feedforward) ================
-%  To the neural network, you should first start by implementing the
-%  feedforward part of the neural network that returns the cost only. You
-%  should complete the code in nnCostFunction.m to return cost. After
-%  implementing the feedforward to compute the cost, you can verify that
-%  your implementation is correct by verifying that you get the same cost
-%  as us for the fixed debugging parameters.
-%
-%  We suggest implementing the feedforward cost *without* regularization
-%  first so that it will be easier for you to debug. Later, in part 4, you
-%  will get to implement the regularized cost.
+%% ================ パート 3: コストの計算（フィードフォワード） ================
+%  ニューラル・ネットワークに、コストのみを返すニューラル・ネットワークの
+%  フィードフォワード部分を実装することから始めてください。
+%  コストを返すには、nnCostFunction.mのコードを完成させる必要があります。
+%  コストを計算するためにフィードフォワードを実装した後、
+%  固定値のデバッグ・パラメーターと同じコストを得ることを検証して、
+%  実装が正しいことを検証できます。
+%  
+%  最初に正則化せずに、フィードフォワードのコストを実装することをお勧めします。
+%  これにより、デバッグが容易になります。その後、パート4では、正則化のコストを
+%  導入することになります。
 %
 fprintf('\nFeedforward Using Neural Network ...\n')
 
-% Weight regularization parameter (we set this to 0 here).
+% ウェイトを正則化パラメーターに設定します（ここでは0に設定します）。
 lambda = 0;
 
 J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
@@ -83,14 +83,14 @@ fprintf(['Cost at parameters (loaded from ex4weights): %f '...
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% =============== �p�[�g 4: Implement Regularization ===============
-%  Once your cost function implementation is correct, you should now
-%  continue to implement the regularization with the cost.
+%% =============== パート 4: 正則化の実装 ===============
+%  コスト関数の実装が正しければ、今度は正則化をコストに
+%  実装する必要があります。
 %
 
 fprintf('\nChecking Cost Function (w/ Regularization) ... \n')
 
-% Weight regularization parameter (we set this to 1 here).
+% ウェイトを正則化パラメーターに設定します（ここでは1に設定します）。
 lambda = 1;
 
 J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
@@ -103,10 +103,10 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================ �p�[�g 5: Sigmoid Gradient  ================
-%  Before you start implementing the neural network, you will first
-%  implement the gradient for the sigmoid function. You should complete the
-%  code in the sigmoidGradient.m file.
+%% ================ パート 5: シグモイド勾配  ================
+%  ニューラルネットワークの実装を開始する前に、まずシグモイド関数の勾配を実装します。
+%  sigmoidGradient.mファイルのコードを完成させる必要があります。
+%  
 %
 
 fprintf('\nEvaluating sigmoid gradient...\n')
@@ -120,48 +120,47 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================ �p�[�g 6: Initializing Pameters ================
-%  In this part of the exercise, you will be starting to implment a two
-%  layer neural network that classifies digits. You will start by
-%  implementing a function to initialize the weights of the neural network
-%  (randInitializeWeights.m)
+%% ================ パート 6: パラメーターの初期化 ================
+%  演習のこのパートでは、数字を分類する2層のニューラル・ネットワークの実装を始めます。
+%  ニューラル・ネットワークのウェイトを初期化する関数を実装することから始めます
+%  (randInitializeWeights.m)。
+%  
 
 fprintf('\nInitializing Neural Network Parameters ...\n')
 
 initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size);
 initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels);
 
-% Unroll parameters
+% パラメーターのアンロール
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
 
 
-%% =============== �p�[�g 7: Implement Backpropagation ===============
-%  Once your cost matches up with ours, you should proceed to implement the
-%  backpropagation algorithm for the neural network. You should add to the
-%  code you've written in nnCostFunction.m to return the partial
-%  derivatives of the parameters.
+%% =============== パート 7: バックプロパゲーションの実装 ===============
+%  コストが正しい値と一致したら、ニューラル・ネットワークのバックプロパゲーションの
+%  アルゴリズムを実装します。nnCostFunction.mに、パラメーターの偏微分を返すコードを
+%  追加で実装する必要があります。
 %
 fprintf('\nChecking Backpropagation... \n');
 
-%  Check gradients by running checkNNGradients
+% checkNNGradientsを実行して、勾配をチェックする
 checkNNGradients;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% =============== �p�[�g 8: Implement Regularization ===============
-%  Once your backpropagation implementation is correct, you should now
-%  continue to implement the regularization with the cost and gradient.
+%% =============== パート 8: 正則化の実装 ===============
+%  バックプロパゲーションの実装が正しければ、次はコストと勾配とともに
+%  正則化を実装する必要があります。
 %
 
 fprintf('\nChecking Backpropagation (w/ Regularization) ... \n')
 
-%  Check gradients by running checkNNGradients
+% checkNNGradientsを実行してグラデーションをチェックする
 lambda = 3;
 checkNNGradients(lambda);
 
-% Also output the costFunction debugging values
+% costFunctionデバッグ値も出力する
 debug_J  = nnCostFunction(nn_params, input_layer_size, ...
                           hidden_layer_size, num_labels, X, y, lambda);
 
@@ -172,33 +171,33 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =================== �p�[�g 8: Training NN ===================
-%  You have now implemented all the code necessary to train a neural 
-%  network. To train your neural network, we will now use "fmincg", which
-%  is a function which works similarly to "fminunc". Recall that these
-%  advanced optimizers are able to train our cost functions efficiently as
-%  long as we provide them with the gradient computations.
+%% =================== パート 8: ニューラル・ネットワークのトレーニング ===================
+%  ニューラル・ネットワークのトレーニングに必要なすべてのコードを実装しました。
+%  ニューラル・ネットワークを訓練するために、ここでは "fmincg"を使用します。
+%  これは "fminunc"と同様に機能します。これらの最適化されたオプティマイザは、
+%  それらに勾配計算を提供するように、コスト関数を効率的にトレーニングできることを
+%  思い出してください。
 %
 fprintf('\nTraining Neural Network... \n')
 
-%  After you have completed the assignment, change the MaxIter to a larger
-%  value to see how more training helps.
+% 課題を完了したら、MaxIterをより大きな値に変更して、トレーニングの
+% 効果を確認する。
 options = optimset('MaxIter', 50);
 
-%  You should also try different values of lambda
+% 異なる値のラムダも試すこと
 lambda = 1;
 
-% Create "short hand" for the cost function to be minimized
+% コスト関数を最小化するための「short hand」を作成する
 costFunction = @(p) nnCostFunction(p, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
                                    num_labels, X, y, lambda);
 
-% Now, costFunction is a function that takes in only one argument (the
-% neural network parameters)
+% ここで、costFunctionは引数（ニューラル・ネットワーク・パラメーター）を1つだけ取る
+% 関数です。
 [nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
 
-% Obtain Theta1 and Theta2 back from nn_params
+% Theta1とTheta2をnn_paramsから取得する
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 
@@ -209,10 +208,10 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================= �p�[�g 9: Visualize Weights =================
-%  You can now "visualize" what the neural network is learning by 
-%  displaying the hidden units to see what features they are capturing in 
-%  the data.
+%% ================= パート 9: ウェイトを可視化 =================
+%  データに取り込んでいるフィーチャーが何かを確認するため、隠れユニットを表示することで、
+%  ニューラル・ネットワークが学習していることを「可視化」できるようになります。
+%  
 
 fprintf('\nVisualizing Neural Network... \n')
 
@@ -221,11 +220,11 @@ displayData(Theta1(:, 2:end));
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ================= �p�[�g 10: Implement Predict =================
-%  After training the neural network, we would like to use it to predict
-%  the labels. You will now implement the "predict" function to use the
-%  neural network to predict the labels of the training set. This lets
-%  you compute the training set accuracy.
+%% ================= パート 10: 予測の実装 =================
+%  ニューラルネット・ワークをトレーニングしたら、それを用いてラベルを予測します。
+%  トレーニング・セットのラベルを予測するために、ニューラルネット・ネットワークを使用する
+%  「予測」機能を実装します。これにより、トレーニング・セットの精度を計算できます。
+%  
 
 pred = predict(Theta1, Theta2, X);
 

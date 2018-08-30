@@ -1,55 +1,55 @@
-%% Machine Learning Online Class
-%  Exercise 6 | Support Vector Machines
+%% 機械学習オンラインクラス
+%  演習 6 | サポート・ベクター・マシン
 %
-%  �w��
+%  指示
 %  ------------
 % 
-%  This file contains code that helps you get started on the
-%  exercise. ���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  次の関数を完成する必要があります。
 %
 %     gaussianKernel.m
 %     dataset3Params.m
 %     processEmail.m
 %     emailFeatures.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% =============== �p�[�g 1: Loading and Visualizing Data ================
-%  We start the exercise by first loading and visualizing the dataset. 
-%  The following code will load the dataset into your environment and plot
-%  the data.
+%% =============== パート 1: データのロードと可視化 ================
+%  最初にデータセットを読み込んで可視化することから始めます。
+%  次のコードは、データセットを環境にロードし、データをプロットします。
+%  
 %
 
 fprintf('Loading and Visualizing Data ...\n')
 
-% Load from ex6data1: 
-% You will have X, y in your environment
+% ex6data1からロード
+% 環境にX, yがロードされる
 load('ex6data1.mat');
 
-% Plot training data
+% トレーニングデータをプロットする
 plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ==================== �p�[�g 2: Training Linear SVM ====================
-%  The following code will train a linear SVM on the dataset and plot the
-%  decision boundary learned.
+%% ==================== パート 2: 線形SVMのトレーニング ====================
+%  次のコードは、データセット上の線形SVMをトレーニングし、学習された決定境界を
+%  プロットします。
 %
 
-% Load from ex6data1: 
-% You will have X, y in your environment
+% ex6data1からロード
+% 環境にX, yがロードされる
 load('ex6data1.mat');
 
 fprintf('\nTraining Linear SVM ...\n')
 
-% You should try to change the C value below and see how the decision
-% boundary varies (e.g., try C = 1000)
+% 下記のCの値を変更し、決定境界がどのように変化するかを確認する必要があります
+% （たとえば、C = 1000を試してみてください）
 C = 1;
 model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
 visualizeBoundaryLinear(X, y, model);
@@ -57,9 +57,9 @@ visualizeBoundaryLinear(X, y, model);
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== �p�[�g 3: Implementing Gaussian Kernel ===============
-%  You will now implement the Gaussian kernel to use
-%  with the SVM. You should complete the code in gaussianKernel.m
+%% =============== パート 3: ガウスカーネルの実装 ===============
+%  ここで、SVMで使用するガウスカーネルを実装します。 
+%  gaussianKernel.mのコードを完成させる必要があります。
 %
 fprintf('\nEvaluating the Gaussian Kernel ...\n')
 
@@ -72,76 +72,76 @@ fprintf(['Gaussian Kernel between x1 = [1; 2; 1], x2 = [0; 4; -1], sigma = %f :'
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== �p�[�g 4: Visualizing Dataset 2 ================
-%  The following code will load the next dataset into your environment and 
-%  plot the data. 
+%% =============== パート 4: データセット2の可視化 ================
+%  次のコードは、データセットを環境にロードし、データをプロットします。
+%  
 %
 
 fprintf('Loading and Visualizing Data ...\n')
 
-% Load from ex6data2: 
-% You will have X, y in your environment
+% ex6data2からロード
+% 環境にX、yがロードされます
 load('ex6data2.mat');
 
-% Plot training data
+% トレーニング・データをプロットする
 plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ========== �p�[�g 5: Training SVM with RBF Kernel (Dataset 2) ==========
-%  After you have implemented the kernel, we can now use it to train the 
-%  SVM classifier.
+%% ========== パート 5: RBFカーネルによるSVMのトレーニング (データセット2) ==========
+%  カーネルを実装したら、これを使ってSVM分類器をトレーニングすることができます。
+%  
 % 
 fprintf('\nTraining SVM with RBF Kernel (this may take 1 to 2 minutes) ...\n');
 
-% Load from ex6data2: 
-% You will have X, y in your environment
+% ex6data2からロード
+% 環境にX、yがロードされます
 load('ex6data2.mat');
 
-% SVM Parameters
+% SVMパラメーター
 C = 1; sigma = 0.1;
 
-% We set the tolerance and max_passes lower here so that the code will run
-% faster. However, in practice, you will want to run the training to
-% convergence.
+% ここで許容値とmax_passesを低く設定して、コードがより速く実行されるようにしています。
+% ただし、実際には、トレーニングを収束するように実行する必要があります。
+% 
 model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); 
 visualizeBoundary(X, y, model);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== �p�[�g 6: Visualizing Dataset 3 ================
-%  The following code will load the next dataset into your environment and 
-%  plot the data. 
+%% =============== パート 6: データセット3の可視化 ================
+%  以下のコードは、次のデータセットを環境にロードし、データをプロットします。
+%  
 %
 
 fprintf('Loading and Visualizing Data ...\n')
 
-% Load from ex6data3: 
-% You will have X, y in your environment
+% ex6data3からロード
+% 環境にX、yがロードされます
 load('ex6data3.mat');
 
-% Plot training data
+% トレーニングデータをプロットする
 plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ========== �p�[�g 7: Training SVM with RBF Kernel (Dataset 3) ==========
+%% ========== パート 7: RBFカーネルによるSVMのトレーニング (データセット3) ==========
 
-%  This is a different dataset that you can use to experiment with. Try
-%  different values of C and sigma here.
+%  これは実験に使用できる別のデータセットです。ここではCとsigmaの異なる値を
+%  試してみてください。
 % 
 
-% Load from ex6data3: 
-% You will have X, y in your environment
+% ex6data3からロード
+% 環境にX、yがロードされます
 load('ex6data3.mat');
 
-% Try different SVM Parameters here
+% ここで異なるSVMパラメータを試してみてください
 [C, sigma] = dataset3Params(X, y, Xval, yval);
 
-% Train the SVM
+% SVMをトレーニングする
 model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
 visualizeBoundary(X, y, model);
 

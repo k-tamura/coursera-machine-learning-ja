@@ -13,6 +13,8 @@
 | カーネル | Kernel |  |  |
 | ガウス・カーネル | Gaussian Kernel |  |  |
 | ガウス分布 | Gaussian Distribution |  | 正規分布 |
+| クラスター | Cluster |  |  |
+| クラスター割り当て | Cluster Assignment |  |  |
 | クラスタリング | Clustering |  |  |
 | グラウンド・トゥルース | Ground Truth | https://kotobank.jp/word/ground%20truth-1234260 |  |
 | クロス・バリデーション | Cross Validation |  |  |
@@ -38,7 +40,7 @@
 | バックプロパゲーション | Backpropagation |  |  |
 | バッチ最急降下法 | Batch Gradient Descent |  |  |
 | パフォーマンス | Performance |  |  |
-| バリアンス | Variance |  |  |
+| バンド幅 | Bandwidth |  |  |
 | フィーチャー | Feature | 説明変数と同意 | 特徴 |
 | フィーチャー・スケーリング | Feature Scaling |  |  |
 | フィードフォワード・プロパゲーション | Feedforward Propagation |  |  |
@@ -52,7 +54,9 @@
 | ロジスティック関数 | Logistic Function  | シグモイド関数と同意 |  |
 | 異常 | Anomaly |  | アノマリー |
 | 異常検知 | Anomaly Detection |  |  |
+| 一対全て | One-vs-All |  | 一対他、一対全 |
 | 回帰 | Regression |  |  |
+| 解析的勾配 | Analytic Gradient |  |  |
 | 可逆行列 | Invertible Matrix | 正則行列行列、非特異行列と同意 |  |
 | 学習アルゴリズム | Learning Algorithm |  |  |
 | 学習率 | Learning Rate |  |  |
@@ -75,9 +79,12 @@
 | 勾配 | Gradient |  | 傾き |
 | 誤差 | Error |  |  |
 | 誤差解析 | Error Analysis |  | 誤差分析 |
+| 誤差項 | Error Term |  |  |
+| 固有ベクトル | Eigenvector |  |  |
 | 最急降下法 | Gradient Descent |  |  |
 | 再現率 | Recall |  |  |
 | 最適化ソルバー | Optimization Solver |  |  |
+| 三次元行列 | three-dimensional matrix |  |  |
 | 閾値 | Threshold |  | しきい値 |
 | 軸 | Axis |  |  |
 | 次元 | Dimension |  |  |
@@ -89,18 +96,21 @@
 | 重回帰 | Linear Regression with Multiple Variables  |  |  |
 | 神経細胞 | Neuron |  |  |
 | 人工データ合成 | Artificial Data Synthesis |  |  |
+| 数値的勾配 | Numerical Gradient |  |  |
 | 正規化 | Normalization |  |  |
 | 正規分布 | Normal Distribution | ガウス分布と同意 |  |
 | 正規方程式 | Normal Equation |  |  |
-| 正則化 | Regularization  | https://qiita.com/7y2n/items/96abd25319786c9445d2 |  |
+| 正則化 | Regularization  |  |  |
 | 正則行列 | Regular Matrix | 非特異行列、可逆行列と同意 |  |
 | 精度 | Accuracy |  |  |
+| 摂動ベクトル | Perturbation Vector |  |  |
 | 収束 | Convergence |  |  |
 | 真陰性 | True Negative |  |  |
 | 真陽性 | True Positive |  |  |
 | 切片項 | Intercept Term |  |  |
 | 線形回帰 | Linear Regression |  | 単回帰 |
 | 線形近似 | Linear Fit |  |  |
+| 層 | Layer |  | レイヤー |
 | 対角共分散行列 | Diagonal Covariance Matrix |  |  |
 | 多クラス分類 | Multiclass Classification |  | 複数クラス分類、マルチクラス分類 |
 | 多項式回帰 | Polynomial Regression |  | 多項回帰 |
@@ -112,9 +122,12 @@
 | 適合率 | Precision |  |  |
 | 天井分析 | Ceiling Analysis |  |  |
 | 導関数 | Derivative |  | 微分係数 |
+| 動径基底関数カーネル | Radial Basis Function |  | RBF |
 | 等高線 | Contour |  |  |
 | 特異行列 | Singular Matrix |  |  |
+| 特異値分解 | Singular Value Decomposition |  | SVG | 
 | 内積 | Inner Product |  |  |
+| 二乗射影誤差 | Square Projection Error |  |  |
 | 入力層 | Input Layer |  |  |
 | 外れ値 | Outlier |  |  |
 | 平均標準化  | Mean Normalize |  |  |
@@ -125,7 +138,7 @@
 | 分散 | Variance |  |  |
 | 分類 | Classification |  |  |
 | 分類器 | Classifier |  |  |
-| 平均正則化 | Mean normalization |  |  |
+| 平均正規化 | Mean normalization |  |  |
 | 平均値 | Mean Value |  |  |
 | 偏微分 | Partial Derivative |  |  |
 | 目的関数 | Objective Function | コスト関数と同意 |  |
@@ -135,4 +148,3 @@
 | Map Reduce | Map Reduce |  |  |
 | MATLAB | MATLAB |  |  |
 | Octave | Octave |  |  |
-| 一対全て | One-vs-All |  | 一対他、一対全 |

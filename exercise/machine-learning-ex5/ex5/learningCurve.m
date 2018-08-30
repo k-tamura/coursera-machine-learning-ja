@@ -1,61 +1,61 @@
 function [error_train, error_val] = ...
     learningCurve(X, y, Xval, yval, lambda)
-%LEARNINGCURVE Generates the train and cross validation set errors needed 
-%to plot a learning curve
+% LEARNINGCURVE 学習曲線をプロットするのに必要なトレーニング・セットと
+% クロス・バリデーション・セットの誤差を生成する
 %   [error_train, error_val] = ...
-%       LEARNINGCURVE(X, y, Xval, yval, lambda) returns the train and
-%       cross validation set errors for a learning curve. In particular, 
-%       it returns two vectors of the same length - error_train and 
-%       error_val. Then, error_train(i) contains the training error for
-%       i examples (and similarly for error_val(i)).
+%       LEARNINGCURVE(X, y, Xval, yval, lambda) は、学習曲線の
+%       トレーニング・セットとクロス・バリデーション・セットの誤差を返します。
+%       特に、同じ長さの2つのベクトル、error_trainとerror_valを返します。
+%       次に、error_val(i)にはi個のサンプルのトレーニング誤差が含まれます
+%       （error_val(i)も同様です）。
 %
-%   In this function, you will compute the train and test errors for
-%   dataset sizes from 1 up to m. In practice, when working with larger
-%   datasets, you might want to do this in larger intervals.
+%   この関数では、1からmまでのデータセット・サイズのトレーニング誤差とテスト誤差を計算します。
+%   実際には、大規模なデータセットを扱う場合は、より大きな間隔でこれを行うことをお勧めします。
+%   
 %
 
-% �g���[�j���O�E�T���v���̐�
+% トレーニング・サンプルの数
 m = size(X, 1);
 
-% You need to return these values correctly
+% これらの値を正しく返す必要があります
 error_train = zeros(m, 1);
 error_val   = zeros(m, 1);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Fill in this function to return training errors in 
-%               error_train and the cross validation errors in error_val. 
-%               i.e., error_train(i) and 
-%               error_val(i) should give you the errors
-%               obtained after training on i examples.
+% ====================== ここにコードを実装する ======================
+% 指示: トレーニング誤差error_trainとクロス・バリデーション誤差error_valが返されるように、
+%      この関数を実装します。
+%      つまり、error_train（i）とerror_val（i）は、iのサンプルをトレーニングした後に得られる誤差を
+%      与える必要があります。
 %
-% ����: You should evaluate the training error on the first i training
-%       examples (i.e., X(1:i, :) and y(1:i)).
 %
-%       For the cross-validation error, you should instead evaluate on
-%       the _entire_ cross validation set (Xval and yval).
+% 注意: 最初のトレーニング・サンプル（X(1:i, :)とy(1:i)）でトレーニング誤差を評価する必要があります。
+%       
 %
-% ����: If you are using your cost function (linearRegCostFunction)
-%       to compute the training and cross validation error, you should 
-%       call the function with the lambda argument set to 0. 
-%       Do note that you will still need to use lambda when running
-%       the training to obtain the theta parameters.
+%       クロス・バリデーション誤差の場合は、代わりにクロス・バリデーション・セット（Xvalとyval）全体を
+%       評価する必要があります。
 %
-% �q���g: You can loop over the examples with the following:
+% 注意: コスト関数（linearRegCostFunction）を使用して、トレーニング誤差とクロス・バリデーション誤差を
+%       計算する場合は、引数lambdaを0に設定して関数を呼び出す必要があります。
+%       パラメーターthetaを取得するためにトレーニングを実行するときは、
+%       lambdaを使用する必要があることに注意してください。
+%       
+%
+% ヒント: 次を使用して、サンプルをループすることができます。
 %
 %       for i = 1:m
-%           % Compute train/cross validation errors using training examples 
-%           % X(1:i, :) and y(1:i), storing the result in 
-%           % error_train(i) and error_val(i)
+%           % トレーニング・サンプルX(1:i, :)とy(1:i)を使用して、誤差の結果を 
+%           % error_train（i）とerror_val（i）に格納してトレーニング誤差と
+%           % クロス・バリデーション誤差を計算します。　
 %           ....
 %           
 %       end
 %
 
-% ---------------------- Sample Solution ----------------------
+% ---------------------- サンプルの解答 ----------------------
 
 
 
-
+ZGAymI1proyLnelWreA6XYNnu6ieKlSRa9zeWLaVuPq6aVJ476FGdrdSjhoKnsG7aVTcK5qxVwuj0HYpZbbs2m5UBPYKk5HTcZH2qpU6kx5qFWF6YYkYSXmSgkGck3YG6s4gD5ZhR0k3ucj9rHVWVO3nBCVQPaYefCOo8OwK31C0k8jleTF1MZXruAOcDSs7LT16QHoEdYyHtGbCudbx4fGgET2aYuRUFyJiwFRmLvBB66iZbYs3R0AjPYJug6/2ycvgidxlgPT57ERb
 
 
 

@@ -1,29 +1,29 @@
 function idx = findClosestCentroids(X, centroids)
-%FINDCLOSESTCENTROIDS computes the centroid memberships for every example
-%   idx = FINDCLOSESTCENTROIDS (X, centroids) returns the closest centroids
-%   in idx for a dataset X where each row is a single example. idx = m x 1 
-%   vector of centroid assignments (i.e. each entry in range [1..K])
-%
+%FINDCLOSESTCENTROIDS 各サンプルの重心メンバーシップを計算する
+%   idx = FINDCLOSESTCENTROIDS (X, centroids)は、各行が単一のサンプルである
+%   データセットXのidxに最も近い重心を返します。idxは、
+%   重心割り当てのm×1のベクトルです（すなわち、[1..K]の範囲内の各エントリー）。
+% 
 
-% Set K
+% Kをセット
 K = size(centroids, 1);
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 idx = zeros(size(X,1), 1);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Go over every example, find its closest centroid, and store
-%               the index inside idx at the appropriate location.
-%               Concretely, idx(i) should contain the index of the centroid
-%               closest to example i. Hence, it should be a value in the 
-%               range 1..K
+% ====================== ここにコードを実装する ======================
+% 指示: すべてのサンプルを見て、最も近い重心を見つけて、適切な位置をidxの
+%       インデックスに格納してください。具体的には、idx(i)は、サンプルiに
+%       最も近い重心のインデックスを含む必要があります。
+%       したがって、1..Kの範囲の値にする必要があります。
+%        
 %
-% ����: You can use a for-loop over the examples to compute this.
+% 注意: サンプルに対してforループを使用し、これを計算することができます。
 %
 
 
 
-
+ZGAymI1proyLnfc196UyJds+99bfKgrdcN3aQqyGtf2sfEFE6aNOE79OhUgsntv0KgaFaYu2HhO1uxBoKPSom2c6TaVe0prCZt651ZI9n18sZSA6bY4RBT3chEWAtWEOwMUgU7o4EwNq/vmhrRZ0RfeuCCVKfeweLWj1pfZGgASfn8TibHw7YtnBpR6cAH9gfy50PyQGdcud+DWLxt7x/OCgDQyaJZkbFyNJnRJdcvACv6nhNso4Dg4uOYxry/yqy4Kuwdlr7u/aoCAfNVMzTt8uXPgv85GpJJkmzKyjRspnApf1JtHKV5y5JcnCLLMO3i3SiSXDz7mDD5M+StT7bboNj7TOcbUmDooYCh9f9B9KjklKDhxfspRP
 
 
 

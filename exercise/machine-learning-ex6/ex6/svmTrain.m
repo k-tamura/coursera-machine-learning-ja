@@ -1,19 +1,19 @@
 function [model] = svmTrain(X, Y, C, kernelFunction, ...
                             tol, max_passes)
-%SVMTRAIN Trains an SVM classifier using a simplified version of the SMO 
-%algorithm. 
-%   [model] = SVMTRAIN(X, Y, C, kernelFunction, tol, max_passes) trains an
-%   SVM classifier and returns trained model. X is the matrix of training 
-%   examples.  Each row is a training example, and the jth column holds the 
-%   jth feature.  Y is a column matrix containing 1 for positive examples 
-%   and 0 for negative examples.  C is the standard SVM regularization 
-%   parameter.  tol is a tolerance value used for determining equality of 
-%   floating point numbers. max_passes controls the number of iterations
-%   over the dataset (without changes to alpha) before the algorithm quits.
+% SVMTRAIN SMOアルゴリズムの簡略化されたバージョンを使用してSVM分類器を
+% トレーニングします。
+%   [model] = SVMTRAIN(X, Y, C, kernelFunction, tol, max_passes) は、
+%   SVM分類器をトレーニングし、トレーニングされたモデルを返します。 
+%   Xは、トレーニング・サンプルの行列です。各行はトレーニング・サンプルであり、 
+%   j番目の列はj番目のフィーチャーを保持します。Yは、正のサンプルでは1、 
+%   負のサンプルでは0を含む列行列です。Cは標準のSVM正則化パラメーターです。
+%   tolは、浮動小数点数の等価性を判定するために使用される許容値です。
+%   max_passesは、アルゴリズムが終了する前に、（アルファに変更を加えずに）
+%   データセットに対する反復回数を制御します。
 %
-% ����: This is a simplified version of the SMO algorithm for training
-%       SVMs. In practice, if you want to train an SVM classifier, we
-%       recommend using an optimized package such as:  
+% 注意: これは、SVMをトレーニングするためのSMOアルゴリズムの簡略版です。 
+%      実際には、SVM分類器をトレーニングする場合は、次のような最適化されたパッケージを
+%      使用することをお勧めします。 
 %
 %           LIBSVM   (http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
 %           SVMLight (http://svmlight.joachims.org/)
@@ -28,14 +28,14 @@ if ~exist('max_passes', 'var') || isempty(max_passes)
     max_passes = 5;
 end
 
-% Data parameters
+% データパラメーター
 m = size(X, 1);
 n = size(X, 2);
 
-% Map 0 to -1
+% 0を-1にマッピングする
 Y(Y==0) = -1;
 
-% Variables
+% 変数
 alphas = zeros(m, 1);
 b = 0;
 E = zeros(m, 1);
@@ -44,35 +44,35 @@ eta = 0;
 L = 0;
 H = 0;
 
-% Pre-compute the Kernel Matrix since our dataset is small
-% (in practice, optimized SVM packages that handle large datasets
-%  gracefully will _not_ do this)
+% 今回扱うデータセットは小さいので、カーネルマトリックスを事前に計算します
+% （実際には、大きなデータセットを扱う最適化されたSVMパッケージでは
+% これを行うことはありません）。
 % 
-% We have implemented optimized vectorized version of the Kernels here so
-% that the svm training will run faster.
+% ここでカーネルのベクトル化バージョンを最適化して、SVMトレーニングを高速化します。
+% 
 if strcmp(func2str(kernelFunction), 'linearKernel')
-    % Vectorized computation for the Linear Kernel
-    % This is equivalent to computing the kernel on every pair of examples
+    % 線形カーネルのベクトル化された計算
+    % これは、すべてのサンプルのペアでカーネルを計算することと同じです。
     K = X*X';
 elseif strfind(func2str(kernelFunction), 'gaussianKernel')
-    % Vectorized RBF Kernel
-    % This is equivalent to computing the kernel on every pair of examples
+    % ベクトル化されたRBFカーネル
+    % これは、すべてのサンプルのペアでカーネルを計算することと同じです。
     X2 = sum(X.^2, 2);
     K = bsxfun(@plus, X2, bsxfun(@plus, X2', - 2 * (X * X')));
     K = kernelFunction(1, 0) .^ K;
 else
-    % Pre-compute the Kernel Matrix
-    % The following can be slow due to the lack of vectorization
+    % カーネル行列の事前計算
+    % ベクトル化の欠如のために、以下が遅くなる可能性があります。
     K = zeros(m);
     for i = 1:m
         for j = i:m
              K(i,j) = kernelFunction(X(i,:)', X(j,:)');
-             K(j,i) = K(i,j); %the matrix is symmetric
+             K(j,i) = K(i,j); % 行列は対称
         end
     end
 end
 
-% Train
+% トレーニングする
 fprintf('\nTraining ...');
 dots = 12;
 while passes < max_passes,
@@ -80,27 +80,27 @@ while passes < max_passes,
     num_changed_alphas = 0;
     for i = 1:m,
         
-        % Calculate Ei = f(x(i)) - y(i) using (2). 
+        % (2)を使って、Ei = f(x(i)) - y(i)を計算する
         % E(i) = b + sum (X(i, :) * (repmat(alphas.*Y,1,n).*X)') - Y(i);
         E(i) = b + sum (alphas.*Y.*K(:,i)) - Y(i);
         
         if ((Y(i)*E(i) < -tol && alphas(i) < C) || (Y(i)*E(i) > tol && alphas(i) > 0)),
             
-            % In practice, there are many heuristics one can use to select
-            % the i and j. In this simplified code, we select them randomly.
+            % 実際には、iとjを選択するために使用できるヒューリスティックが多数あります。 
+            % この単純化されたコードでは、それらをランダムに選択します。
             j = ceil(m * rand());
             while j == i,  % Make sure i \neq j
                 j = ceil(m * rand());
             end
 
-            % Calculate Ej = f(x(j)) - y(j) using (2).
+            % (2)を使って、Ej = f(x(j)) - y(j)を計算する
             E(j) = b + sum (alphas.*Y.*K(:,j)) - Y(j);
 
-            % Save old alphas
+            % 古いアルファを保存する
             alpha_i_old = alphas(i);
             alpha_j_old = alphas(j);
             
-            % Compute L and H by (10) or (11). 
+            % LとHを(10)または(11)で計算する 
             if (Y(i) == Y(j)),
                 L = max(0, alphas(j) + alphas(i) - C);
                 H = min(C, alphas(j) + alphas(i));
@@ -114,21 +114,21 @@ while passes < max_passes,
                 continue;
             end
 
-            % Compute eta by (14).
+            % (14)によってetaを計算する。
             eta = 2 * K(i,j) - K(i,i) - K(j,j);
             if (eta >= 0),
-                % continue to next i. 
+                % 次のiへ進む。
                 continue;
             end
             
-            % Compute and clip new value for alpha j using (12) and (15).
+            % (12)と(15)を使ってアルファjの新しい値を計算し、クリップします。
             alphas(j) = alphas(j) - (Y(j) * (E(i) - E(j))) / eta;
             
-            % Clip
+            % クリップ
             alphas(j) = min (H, alphas(j));
             alphas(j) = max (L, alphas(j));
             
-            % Check if change in alpha is significant
+            % アルファの変化が大きいかどうかを調べる
             if (abs(alphas(j) - alpha_j_old) < tol),
                 % continue to next i. 
                 % replace anyway
@@ -136,10 +136,10 @@ while passes < max_passes,
                 continue;
             end
             
-            % Determine value for alpha i using (16). 
+            % (16)を用いてアルファiの値を決定する。
             alphas(i) = alphas(i) + Y(i)*Y(j)*(alpha_j_old - alphas(j));
             
-            % Compute b1 and b2 using (17) and (18) respectively. 
+            % (17)と(18)をそれぞれ使ってb1とb2を計算する。
             b1 = b - E(i) ...
                  - Y(i) * (alphas(i) - alpha_i_old) *  K(i,j)' ...
                  - Y(j) * (alphas(j) - alpha_j_old) *  K(i,j)';
@@ -147,7 +147,7 @@ while passes < max_passes,
                  - Y(i) * (alphas(i) - alpha_i_old) *  K(i,j)' ...
                  - Y(j) * (alphas(j) - alpha_j_old) *  K(j,j)';
 
-            % Compute b by (19). 
+            % (19)で計算する 
             if (0 < alphas(i) && alphas(i) < C),
                 b = b1;
             elseif (0 < alphas(j) && alphas(j) < C),
@@ -180,7 +180,7 @@ while passes < max_passes,
 end
 fprintf(' Done! \n\n');
 
-% Save the model
+% モデルを保存する
 idx = alphas > 0;
 model.X= X(idx,:);
 model.y= Y(idx);

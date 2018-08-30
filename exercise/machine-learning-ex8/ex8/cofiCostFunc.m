@@ -17,8 +17,8 @@ J = 0;
 X_grad = zeros(size(X));
 Theta_grad = zeros(size(Theta));
 
-% ====================== ここにコードを実装する ======================
-% 指示: Compute the cost function and gradient for collaborative
+% ====================== 縺薙％縺ｫ繧ｳ繝ｼ繝峨ｒ螳溯｣�縺吶ｋ ======================
+% 謖�遉ｺ: Compute the cost function and gradient for collaborative
 %               filtering. Concretely, you should first implement the cost
 %               function (without regularization) and make sure it is
 %               matches our costs. After that, you should implement the 

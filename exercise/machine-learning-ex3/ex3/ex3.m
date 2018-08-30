@@ -1,10 +1,10 @@
-%% �@�B�w�K�I�����C���N���X - ���K 3 | Part 1: One-vs-all
+%% 機械学習オンラインクラス - 演習 3 | Part 1: One-vs-all
 
-%  �w��
+%  指示
 %  ------------
 %
-%  ���̃t�@�C���ɂ́A���`���K���J�n����̂ɖ𗧂R�[�h���܂܂�Ă��܂��B
-%  ���̉��K�ł́A���̊֐�����������K�v������܂��B
+%  このファイルには、線形演習を開始するのに役立つコードが含まれています。
+%  この演習では、次の関数を完成する必要があります。
 %
 %
 %     lrCostFunction.m (logistic regression cost function)
@@ -12,30 +12,30 @@
 %     predictOneVsAll.m
 %     predict.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% ���̉��K�Ŏg�p����p�����[�^�[���Z�b�g�A�b�v����
-input_layer_size  = 400;  % 20x20���͂̐����摜
-hidden_layer_size = 25;   % 25 �B�ꃆ�j�b�g
-                          % �i���x��10�� "0"���}�b�s���O���Ă��邱�Ƃɒ��ӂ��Ă��������j
+%% この演習で使用するパラメーターをセットアップする
+input_layer_size  = 400;  % 20x20入力の数字画像
+hidden_layer_size = 25;   % 25 隠れユニット
+                          % （ラベル10に "0"をマッピングしていることに注意してください）
 
-%% =========== �p�[�g 1: �f�[�^�̓ǂݍ��݂Ɖ��� =============
-%  �ŏ��Ƀf�[�^�Z�b�g��ǂݍ���ŉ������邱�ƂŁA���̉��K���J�n���܂��B
-%  �菑���������܂ރf�[�^�Z�b�g���g�p���č�Ƃ��܂��B
+%% =========== パート 1: データの読み込みと可視化 =============
+%  最初にデータセットを読み込んで可視化することで、この演習を開始します。
+%  手書き数字を含むデータセットを使用して作業します。
 %
 
-% �g���[�j���O�f�[�^��ǂݍ���
+% トレーニングデータを読み込む
 fprintf('Loading and Visualizing Data ...\n')
 
-load('ex3data1.mat'); % �z��X�Ay�Ɋi�[���ꂽ�g���[�j���O�f�[�^
+load('ex3data1.mat'); % 配列X、yに格納されたトレーニングデータ
 m = size(X, 1);
 
-% �\������f�[�^�_�������_����100�I��
+% 表示するデータ点をランダムに100選択
 rand_indices = randperm(m);
 sel = X(rand_indices(1:100), :);
 
@@ -44,15 +44,15 @@ displayData(sel);
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ============ �p�[�g 2a: ���W�X�e�B�b�N��A���x�N�g�������� ============
-%  ���̉��K�ł́A�O��̉��K�̃��W�X�e�B�b�N��A�R�[�h���ė��p���܂��B
-%  �����ł̍�Ƃ́A���K�����ꂽ���W�X�e�B�b�N��A�̎�����
-%  �x�N�g��������Ă��邱�Ƃ��m�F���邱�Ƃł��B
-%  ���̌�A�菑���̐����f�[�^�Z�b�g�ɑ΂��Ĉ�ΑS�Ă̕��ނ��������܂��B
+%% ============ パート 2a: ロジスティック回帰をベクトル化する ============
+%  この演習では、前回の演習のロジスティック回帰コードを再利用します。
+%  ここでの作業は、正規化されたロジスティック回帰の実装が
+%  ベクトル化されていることを確認することです。
+%  その後、手書きの数字データセットに対して一対全ての分類を実装します。
 %  
 %
 
-% lrCostFunction�̃e�X�g�P�[�X
+% lrCostFunctionのテストケース
 fprintf('\nTesting lrCostFunction() with regularization');
 
 theta_t = [-2; -1; 1; 2];
@@ -70,7 +70,7 @@ fprintf(' 0.146561\n -0.548558\n 0.724722\n 1.398003\n');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
-%% ============ �p�[�g 2b: 1�ΑS�Ẵg���[�j���O ============
+%% ============ パート 2b: 1対全てのトレーニング ============
 fprintf('\nTraining One-vs-All Logistic Regression...\n')
 
 lambda = 0.1;
@@ -80,7 +80,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================ �p�[�g 3: 1�ΑS�Ă̗\�� ================
+%% ================ パート 3: 1対全ての予測 ================
 
 pred = predictOneVsAll(all_theta, X);
 

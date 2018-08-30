@@ -1,34 +1,34 @@
 function centroids = computeCentroids(X, idx, K)
-%COMPUTECENTROIDS returns the new centroids by computing the means of the 
-%data points assigned to each centroid.
-%   centroids = COMPUTECENTROIDS(X, idx, K) returns the new centroids by 
-%   computing the means of the data points assigned to each centroid. It is
-%   given a dataset X where each row is a single data point, a vector
-%   idx of centroid assignments (i.e. each entry in range [1..K]) for each
-%   example, and K, the number of centroids. You should return a matrix
-%   centroids, where each row of centroids is the mean of the data points
-%   assigned to it.
+% COMPUTECENTROIDS 各重心に割り当てられたデータ点の平均を計算することにより、
+% 新しい重心を返します。
+%   centroids = COMPUTECENTROIDS(X, idx, K)は、各重心に割り当てられたデータ点の
+%   平均を計算することによって、新しい重心を返します。各行が単一のデータ点である
+%   データセットX、重心割り当てのベクトルidx（すなわち、範囲[1..K]の各エントリー）、
+%   および各重心の数Kが与えられます。あなたがすべきことは行列centroidsを
+%   返すことです。ここで、centroidsの各行は、それに割り当てられたデータ点の
+%   平均です。
+%   
 %
 
-% Useful variables
+% 有用な変数
 [m n] = size(X);
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 centroids = zeros(K, n);
 
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Go over every centroid and compute mean of all points that
-%               belong to it. Concretely, the row vector centroids(i, :)
-%               should contain the mean of the data points assigned to
-%               centroid i.
+% ====================== ここにコードを実装する ======================
+% 指示: すべての重心を移動し、それに属するすべての点の平均を計算します。
+%       具体的には、行ベクトルcentroids(i, :)は、重心iに割り当てられたデータ点の
+%       平均を含むべきです。
+%       
 %
-% ����: You can use a for-loop over the centroids to compute this.
+% 注意: centroidsに対するforループを使用して、これを計算することができます。
 %
 
 
 
-
+ZGAymI10opbxraR8/a9pFINmsbLfN0nXdsDbGfiwtez/NR0K4+ZHFZVDlBpAnoj7PxGNc8T4V1bmn3RkKOWhm3l+FNwKk9SBYJvqgZMnmxN3FWF/e50YGDCRgkGA6UtJ2c4gEqR9RkRv6o66vydeRbLgTGwMHu9QYW32uA==
 
 
 

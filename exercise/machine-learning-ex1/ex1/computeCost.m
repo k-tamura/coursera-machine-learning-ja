@@ -1,17 +1,17 @@
 function J = computeCost(X, y, theta)
-%COMPUTECOST üŒ`‰ñ‹A‚ÌƒRƒXƒg‚ðŒvŽZ‚·‚é
-%   J = COMPUTECOST(X, y, theta) ‚ÍAX‚Æy‚Ìƒf[ƒ^“_‚ÉƒtƒBƒbƒg‚·‚éüŒ`‰ñ‹A‚Ì
-%   ƒpƒ‰ƒ[ƒ^[‚Æ‚µ‚Ätheta‚ðŽg—p‚µ‚½ƒRƒXƒg‚ðŒvŽZ‚·‚éB
+%COMPUTECOST ç·šå½¢å›žå¸°ã®ã‚³ã‚¹ãƒˆã‚’è¨ˆç®—ã™ã‚‹
+%   J = COMPUTECOST(X, y, theta) ã¯ã€Xã¨yã®ãƒ‡ãƒ¼ã‚¿ç‚¹ã«ãƒ•ã‚£ãƒƒãƒˆã™ã‚‹ç·šå½¢å›žå¸°ã®
+%   ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã¨ã—ã¦thetaã‚’ä½¿ç”¨ã—ãŸã‚³ã‚¹ãƒˆã‚’è¨ˆç®—ã™ã‚‹ã€‚
 
-% ‚¢‚­‚Â‚©‚Ì—L—p‚È’l‚ð‰Šú‰»‚·‚é
-m = length(y); % ƒgƒŒ[ƒjƒ“ƒOEƒTƒ“ƒvƒ‹‚Ì”
+% ã„ãã¤ã‹ã®æœ‰ç”¨ãªå€¤ã‚’åˆæœŸåŒ–ã™ã‚‹
+m = length(y); % ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒ»ã‚µãƒ³ãƒ—ãƒ«ã®æ•°
 
-% ŽŸ‚Ì•Ï”‚ð³‚µ‚­•Ô‚·•K—v‚ª‚ ‚è‚Ü‚·
+% æ¬¡ã®å¤‰æ•°ã‚’æ­£ã—ãè¿”ã™å¿…è¦ãŒã‚ã‚Šã¾ã™
 J = 0;
 
-% ====================== ‚±‚±‚ÉƒR[ƒh‚ðŽÀ‘•‚·‚é ======================
-% ŽwŽ¦: Žw’è‚³‚ê‚½theta‚ÌƒRƒXƒg‚ðŒvŽZ‚µ‚Ä‚­‚¾‚³‚¢B
-%               J‚ðƒRƒXƒg‚ÉÝ’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+% ====================== ã“ã“ã«ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè£…ã™ã‚‹ ======================
+% æŒ‡ç¤º: æŒ‡å®šã•ã‚ŒãŸthetaã®ã‚³ã‚¹ãƒˆã‚’è¨ˆç®—ã—ã¦ãã ã•ã„ã€‚
+%               Jã‚’ã‚³ã‚¹ãƒˆã«è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 
 
 SC99mMRhy4yQh/A06LR7Xdovp/XYKkORN/afG/itufGraQAHqr9HDrBDnEEGlNv/bA==

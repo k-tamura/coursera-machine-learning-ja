@@ -1,24 +1,24 @@
-%% Machine Learning Online Class
-%  Exercise 8 | Anomaly Detection and Collaborative Filtering
+%% æ©Ÿæ¢°å­¦ç¿’ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‚¯ãƒ©ã‚¹
+%  æ¼”ç¿’ 8 | Anomaly Detection and Collaborative Filtering
 %
-%  w¦
+%  æŒ‡ç¤º
 %  ------------
 %
-%  This file contains code that helps you get started on the
-%  exercise. Ÿ‚ÌŠÖ”‚ğŠ®¬‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+%  ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯ã€æ¼”ç¿’ã‚’é–‹å§‹ã™ã‚‹ã®ã«å½¹ç«‹ã¤ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã™ã€‚
+%  æ¬¡ã®é–¢æ•°ã‚’å®Œæˆã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 %
 %     estimateGaussian.m
 %     selectThreshold.m
 %     cofiCostFunc.m
 %
-%  ‚±‚Ì‰‰K‚Å‚ÍA‚±‚Ìƒtƒ@ƒCƒ‹‚Ü‚½‚Íã‹LˆÈŠO‚Ìƒtƒ@ƒCƒ‹“à‚ÌƒR[ƒh‚ğ
-%  •ÏX‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
+%  ã“ã®æ¼”ç¿’ã§ã¯ã€ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ä¸Šè¨˜ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ã‚³ãƒ¼ãƒ‰ã‚’
+%  å¤‰æ›´ã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 %
 
-%% ‰Šú‰»
+%% åˆæœŸåŒ–
 clear ; close all; clc
 
-%% ================== ƒp[ƒg 1: Load Example Dataset  ===================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 1: Load Example Dataset  ===================
 %  We start this exercise by using a small dataset that is easy to
 %  visualize.
 %
@@ -43,7 +43,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause
 
 
-%% ================== ƒp[ƒg 2: Estimate the dataset statistics ===================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 2: Estimate the dataset statistics ===================
 %  For this exercise, we assume a Gaussian distribution for the dataset.
 %
 %  We first estimate the parameters of our assumed Gaussian distribution, 
@@ -68,7 +68,7 @@ ylabel('Throughput (mb/s)');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ================== ƒp[ƒg 3: Find Outliers ===================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 3: Find Outliers ===================
 %  Now you will find a good epsilon threshold using a cross-validation set
 %  probabilities given the estimated Gaussian distribution
 % 
@@ -92,7 +92,7 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ================== ƒp[ƒg 4: Multidimensional Outliers ===================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 4: Multidimensional Outliers ===================
 %  We will now use the code from the previous part and apply it to a 
 %  harder problem in which more features describe each datapoint and only 
 %  some features indicate whether a point is an outlier.

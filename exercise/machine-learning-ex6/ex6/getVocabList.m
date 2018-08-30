@@ -1,23 +1,23 @@
 function vocabList = getVocabList()
-%GETVOCABLIST reads the fixed vocabulary list in vocab.txt and returns a
-%cell array of the words
-%   vocabList = GETVOCABLIST() reads the fixed vocabulary list in vocab.txt 
-%   and returns a cell array of the words in vocabList.
+% GETVOCABLIST vocab.txt内の固定値の語彙リストを読み込み、単語のセル配列を返します
+%
+%   vocabList = GETVOCABLIST() は、vocab.txtの固定値の語彙リストを読み込み、
+%   単語のセル配列をvocabListにセットして返します。
 
 
-%% Read the fixed vocabulary list
+%% 固定値の語彙リストを読む
 fid = fopen('vocab.txt');
 
-% Store all dictionary words in cell array vocab{}
-n = 1899;  % Total number of words in the dictionary
+% すべての辞書単語をセル配列のvocab{}に格納する
+n = 1899;  % 辞書内の総単語数
 
-% For ease of implementation, we use a struct to map the strings => integers
-% In practice, you'll want to use some form of hashmap
+% 実装を簡単にするために、構造体を使用して文字列=>整数にマッピングします
+% 実際には、何らかの形のハッシュマップを使いたいと思うでしょう
 vocabList = cell(n, 1);
 for i = 1:n
-    % Word Index (can ignore since it will be = i)
+    % 単語のインデックス（= iになるので、無視することができます）
     fscanf(fid, '%d', 1);
-    % Actual Word
+    % 実際の単語
     vocabList{i} = fscanf(fid, '%s', 1);
 end
 fclose(fid);

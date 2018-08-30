@@ -1,31 +1,31 @@
 function pred = svmPredict(model, X)
-%SVMPREDICT returns a vector of predictions using a trained SVM model
-%(svmTrain). 
-%   pred = SVMPREDICT(model, X) returns a vector of predictions using a 
-%   trained SVM model (svmTrain). X is a mxn matrix where there each 
-%   example is a row. model is a svm model returned from svmTrain.
-%   predictions pred is a m x 1 column of predictions of {0, 1} values.
+% SVMPREDICT トレーニングされたSVMモデル（svmTrain）を使用して予測ベクトルを返す。
+%
+%   pred = SVMPREDICT(model, X) は、トレーニングされたSVMモデル（svmTrain）を
+%   使用して予測ベクトルを返します。Xはmxn行列であり、その1行が各サンプルです。
+%   modelはsvmTrainから返されるsvmモデルです。
+%   予測predは、{0, 1}値の予測のm×1列ベクトルです。
 %
 
-% Check if we are getting a column vector, if so, then assume that we only
-% need to do prediction for a single example
+% 列ベクトルを取得しているかどうかを確認し、その場合は、単一のサンプルについて
+% 予測を行うだけでよいと仮定する
 if (size(X, 2) == 1)
-    % Examples should be in rows
+    % サンプルは行にする必要がある
     X = X';
 end
 
-% Dataset 
+% データセット 
 m = size(X, 1);
 p = zeros(m, 1);
 pred = zeros(m, 1);
 
 if strcmp(func2str(model.kernelFunction), 'linearKernel')
-    % We can use the weights and bias directly if working with the 
-    % linear kernel
+    % 線形カーネルを扱う場合は、直接、重みとバイアスを使用することができる
+    % 
     p = X * model.w + model.b;
 elseif strfind(func2str(model.kernelFunction), 'gaussianKernel')
-    % Vectorized RBF Kernel
-    % This is equivalent to computing the kernel on every pair of examples
+    % ベクトル化されたRBFカーネル
+    % これは、すべてのサンプルのペアでカーネルを計算するのと同じです
     X1 = sum(X.^2, 2);
     X2 = sum(model.X.^2, 2)';
     K = bsxfun(@plus, X1, bsxfun(@plus, X2, - 2 * X * model.X'));
@@ -34,7 +34,7 @@ elseif strfind(func2str(model.kernelFunction), 'gaussianKernel')
     K = bsxfun(@times, model.alphas', K);
     p = sum(K, 2);
 else
-    % Other Non-linear kernel
+    % その他の非線形カーネル
     for i = 1:m
         prediction = 0;
         for j = 1:size(model.X, 1)
@@ -46,7 +46,7 @@ else
     end
 end
 
-% Convert predictions into 0 / 1
+% 予測を0/1に変換する
 pred(p >= 0) =  1;
 pred(p <  0) =  0;
 

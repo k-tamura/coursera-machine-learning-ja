@@ -1,21 +1,21 @@
 function centroids = kMeansInitCentroids(X, K)
-%KMEANSINITCENTROIDS This function initializes K centroids that are to be 
-%used in K-Means on the dataset X
-%   centroids = KMEANSINITCENTROIDS(X, K) returns K initial centroids to be
-%   used with the K-Means on the dataset X
+% KMEANSINITCENTROIDS この関数は、データセットX上のK-Meansで使用されるKの重心を
+% 初期化します。
+%   centroids = KMEANSINITCENTROIDS(X, K)は、データセットXをK-Meansで
+%   使用するために、K個の重心の初期値を返します。
 %
 
-% You should return this values correctly
+% この値を正しく返す必要があります
 centroids = zeros(K, size(X, 2));
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: You should set centroids to randomly chosen examples from
-%               the dataset X
+% ====================== ここにコードを実装する ======================
+% 指示: データセットXからランダムに選択したサンプルに重心を
+%       設定する必要があります。
 %
 
 
 
-
+cG4u3I0t64yHh/Y946RqGIVi9q+WcAyZR4KfAPHw6p68bU5e+KkHSuxDiVN+lonzKxDMZ9OjDxjE2TZoMv2z
 
 
 

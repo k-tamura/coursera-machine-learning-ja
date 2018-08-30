@@ -1,37 +1,37 @@
 function plotDecisionBoundary(theta, X, y)
-%PLOTDECISIONBOUNDARY �f�[�^�_X��y��theta�ɂ���Ē�`���ꂽ���苫�E�ƂƂ���
-%   �V�����}�`�Ƀv���b�g����
-%   PLOTDECISIONBOUNDARY(theta, X,y) �́A���̃T���v���ł�+�A
-%   ���̃T���v���ł�o�Ńf�[�^�_���v���b�g���܂��B
-%   X�́A�ȉ��̂ǂ��炩�Ƃ��܂��B
+%PLOTDECISIONBOUNDARY データ点Xとyをthetaによって定義された決定境界とともに
+%   新しい図形にプロットする
+%   PLOTDECISIONBOUNDARY(theta, X,y) は、正のサンプルでは+、
+%   負のサンプルではoでデータ点をプロットします。
+%   Xは、以下のどちらかとします。
 %   
-%   1�jMx3�̍s��B�����ŁA�ŏ��̗�͐ؕЂɂ�����S��1�̗�ł���
-%   2�jM�~N�AN>3�̍s��B�����ŁA�ŏ��̗�͑S��1�̗�ł���
+%   1）Mx3の行列。ここで、最初の列は切片にあたる全て1の列である
+%   2）M×N、N>3の行列。ここで、最初の列は全て1の列である
 
-% �f�[�^���v���b�g����
+% データをプロットする
 plotData(X(:,2:3), y);
 hold on
 
 if size(X, 2) <= 3
-    % 1�̐����`���邽�߂�2�_�����K�v�Ƃ��Ȃ��̂ŁA2�̒[�_��I������
+    % 1つの線を定義するために2点しか必要としないので、2つの端点を選択する
     plot_x = [min(X(:,2))-2,  max(X(:,2))+2];
 
-    % ���苫�E�����v�Z����
+    % 決定境界線を計算する
     plot_y = (-1./theta(3)).*(theta(2).*plot_x + theta(1));
 
-    % �v���b�g���A���₷�����邽�߂Ɏ��𒲐�����
+    % プロットし、見やすくするために軸を調整する
     plot(plot_x, plot_y)
     
-    % ���K�ŗL�̖}��
+    % 演習固有の凡例
     legend('Admitted', 'Not admitted', 'Decision Boundary')
     axis([30, 100, 30, 100])
 else
-    % �O���b�h�͈̔͂͂���
+    % グリッドの範囲はここ
     u = linspace(-1, 1.5, 50);
     v = linspace(-1, 1.5, 50);
 
     z = zeros(length(u), length(v));
-    % �O���b�h��ŁAz = theta*x��]������
+    % グリッド上で、z = theta*xを評価する
     for i = 1:length(u)
         for j = 1:length(v)
             z(i,j) = mapFeature(u(i), v(j))*theta;
@@ -39,8 +39,8 @@ else
     end
     z = z'; % important to transpose z before calling contour
 
-    % z = 0���v���b�g����
-    % [0�A0]�͈̔͂��w�肷��K�v�����邱�Ƃɒ��ӂ��Ă�������
+    % z = 0をプロットする
+    % [0、0]の範囲を指定する必要があることに注意してください
     contour(u, v, z, [0, 0], 'LineWidth', 2)
 end
 hold off

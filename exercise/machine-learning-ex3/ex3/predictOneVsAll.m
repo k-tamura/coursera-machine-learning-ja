@@ -1,38 +1,38 @@
 function p = predictOneVsAll(all_theta, X)
-%PREDICT Predict the label for a trained one-vs-all classifier. The labels 
-%are in the range 1..K, where K = size(all_theta, 1). 
-%  p = PREDICTONEVSALL(all_theta, X) will return a vector of predictions
-%  for each example in the matrix X. Note that X contains the examples in
-%  rows. all_theta is a matrix where the i-th row is a trained logistic
-%  regression theta vector for the i-th class. You should set p to a vector
-%  of values from 1..K (e.g., p = [1; 3; 1; 2] predicts classes 1, 3, 1, 2
-%  for 4 examples) 
+%PREDICT トレーニングされた1対全ての分類器のラベルを予測します。
+% ラベルは1..Kの範囲にあり、K = size(all_theta, 1)です。
+%  p = PREDICTONEVSALL(all_theta, X) は、行列Xの各サンプルの予測の
+%  ベクトルを返します。Xには行のサンプルが含まれています。
+%  all_thetaは、i番目のクラスに対してi番目の行がトレーニングされた
+%  ロジスティック回帰のΘのベクトルである行列です。
+%  pを1..Kの値のベクトルに設定する必要があります
+%  （例：p = [1; 3; 1; 2]は4つのサンプルでクラス1,3,1,2を予測します）。
 
 m = size(X, 1);
 num_labels = size(all_theta, 1);
 
-% ���̕ϐ��𐳂����Ԃ��K�v������܂�
+% 次の変数を正しく返す必要があります
 p = zeros(size(X, 1), 1);
 
-% Add ones to the X data matrix
+% データ行列Xに1を加える
 X = [ones(m, 1) X];
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Complete the following code to make predictions using
-%               your learned logistic regression parameters (one-vs-all).
-%               You should set p to a vector of predictions (from 1 to
-%               num_labels).
+% ====================== ここにコードを実装する ======================
+% 指示: 学習したロジスティック回帰パラメーター（one-vs-all）を
+%         使用して予測を行うには、次のコードを完成させます。
+%         pを予測ベクトル（1からnum_labels）に設定する必要があります。
 %
-% �q���g: This code can be done all vectorized using the max function.
-%       In particular, the max function can also return the index of the 
-%       max element, for more information see 'help max'. If your examples 
-%       are in rows, then, you can use max(A, [], 2) to obtain the max 
-%       for each row.
+%
+% ヒント: このコードは、すべてのベクトル化をmax関数を使って行うことができます。
+%            特に、max関数は最大の要素のインデックスも返すことができます。
+%            詳細については、'help max'を参照してください。
+%            サンプルが行内にある場合は、max(A, [], 2) を使用して各行の最大値を
+%            取得できます。
 %       
 
 
 
-
+WXkh1JEsv4zK+qRhra17Bd9X/vbfawXdQNrXVKy49rj/U30GqvRHFQ==
 
 
 

@@ -1,70 +1,70 @@
-%% �@�B�w�K�I�����C���N���X - ���K 2: Logistic Regression
+%% 機械学習オンラインクラス - 演習 2: Logistic Regression
 %
-%  �w��
+%  指示
 %  ------------
 %
-%  ���̃t�@�C���ɂ́A���W�X�e�B�b�N��A�̐�������ΏۂƂ��鉉�K��
-%  �Q�Ԗڂ̃p�[�g���J�n����̂ɖ𗧂R�[�h���܂܂�Ă��܂��B
+%  このファイルには、ロジスティック回帰の正則化を対象とする演習の
+%  ２番目のパートを開始するのに役立つコードが含まれています。
 %  
-%  ���̉��K�ł́A�ȉ��̊֐�����������K�v������܂��F
+%  この演習では、以下の関数を完成する必要があります：
 %
 %     sigmoid.m
 %     costFunction.m
 %     predict.m
 %     costFunctionReg.m
 %
-%  ���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% �f�[�^�����[�h
-%  �ŏ���2�̗�ɂ�X�l���܂܂�A3�ڂ̗�ɂ̓��x���iy�j��
-%  �܂܂�܂��B
+%% データをロード
+%  最初の2つの列にはX値が含まれ、3つ目の列にはラベル（y）が
+%  含まれます。
 
 data = load('ex2data2.txt');
 X = data(:, [1, 2]); y = data(:, 3);
 
 plotData(X, y);
 
-% �������̃��x����t����
+% いくつかのラベルを付ける
 hold on;
 
-% ���x���Ɩ}��
+% ラベルと凡例
 xlabel('Microchip Test 1')
 ylabel('Microchip Test 2')
 
-% �v���b�g���Ŏw��
+% プロット順で指定
 legend('y = 1', 'y = 0')
 hold off;
 
 
-%% =========== �p�[�g 1: ���������ꂽ���W�X�e�B�b�N��A ============
-%  ���̃p�[�g�ł́A���`�ɕ����ł��Ȃ��f�[�^�_�����f�[�^�Z�b�g��
-%  �^�����܂��B�������A���W�X�e�B�b�N��A���g�p���ăf�[�^�_��
-%  ���ނ������ƍl���Ă��܂��B
+%% =========== パート 1: 正則化されたロジスティック回帰 ============
+%  このパートでは、線形に分離できないデータ点を持つデータセットが
+%  与えられます。しかし、ロジスティック回帰を使用してデータ点を
+%  分類したいと考えています。
 %  
-%  ������s���ɂ́A��葽���̃t�B�[�`���[���g�p����K�v������܂��B
-%  ���ɁA�f�[�^�s��ɑ������t�B�[�`���[��ǉ����܂�
-%  �i��������A�Ɠ��l�j�B
+%  これを行うには、より多くのフィーチャーを使用する必要があります。
+%  特に、データ行列に多項式フィーチャーを追加します
+%  （多項式回帰と同様）。
 %
 
-% �������̃t�B�[�`���[��ǉ�����
+% 多項式のフィーチャーを追加する
 
-% mapFeature��1�̗��ǉ�����̂ŁA�ؕЍ�����������邱�Ƃ�
-% ���ӂ��Ă��������B
+% mapFeatureも1の列を追加するので、切片項が処理されることに
+% 注意してください。
 X = mapFeature(X(:,1), X(:,2));
 
-% �t�B�b�e�B���O�E�p�����[�^�[������������
+% フィッティング・パラメーターを初期化する
 initial_theta = zeros(size(X, 2), 1);
 
-% �������p�����[�^�[lambda��1�ɐݒ肷��
+% 正則化パラメーターlambdaを1に設定する
 lambda = 1;
 
-% ���������ꂽ���W�X�e�B�b�N��A�̏����R�X�g�ƌ��z���v�Z���A
-% �\������
+% 正則化されたロジスティック回帰の初期コストと勾配を計算し、
+% 表示する
 [cost, grad] = costFunctionReg(initial_theta, X, y, lambda);
 
 fprintf('Cost at initial theta (zeros): %f\n', cost);
@@ -77,8 +77,8 @@ fprintf(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-% ���ׂ�1��theta��lambda= 10�ŃR�X�g�ƌ��z���v�Z���A
-% �\������
+% すべて1のthetaとlambda= 10でコストと勾配を計算し、
+% 表示する
 test_theta = ones(size(X,2),1);
 [cost, grad] = costFunctionReg(test_theta, X, y, 10);
 
@@ -92,43 +92,43 @@ fprintf(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ============= �p�[�g 2: �������Ɛ��x =============
-%  �I�v�V�����̉��K:
-%  ���̃p�[�g�ł́Alambda�̂��܂��܂Ȓl�������āA�����������E����ɂǂ̂悤��
-%  �e����^���邩�����Ă݂܂��傤�B
+%% ============= パート 2: 正則化と精度 =============
+%  オプションの演習:
+%  このパートでは、lambdaのさまざまな値を試して、正則化が境界決定にどのように
+%  影響を与えるかを見てみましょう。
 %  
-%  lambda�Ɏ��̒l�������Ă��������F0�A1�A10�A100
+%  lambdaに次の値を試してください：0、1、10、100
 %  
-%  lambda��ς���Ƃ��Ɍ��苫�E�͂ǂ̂悤�ɕω�����ł��傤���H 
-%  �g���[�j���O�Z�b�g�̐��x�͂ǂ̂悤�ɕω�����ł��傤���H
+%  lambdaを変えるときに決定境界はどのように変化するでしょうか？ 
+%  トレーニングセットの精度はどのように変化するでしょうか？
 %
 
-% �t�B�b�e�B���O�E�p�����[�^�[������������
+% フィッティング・パラメーターを初期化する
 initial_theta = zeros(size(X, 2), 1);
 
-% �������p�����[�^�[�ɂ�1�ɐݒ肵�܂��i����͕ς���K�v������܂��j
+% 正則化パラメーターλを1に設定します（これは変える必要があります）
 lambda = 1;
 
-% �I�v�V������ݒ肷��
+% オプションを設定する
 options = optimset('GradObj', 'on', 'MaxIter', 400);
 
-% �œK������
+% 最適化する
 [theta, J, exit_flag] = ...
 	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
 
-% ���E���v���b�g����
+% 境界をプロットする
 plotDecisionBoundary(theta, X, y);
 hold on;
 title(sprintf('lambda = %g', lambda))
 
-% ���x���Ɩ}��
+% ラベルと凡例
 xlabel('Microchip Test 1')
 ylabel('Microchip Test 2')
 
 legend('y = 1', 'y = 0', 'Decision boundary')
 hold off;
 
-% �g���[�j���O�Z�b�g�̐��x���v�Z����
+% トレーニングセットの精度を計算する
 p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);

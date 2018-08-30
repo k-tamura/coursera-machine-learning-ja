@@ -1,14 +1,14 @@
 function plotData(X, y)
-%PLOTDATA Plots the data points X and y into a new figure 
-%   PLOTDATA(x,y) plots the data points with + for the positive examples
-%   and o for the negative examples. X is assumed to be a Mx2 matrix.
+%PLOTDATA データ点Xとyを新しい図にプロットする
+%   PLOTDATA(x,y) は、正のサンプルでは+、負のサンプルではoでデータ点を
+%   プロットします。 XはM×2の行列とします。
 %
-% ����: This was slightly modified such that it expects y = 1 or y = 0
+% 注意: これは、y = 1またはy = 0となるように若干修正されています。
 
-% Find Indices of Positive and Negative Examples
+% 正と負のサンプルのインデックスを見つける。
 pos = find(y == 1); neg = find(y == 0);
 
-% Plot Examples
+% サンプルのプロット
 plot(X(pos, 1), X(pos, 2), 'k+','LineWidth', 1, 'MarkerSize', 7)
 hold on;
 plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7)

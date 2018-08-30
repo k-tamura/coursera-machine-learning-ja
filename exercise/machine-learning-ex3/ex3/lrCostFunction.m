@@ -1,39 +1,39 @@
 function [J, grad] = lrCostFunction(theta, X, y, lambda)
-%LRCOSTFUNCTION ���������ꂽ���W�X�e�B�b�N��A�̃R�X�g�ƌ��z���v�Z����
+%LRCOSTFUNCTION 正則化されたロジスティック回帰のコストと勾配を計算する
 %
-%   J = LRCOSTFUNCTION(theta, X, y, lambda) �́A���������ꂽ
-%   ���W�X�e�B�b�N��A�̃p�����[�^�[�Ƃ���theta���g�p����R�X�g�ƁA
-%   �p�����[�^�[���Q�Ƃ����R�X�g�̌��z���v�Z���܂��B
+%   J = LRCOSTFUNCTION(theta, X, y, lambda) は、正則化された
+%   ロジスティック回帰のパラメーターとしてthetaを使用するコストと、
+%   パラメーターを参照したコストの勾配を計算します。
 
-% �������̗L�p�Ȓl������������
-m = length(y); % �g���[�j���O�E�T���v���̐�
+% いくつかの有用な値を初期化する
+m = length(y); % トレーニング・サンプルの数
 
-% ���̕ϐ��𐳂����Ԃ��K�v������܂�
+% 次の変数を正しく返す必要があります
 J = 0;
 grad = zeros(size(theta));
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: �I�����ꂽtheta�̃R�X�g���v�Z���܂��B
-%          J�ɃR�X�g��ݒ肷��K�v������܂��B
-%          �Δ������v�Z���Atheta�̊e�p�����[�^�[���Q�Ƃ��ăR�X�g�̕Δ�����
-%          grad�ɐݒ肵�܂�
+% ====================== ここにコードを実装する ======================
+% 指示: 選択されたthetaのコストを計算します。
+%          Jにコストを設定する必要があります。
+%          偏微分を計算し、thetaの各パラメーターを参照してコストの偏微分を
+%          gradに設定します
 %
-% �q���g: �R�X�g�֐�����ь��z�̌v�Z�������I�Ƀx�N�g�������邱�Ƃ��ł��܂��B
-%            �Ⴆ�΁A
+% ヒント: コスト関数および勾配の計算を効率的にベクトル化することができます。
+%            例えば、
 %
 %            sigmoid(X * theta)
 %
-%            ���ʂ̍s��̊e�s�ɂ́A���̃T���v���̗\���l���i�[����܂��B
-%            ������g�p���āA�R�X�g�֐��ƌ��z�̌v�Z���x�N�g�������邱�Ƃ��ł��܂��B
+%            結果の行列の各行には、そのサンプルの予測値が格納されます。
+%            これを使用して、コスト関数と勾配の計算をベクトル化することができます。
 % 
 %
-% �q���g: ���������ꂽ�R�X�g�֐��̌��z���v�Z����Ƃ��A
-%            �x�N�g�����\�ȉ�@�͂������񂠂�܂����A1�̉�@�͎��̂悤�ɂȂ�܂��B
+% ヒント: 正則化されたコスト関数の勾配を計算するとき、
+%            ベクトル化可能な解法はたくさんありますが、1つの解法は次のようになります。
 %
-%           grad = �i����������Ă��Ȃ����W�X�e�B�b�N��A�ɑ΂�����z�j
+%           grad = （正則化されていないロジスティック回帰に対する勾配）
 %           temp = theta; 
-%           temp(1) = 0;   % j = 0�ɑ΂��ĉ����ǉ����Ȃ�����
-%           grad = grad + �����ɃR�[�h�������i�ꎞ�ϐ����g�p�j
+%           temp(1) = 0;   % j = 0に対して何も追加しないため
+%           grad = grad + ここにコードを実装（一時変数を使用）
 %
 
 

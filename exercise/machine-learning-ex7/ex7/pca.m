@@ -7,16 +7,16 @@ function [U, S] = pca(X)
 % Useful values
 [m, n] = size(X);
 
-% You need to return the following variables correctly.
+% æ¬¡ã®å¤‰æ•°ã‚’æ­£ã—ãè¿”ã™å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 U = zeros(n);
 S = zeros(n);
 
-% ====================== ‚±‚±‚ÉƒR[ƒh‚ğÀ‘•‚·‚é ======================
-% w¦: You should first compute the covariance matrix. Then, you
+% ====================== ã“ã“ã«ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè£…ã™ã‚‹ ======================
+% æŒ‡ç¤º: You should first compute the covariance matrix. Then, you
 %               should use the "svd" function to compute the eigenvectors
 %               and eigenvalues of the covariance matrix. 
 %
-% ’ˆÓ: When computing the covariance matrix, remember to divide by m (the
+% æ³¨æ„: When computing the covariance matrix, remember to divide by m (the
 %       number of examples).
 %
 

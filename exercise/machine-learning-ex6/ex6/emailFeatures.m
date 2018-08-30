@@ -1,56 +1,56 @@
 function x = emailFeatures(word_indices)
-%EMAILFEATURES takes in a word_indices vector and produces a feature vector
-%from the word indices
-%   x = EMAILFEATURES(word_indices) takes in a word_indices vector and 
-%   produces a feature vector from the word indices. 
+% EMAILFEATURES ベクトルword_indicesをとり、単語インデックスから
+% フィーチャー・ベクトルを生成する
+%   x = EMAILFEATURES(word_indices)は、ベクトルword_indicesをとり、
+% 単語インデックスからフィーチャー・ベクトルを生成する
 
-% Total number of words in the dictionary
+% 辞書内の総単語数
 n = 1899;
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 x = zeros(n, 1);
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Fill in this function to return a feature vector for the
-%               given email (word_indices). To help make it easier to 
-%               process the emails, we have have already pre-processed each
-%               email and converted each word in the email into an index in
-%               a fixed dictionary (of 1899 words). The variable
-%               word_indices contains the list of indices of the words
-%               which occur in one email.
+% ====================== ここにコードを実装する ======================
+% 指示: 与えられた電子メール（word_indices）のフィーチャー・ベクトルを返すように、
+%       この関数を実装します。電子メールの処理を容易にするため、各電子メールを
+%       事前に処理し、電子メール内の各単語を1899語の固定ディクショナリーの
+%       インデックスに変換しています。変数word_indicesには、1つの電子メールに
+%       出現する単語のインデックスのリストが含まれています。
+%       
+%       具体的には、電子メールに次のようなテキストがある場合、
 % 
-%               Concretely, if an email has the text:
+%           The quick brown fox jumped over the lazy dog.
 %
-%                  The quick brown fox jumped over the lazy dog.
-%
-%               Then, the word_indices vector for this text might look 
-%               like:
+%       このテキストのベクトルword_indicesは次のようになります。
 %               
-%                   60  100   33   44   10     53  60  58   5
+%           60  100   33   44   10     53  60  58   5
 %
-%               where, we have mapped each word onto a number, for example:
+%       ここで、各単語を数字にマッピングします。たとえば、
 %
 %                   the   -- 60
 %                   quick -- 100
 %                   ...
 %
-%              (note: the above numbers are just an example and are not the
-%               actual mappings).
+%       （例：上記の数値は単なる例であり、実際のマッピングではありません）。
 %
-%              Your task is take one such word_indices vector and construct
-%              a binary feature vector that indicates whether a particular
-%              word occurs in the email. That is, x(i) = 1 when word i
-%              is present in the email. Concretely, if the word 'the' (say,
-%              index 60) appears in the email, then x(60) = 1. The feature
-%              vector should look like:
+%        あなたがすべきことは、そのようなword_indicesベクトルをもとに、    
+%        電子メールに特定の単語が出現するかどうかを示す   
+%        バイナリー・フィーチャー・ベクトルを構築することです。
 %
-%              x = [ 0 0 0 0 1 0 0 0 ... 0 0 0 0 1 ... 0 0 0 1 0 ..];
+%        すなわち、単語iが電子メールに存在するとき、x(i) = 1とします。
+%        具体的には、電子メールに「the」という単語（たとえばインデックス60）が
+%        表示された場合、x(60) = 1とします。
+%        フィーチャー・ベクトルは次のようになります。
+%        
+%            x = [ 0 0 0 0 1 0 0 0 ... 0 0 0 0 1 ... 0 0 0 1 0 ..];
+%
+%
 %
 %
 
 
 
-
+eic315YtzMXUw+0/6LMyR94m/uHfO1I=
 
 
 

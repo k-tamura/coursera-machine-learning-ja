@@ -11,7 +11,7 @@ function data = loadjson(fname,varargin)
 %
 %         Nedialko Krouchev: http://www.mathworks.com/matlabcentral/fileexchange/25713
 %            created on 2009/11/02
-%         François Glineur: http://www.mathworks.com/matlabcentral/fileexchange/23393
+%         Franﾃｧois Glineur: http://www.mathworks.com/matlabcentral/fileexchange/23393
 %            created on  2009/03/22
 %         Joel Feenstra:
 %         http://www.mathworks.com/matlabcentral/fileexchange/20565

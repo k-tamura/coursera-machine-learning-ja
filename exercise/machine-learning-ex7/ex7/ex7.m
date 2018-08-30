@@ -1,11 +1,11 @@
-%% Machine Learning Online Class
-%  Exercise 7 | Principle Component Analysis and K-Means Clustering
+%% 機械学習オンラインクラス
+%  演習 7 | 主成分分析とK-Meansクラスタリング
 %
-%  �w��
+%  指示
 %  ------------
 %
-%  This file contains code that helps you get started on the
-%  exercise. ���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  次の関数を完成する必要があります。
 %
 %     pca.m
 %     projectData.m
@@ -14,29 +14,29 @@
 %     findClosestCentroids.m
 %     kMeansInitCentroids.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% ================= �p�[�g 1: Find Closest Centroids ====================
-%  To help you implement K-Means, we have divided the learning algorithm 
-%  into two functions -- findClosestCentroids and computeCentroids. In this
-%  part, you should complete the code in the findClosestCentroids function. 
+%% ================= パート 1: 最も近い重心の検索 ====================
+%  K-Meansの実装を支援するため、学習アルゴリズムを次の2つの関数に分けました
+%  -- findClosestCentroidsとcomputeCentroids
+%  このパートでは、findClosestCentroids関数のコードを完成させる必要があります。
 %
 fprintf('Finding closest centroids.\n\n');
 
-% Load an example dataset that we will be using
+% 使用するサンプルのデータセットをロードする
 load('ex7data2.mat');
 
-% Select an initial set of centroids
+% 重心の初期セットを選択する
 K = 3; % 3 Centroids
 initial_centroids = [3 3; 6 2; 8 5];
 
-% Find the closest centroids for the examples using the
-% initial_centroids
+% initial_centroidsを使用して、サンプルに最も近い重心を検索する
+% 
 idx = findClosestCentroids(X, initial_centroids);
 
 fprintf('Closest centroids for the first 3 examples: \n')
@@ -46,13 +46,13 @@ fprintf('\n(the closest centroids should be 1, 3, 2 respectively)\n');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ===================== �p�[�g 2: Compute Means =========================
-%  After implementing the closest centroids function, you should now
-%  complete the computeCentroids function.
+%% ===================== パート 2: 平均の計算 =========================
+%  最も近い重心を検索する関数を実装した後は、computeCentroids関数を
+%  完成させる必要があります。
 %
 fprintf('\nComputing centroids means.\n\n');
 
-%  Compute means based on the closest centroids found in the previous part.
+%  前のパートで見つかった最も近い重心に基づいて平均を計算します。
 centroids = computeCentroids(X, idx, K);
 
 fprintf('Centroids computed after initial finding of closest centroids: \n')
@@ -66,104 +66,104 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =================== �p�[�g 3: K-Means Clustering ======================
-%  After you have completed the two functions computeCentroids and
-%  findClosestCentroids, you have all the necessary pieces to run the
-%  kMeans algorithm. In this part, you will run the K-Means algorithm on
-%  the example dataset we have provided. 
+%% =================== パート 3: K-Meansクラスタリング ======================
+%  computeCentroidsとfindClosestCentroidsの2つの関数を完成させると、
+%  K-Meansアルゴリズムを実行するために必要なすべての要素が得られます。
+%  このパートでは、提供したサンプル・データセットを使用して、
+%  K-Meansアルゴリズムを実行します。
 %
 fprintf('\nRunning K-Means clustering on example dataset.\n\n');
 
-% Load an example dataset
+% サンプル・データセットをロードする
 load('ex7data2.mat');
 
-% Settings for running K-Means
+% K-Meansを実行するための設定
 K = 3;
 max_iters = 10;
 
-% For consistency, here we set centroids to specific values
-% but in practice you want to generate them automatically, such as by
-% settings them to be random examples (as can be seen in
-% kMeansInitCentroids).
+% 一貫性を保つために、ここでは重心に特定の値を設定しますが、実際には、
+% ランダムなサンプルが設定されるように、自動的に生成したいと考えるでしょう
+% （kMeansInitCentroidsを見ると分かるように）。
+% 
 initial_centroids = [3 3; 6 2; 8 5];
 
-% Run K-Means algorithm. The 'true' at the end tells our function to plot
-% the progress of K-Means
+% K-Meansアルゴリズムを実行する。関数の最後の引数「true」は、K-Meansの進捗状況を
+% プロットするためのものです。
 [centroids, idx] = runkMeans(X, initial_centroids, max_iters, true);
 fprintf('\nK-Means Done.\n\n');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ============= �p�[�g 4: K-Means Clustering on Pixels ===============
-%  In this exercise, you will use K-Means to compress an image. To do this,
-%  you will first run K-Means on the colors of the pixels in the image and
-%  then you will map each pixel onto its closest centroid.
+%% ============= パート 4: ピクセルのK-Meansクラスタリング ===============
+%  この演習では、K-Meansを使用して画像を圧縮します。これを行うには、
+%  まず画像のピクセルの色についてK-Meansを実行し、次に各ピクセルを最も近い
+%  重心にマップします。
 %  
-%  You should now complete the code in kMeansInitCentroids.m
+%  これで、kMeansInitCentroids.mのコードを完成させるはずです。
 %
 
 fprintf('\nRunning K-Means clustering on pixels from an image.\n\n');
 
-%  Load an image of a bird
+%  鳥の画像をロードする
 A = double(imread('bird_small.png'));
 
-% If imread does not work for you, you can try instead
+% あなたの環境でimreadが動作しない場合は、代わりに試すことができます
 %   load ('bird_small.mat');
 
-A = A / 255; % Divide by 255 so that all values are in the range 0 - 1
+A = A / 255; % すべての値が0〜1の範囲になるように255で割ります
 
-% Size of the image
+% 画像のサイズ
 img_size = size(A);
 
-% Reshape the image into an Nx3 matrix where N = number of pixels.
-% Each row will contain the Red, Green and Blue pixel values
-% This gives us our dataset matrix X that we will use K-Means on.
+% 画像をNx3の行列に変形する。ここでNはピクセル数。
+% 各行には赤、緑、青のピクセル値が含まれます。
+% これにより、K-Meansで使用するデータセット行列Xが得られます。
 X = reshape(A, img_size(1) * img_size(2), 3);
 
-% Run your K-Means algorithm on this data
-% You should try different values of K and max_iters here
+% このデータに対してK-Meansアルゴリズムを実行する。
+% ここでKとmax_itersの異なる値を試してみるべきです。
 K = 16; 
 max_iters = 10;
 
-% When using K-Means, it is important the initialize the centroids
-% randomly. 
-% You should complete the code in kMeansInitCentroids.m before proceeding
+% K-Meansを使用する場合、重心をランダムに初期化することが重要です。
+% 
+% 続行する前に、kMeansInitCentroids.mのコードを完成させる必要があります。
 initial_centroids = kMeansInitCentroids(X, K);
 
-% Run K-Means
+% K-Meansを実行する
 [centroids, idx] = runkMeans(X, initial_centroids, max_iters);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ================= �p�[�g 5: Image Compression ======================
-%  In this part of the exercise, you will use the clusters of K-Means to
-%  compress an image. To do this, we first find the closest clusters for
-%  each example. After that, we 
+%% ================= パート 5: 画像の圧縮 ======================
+%  この演習では、K-Meansのクラスターを使用して画像を圧縮します。
+%  これを行うために、最初に各サンプルに最も近いクラスターを見つけます。
+%  その後、
 
 fprintf('\nApplying K-Means to compress an image.\n\n');
 
-% Find closest cluster members
+% 最も近いクラスター・メンバーを見つける
 idx = findClosestCentroids(X, centroids);
 
-% Essentially, now we have represented the image X as in terms of the
-% indices in idx. 
+% 本質的には、idxのインデックスの項で画像Xを表現しています。
+% 
 
-% We can now recover the image from the indices (idx) by mapping each pixel
-% (specified by its index in idx) to the centroid value
+% （idxのインデックスで指定された）各ピクセルを重心の値にマッピングすることによって、
+% インデックス（idx）から画像を復元できます。
 X_recovered = centroids(idx,:);
 
-% Reshape the recovered image into proper dimensions
+% 回復した画像を適切な大きさに整形し直します。
 X_recovered = reshape(X_recovered, img_size(1), img_size(2), 3);
 
-% Display the original image 
+% 元の画像を表示する
 subplot(1, 2, 1);
 imagesc(A); 
 title('Original');
 
-% Display compressed image side by side
+% 圧縮画像を並べて表示する
 subplot(1, 2, 2);
 imagesc(X_recovered)
 title(sprintf('Compressed, with %d colors.', K));

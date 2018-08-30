@@ -1,38 +1,38 @@
-%% Machine Learning Online Class
-%  Exercise 6 | Spam Classification with SVMs
+%% 機械学習オンラインクラス
+%  演習 6 | SVMによるスパム分類
 %
-%  �w��
+%  指示
 %  ------------
 % 
-%  This file contains code that helps you get started on the
-%  exercise. ���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  次の関数を完成する必要があります。
 %
 %     gaussianKernel.m
 %     dataset3Params.m
 %     processEmail.m
 %     emailFeatures.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% ==================== �p�[�g 1: Email Preprocessing ====================
-%  To use an SVM to classify emails into Spam v.s. Non-Spam, you first need
-%  to convert each email into a vector of features. In this part, you will
-%  implement the preprocessing steps for each email. You should
-%  complete the code in processEmail.m to produce a word indices vector
-%  for a given email.
+%% ==================== パート 1: 電子メール前処理 ====================
+%  SVMを使用して電子メールをスパムとノンスパムに分類するには、
+%  まず各電子メールを機能ベクトルに変換する必要があります。 
+%  このパートでは、各電子メールの前処理ステップを実装します。
+%  与えられた電子メールの単語インデックスのベクトルを生成するには、
+%  processEmail.mのコードを完成させる必要があります。
 
 fprintf('\nPreprocessing sample email (emailSample1.txt)\n');
 
-% Extract Features
+% フィーチャーの抽出
 file_contents = readFile('emailSample1.txt');
 word_indices  = processEmail(file_contents);
 
-% Print Stats
+% 統計情報をプリントする
 fprintf('Word Indices: \n');
 fprintf(' %d', word_indices);
 fprintf('\n\n');
@@ -40,31 +40,31 @@ fprintf('\n\n');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ==================== �p�[�g 2: Feature Extraction ====================
-%  Now, you will convert each email into a vector of features in R^n. 
-%  You should complete the code in emailFeatures.m to produce a feature
-%  vector for a given email.
+%% ==================== パート 2: フィーチャーの抽出 ====================
+%  今度は、各電子メールをR^nのフィーチャー・ベクトルに変換します。
+%  emailFeatures.mにコードを入力して、与えられたメールのフィーチャー・ベクトルを
+%  生成する必要があります。
 
 fprintf('\nExtracting features from sample email (emailSample1.txt)\n');
 
-% Extract Features
+% フィーチャーの抽出
 file_contents = readFile('emailSample1.txt');
 word_indices  = processEmail(file_contents);
 features      = emailFeatures(word_indices);
 
-% Print Stats
+% 統計情報をプリントする
 fprintf('Length of feature vector: %d\n', length(features));
 fprintf('Number of non-zero entries: %d\n', sum(features > 0));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 3: Train Linear SVM for Spam Classification ========
-%  In this section, you will train a linear classifier to determine if an
-%  email is Spam or Not-Spam.
+%% =========== パート 3: スパム分類のための線形SVMのトレーニング ========
+%  このセクションでは、電子メールがスパムメールか否かを判断するために線形分類器を
+%  トレーニングします。
 
-% Load the Spam Email dataset
-% You will have X, y in your environment
+% スパムメールのデータセットをロード
+% 環境にX、Yがロードされます
 load('spamTrain.mat');
 
 fprintf('\nTraining Linear SVM (Spam Classification)\n')
@@ -77,12 +77,12 @@ p = svmPredict(model, X);
 
 fprintf('Training Accuracy: %f\n', mean(double(p == y)) * 100);
 
-%% =================== �p�[�g 4: Test Spam Classification ================
-%  After training the classifier, we can evaluate it on a test set. We have
-%  included a test set in spamTest.mat
+%% =================== パート 4: スパム分類のテスト ================
+%  分類器をトレーニングした後、テストセットで評価することができます。 
+%  spamTest.matにテストセットを含めました。
 
-% Load the test dataset
-% You will have Xtest, ytest in your environment
+% テスト・データセットをロード
+% 環境にXtest, ytestがロードされます
 load('spamTest.mat');
 
 fprintf('\nEvaluating the trained Linear SVM on a test set ...\n')
@@ -93,7 +93,7 @@ fprintf('Test Accuracy: %f\n', mean(double(p == ytest)) * 100);
 pause;
 
 
-%% ================= �p�[�g 5: Top Predictors of Spam ====================
+%% ================= パート 5: スパムの上位予測 ====================
 %  Since the model we are training is a linear SVM, we can inspect the
 %  weights learned by the model to understand better how it is determining
 %  whether an email is spam or not. The following code finds the words with
@@ -114,7 +114,7 @@ fprintf('\n\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% =================== �p�[�g 6: Try Your Own Emails =====================
+%% =================== パート 6: あなた自身のメールを試す =====================
 %  Now that you've trained the spam classifier, you can use it on your own
 %  emails! In the starter code, we have included spamSample1.txt,
 %  spamSample2.txt, emailSample1.txt and emailSample2.txt as examples. 

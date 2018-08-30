@@ -1,12 +1,12 @@
 function sim = linearKernel(x1, x2)
-%LINEARKERNEL returns a linear kernel between x1 and x2
-%   sim = linearKernel(x1, x2) returns a linear kernel between x1 and x2
-%   and returns the value in sim
+% LINEARKERNEL x1とx2の間の線形カーネルを返します
+%   sim = linearKernel(x1, x2) は、x1とx2の間で線形カーネルを計算し、
+%   simの値を返します
 
-% Ensure that x1 and x2 are column vectors
+% x1とx2が列ベクトルであることを確認する
 x1 = x1(:); x2 = x2(:);
 
-% Compute the kernel
-sim = x1' * x2;  % dot product
+% カーネルを計算する
+sim = x1' * x2;  % ドット積
 
 end

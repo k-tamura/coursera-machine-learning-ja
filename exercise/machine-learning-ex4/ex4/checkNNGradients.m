@@ -1,11 +1,11 @@
 function checkNNGradients(lambda)
-%CHECKNNGRADIENTS Creates a small neural network to check the
-%backpropagation gradients
-%   CHECKNNGRADIENTS(lambda) Creates a small neural network to check the
-%   backpropagation gradients, it will output the analytical gradients
-%   produced by your backprop code and the numerical gradients (computed
-%   using computeNumericalGradient). These two gradient computations should
-%   result in very similar values.
+%CHECKNNGRADIENTS バックプロパゲーションの勾配をチェックするために、
+%小さなニューラル・ネットワークを作成します。
+%   CHECKNNGRADIENTS(lambda) は、バックプロパゲーション勾配をチェックする
+%   小さなニューラルネットワークを作成し、バックプロパゲーションのコードと
+%   数値的勾配（computeNumericalGradientを使用して計算された）によって生成された
+%   解析的勾配を出力します。これらの2つの勾配計算は、非常に類似した値になるはずです。
+%   
 %
 
 if ~exist('lambda', 'var') || isempty(lambda)
@@ -17,32 +17,32 @@ hidden_layer_size = 5;
 num_labels = 3;
 m = 5;
 
-% We generate some 'random' test data
+% いくつかの「ランダム」なテストデータを生成する
 Theta1 = debugInitializeWeights(hidden_layer_size, input_layer_size);
 Theta2 = debugInitializeWeights(num_labels, hidden_layer_size);
-% Reusing debugInitializeWeights to generate X
+% debugInitializeWeightsを再利用してXを生成する
 X  = debugInitializeWeights(m, input_layer_size - 1);
 y  = 1 + mod(1:m, num_labels)';
 
-% Unroll parameters
+% パラメーターのアンロール
 nn_params = [Theta1(:) ; Theta2(:)];
 
-% Short hand for cost function
+% コスト関数の省略形
 costFunc = @(p) nnCostFunction(p, input_layer_size, hidden_layer_size, ...
                                num_labels, X, y, lambda);
 
 [cost, grad] = costFunc(nn_params);
 numgrad = computeNumericalGradient(costFunc, nn_params);
 
-% Visually examine the two gradient computations.  The two columns
-% you get should be very similar. 
+% 2つの勾配計算を視覚的に調べます。
+% 2つの列は非常に似ているはずです。
 disp([numgrad grad]);
 fprintf(['The above two columns you get should be very similar.\n' ...
          '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n']);
 
-% Evaluate the norm of the difference between two solutions.  
-% If you have a correct implementation, and assuming you used EPSILON = 0.0001 
-% in computeNumericalGradient.m, then diff below should be less than 1e-9
+% 2つの解のノルムの差を評価する。 
+% 正しい実装であり、computeNumericalGradient.mでEPSILON = 0.0001を使用していると仮定すると、
+% 以下のdiffは1e-9より小さくなるはずです
 diff = norm(numgrad-grad)/norm(numgrad+grad);
 
 fprintf(['If your backpropagation implementation is correct, then \n' ...

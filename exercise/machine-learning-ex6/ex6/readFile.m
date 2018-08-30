@@ -1,10 +1,10 @@
 function file_contents = readFile(filename)
-%READFILE reads a file and returns its entire contents 
-%   file_contents = READFILE(filename) reads a file and returns its entire
-%   contents in file_contents
+%READFILE ファイルを読み込み、ファイル全体を返します。 
+%   file_contents = READFILE(filename) はファイルを読み込み、その内容全体を
+%   file_contentsに返します
 %
 
-% Load File
+% ファイルをロードする
 fid = fopen(filename);
 if fid
     file_contents = fscanf(fid, '%c', inf);

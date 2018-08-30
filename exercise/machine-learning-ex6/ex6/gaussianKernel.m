@@ -1,23 +1,23 @@
 function sim = gaussianKernel(x1, x2, sigma)
-%RBFKERNEL returns a radial basis function kernel between x1 and x2
-%   sim = gaussianKernel(x1, x2) returns a gaussian kernel between x1 and x2
-%   and returns the value in sim
+%RBFKERNEL x1とx2との間の動径基底関数カーネルを返します。
+%   sim = gaussianKernel(x1, x2)は、x1とx2の間のガウスカーネルと、
+%   simの値を返します。
 
-% Ensure that x1 and x2 are column vectors
+% x1とx2が列ベクトルであることを確認する
 x1 = x1(:); x2 = x2(:);
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 sim = 0;
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Fill in this function to return the similarity between x1
-%               and x2 computed using a Gaussian kernel with bandwidth
-%               sigma
+% ====================== ここにコードを実装する ======================
+% 指示: バンド幅sigmaを持つガウスカーネルを使用して計算されたx1とx2の間の
+%       類似性を返すように、この関数を実装します
+%               
 %
 %
 
 
-
+cWYtmNlp9tTKj6ltp7NvEN8npu3ScluYMfCNGPfr/ue2b01L1PRHFQ==
 
 
 

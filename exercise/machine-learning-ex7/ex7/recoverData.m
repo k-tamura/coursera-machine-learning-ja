@@ -6,11 +6,11 @@ function X_rec = recoverData(Z, U, K)
 %   approximate reconstruction in X_rec.
 %
 
-% You need to return the following variables correctly.
+% 次の変数を正しく返す必要があります。
 X_rec = zeros(size(Z, 1), size(U, 1));
 
-% ====================== �����ɃR�[�h���������� ======================
-% �w��: Compute the approximation of the data by projecting back
+% ====================== ここにコードを実装する ======================
+% 指示: Compute the approximation of the data by projecting back
 %               onto the original space using the top K eigenvectors in U.
 %
 %               For the i-th example Z(i,:), the (approximate)

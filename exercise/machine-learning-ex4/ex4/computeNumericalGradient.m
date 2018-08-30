@@ -1,27 +1,27 @@
 function numgrad = computeNumericalGradient(J, theta)
-%COMPUTENUMERICALGRADIENT Computes the gradient using "finite differences"
-%and gives us a numerical estimate of the gradient.
-%   numgrad = COMPUTENUMERICALGRADIENT(J, theta) computes the numerical
-%   gradient of the function J around theta. Calling y = J(theta) should
-%   return the function value at theta.
+%COMPUTENUMERICALGRADIENT 「有限差分」を使用して勾配を計算し、勾配の数値的評価を行います。
+%
+%   numgrad = COMPUTENUMERICALGRADIENT(J, theta) は、theta付近の関数Jの
+%   数値的勾配を計算します。y = J（theta）を呼び出すと、thetaの関数値が返されます。
+%   
 
-% Notes: The following code implements numerical gradient checking, and 
-%        returns the numerical gradient.It sets numgrad(i) to (a numerical 
-%        approximation of) the partial derivative of J with respect to the 
-%        i-th input argument, evaluated at theta. (i.e., numgrad(i) should 
-%        be the (approximately) the partial derivative of J with respect 
-%        to theta(i).)
+% 注意: 次のコードは数値的勾配チェックを実装し、数値的勾配を返します。
+%      thetaで評価されたi番目の入力引数に関して、numgrad（i）にJの
+%      偏微分（の数値近似）を設定します（すなわち、numgrad（i）は
+%      theta（i）に関するJの偏微分でなければなりません）。
+%        
+%        
 %                
 
 numgrad = zeros(size(theta));
 perturb = zeros(size(theta));
 e = 1e-4;
 for p = 1:numel(theta)
-    % Set perturbation vector
+    % 摂動ベクトルをセットする
     perturb(p) = e;
     loss1 = J(theta - perturb);
     loss2 = J(theta + perturb);
-    % Compute Numerical Gradient
+    % 数値的勾配を計算する
     numgrad(p) = (loss2 - loss1) / (2*e);
     perturb(p) = 0;
 end

@@ -1,28 +1,28 @@
 function plotFit(min_x, max_x, mu, sigma, theta, p)
-%PLOTFIT Plots a learned polynomial regression fit over an existing figure.
-%Also works with linear regression.
-%   PLOTFIT(min_x, max_x, mu, sigma, theta, p) plots the learned polynomial
-%   fit with power p and feature normalization (mu, sigma).
+% PLOTFIT 既存の図に対して学習された多項式回帰フィットをプロットします。
+% 線形回帰でも動作します。
+%   PLOTFIT(min_x, max_x, mu, sigma, theta, p) は、累乗pとフィーチャーの
+%   正規化（mu、sigma）で学習された多項式近似をプロットします。
 
-% Hold on to the current figure
+% 既存の図をホールド
 hold on;
 
-% We plot a range slightly bigger than the min and max values to get
-% an idea of how the fit will vary outside the range of the data points
+% データ点の範囲外で適合がどのように変化するかを知るために、最小値と最大値より
+% 少し大きい範囲をプロットします。
 x = (min_x - 15: 0.05 : max_x + 25)';
 
-% Map the X values 
+% X値をマッピングする
 X_poly = polyFeatures(x, p);
 X_poly = bsxfun(@minus, X_poly, mu);
 X_poly = bsxfun(@rdivide, X_poly, sigma);
 
-% Add ones
+% １を追加
 X_poly = [ones(size(x, 1), 1) X_poly];
 
-% Plot
+% プロット
 plot(x, X_poly * theta, '--', 'LineWidth', 2)
 
-% Hold off to the current figure
+% 既存の図のホールド解除
 hold off
 
 end

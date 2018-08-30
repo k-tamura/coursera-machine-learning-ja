@@ -51,14 +51,14 @@ pause;
 
 fprintf('\nLoading Saved Neural Network Parameters ...\n')
 
-% Load the weights into variables Theta1 and Theta2
+% 変数Theta1とTheta2にウェイトをロードする
 load('ex3weights.mat');
 
-%% ================= パート 3: Implement Predict =================
-%  After training the neural network, we would like to use it to predict
-%  the labels. You will now implement the "predict" function to use the
-%  neural network to predict the labels of the training set. This lets
-%  you compute the training set accuracy.
+%% ================= パート 3: 予測の実装 =================
+% ニューラル・ネットワークをトレーニングした後、それを用いてラベルを
+% 予測します。ニューラル・ネットワークを使用してトレーニング・セットの
+% ラベルを予測する「predict」関数を実装することになります。
+% これにより、トレーニング・セットの精度を計算できます。
 
 pred = predict(Theta1, Theta2, X);
 
@@ -67,10 +67,10 @@ fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%  To give you an idea of the network's output, you can also run
-%  through the examples one at the a time to see what it is predicting.
+%  ネットワークの出力を知るために、1度に1つのサンプルを実行して、
+%  何を予測するかを確認することもできます。
 
-%  Randomly permute examples
+%  サンプルをランダムに並べ替える
 rp = randperm(m);
 
 for i = 1:m

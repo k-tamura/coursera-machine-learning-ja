@@ -1,23 +1,23 @@
 function [J, grad] = costFunction(theta, X, y)
-%COSTFUNCTION ƒƒWƒXƒeƒBƒbƒN‰ñ‹A‚ÌƒRƒXƒg‚ÆŒù”z‚ðŒvŽZ‚·‚é
-%   J = COSTFUNCTION(theta, X, y) ‚ÍAƒƒWƒXƒeƒBƒbƒN‰ñ‹A‚Ìƒpƒ‰ƒ[ƒ^‚Æ‚µ‚Ä
-%   theta‚ðŽg—p‚·‚éƒRƒXƒg‚ÆAƒpƒ‰ƒ[ƒ^‚ðŽQÆ‚µ‚ÄƒRƒXƒg‚ÌŒù”z‚ðŒvŽZ‚µ‚Ü‚·B
+%COSTFUNCTION ãƒ­ã‚¸ã‚¹ãƒ†ã‚£ãƒƒã‚¯å›žå¸°ã®ã‚³ã‚¹ãƒˆã¨å‹¾é…ã‚’è¨ˆç®—ã™ã‚‹
+%   J = COSTFUNCTION(theta, X, y) ã¯ã€ãƒ­ã‚¸ã‚¹ãƒ†ã‚£ãƒƒã‚¯å›žå¸°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¨ã—ã¦
+%   thetaã‚’ä½¿ç”¨ã™ã‚‹ã‚³ã‚¹ãƒˆã¨ã€ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å‚ç…§ã—ã¦ã‚³ã‚¹ãƒˆã®å‹¾é…ã‚’è¨ˆç®—ã—ã¾ã™ã€‚
 %
 
-% ‚¢‚­‚Â‚©‚Ì—L—p‚È’l‚ð‰Šú‰»‚·‚é
-m = length(y); % ƒgƒŒ[ƒjƒ“ƒOEƒTƒ“ƒvƒ‹‚Ì”
+% ã„ãã¤ã‹ã®æœ‰ç”¨ãªå€¤ã‚’åˆæœŸåŒ–ã™ã‚‹
+m = length(y); % ãƒˆãƒ¬ãƒ¼ãƒ‹ãƒ³ã‚°ãƒ»ã‚µãƒ³ãƒ—ãƒ«ã®æ•°
 
-% ŽŸ‚Ì•Ï”‚ð³‚µ‚­•Ô‚·•K—v‚ª‚ ‚è‚Ü‚·
+% æ¬¡ã®å¤‰æ•°ã‚’æ­£ã—ãè¿”ã™å¿…è¦ãŒã‚ã‚Šã¾ã™
 J = 0;
 grad = zeros(size(theta));
 
-% ====================== ‚±‚±‚ÉƒR[ƒh‚ðŽÀ‘•‚·‚é ======================
-% ŽwŽ¦: Žw’è‚³‚ê‚½theta‚ÌƒRƒXƒg‚ðŒvŽZ‚µ‚Ü‚·B
-%         J‚ðƒRƒXƒg‚ÉÝ’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
-%         •Î”÷•ª‚ðŒvŽZ‚µAtheta‚ÌŠeƒpƒ‰ƒ[ƒ^[‚ðŽQÆ‚µ‚Ä
-%         ƒRƒXƒg‚Ì•Î”÷•ª‚ðgrad‚ÉÝ’è‚µ‚Ü‚·B
+% ====================== ã“ã“ã«ã‚³ãƒ¼ãƒ‰ã‚’å®Ÿè£…ã™ã‚‹ ======================
+% æŒ‡ç¤º: æŒ‡å®šã•ã‚ŒãŸthetaã®ã‚³ã‚¹ãƒˆã‚’è¨ˆç®—ã—ã¾ã™ã€‚
+%         Jã‚’ã‚³ã‚¹ãƒˆã«è¨­å®šã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
+%         åå¾®åˆ†ã‚’è¨ˆç®—ã—ã€thetaã®å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã‚’å‚ç…§ã—ã¦
+%         ã‚³ã‚¹ãƒˆã®åå¾®åˆ†ã‚’gradã«è¨­å®šã—ã¾ã™ã€‚
 %
-% ’ˆÓ: grad‚Ítheta‚Æ“¯‚¶ŽŸŒ³‚ðŽ‚Â•K—v‚ª‚ ‚è‚Ü‚·
+% æ³¨æ„: gradã¯thetaã¨åŒã˜æ¬¡å…ƒã‚’æŒã¤å¿…è¦ãŒã‚ã‚Šã¾ã™
 %
 
 

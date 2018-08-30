@@ -1,21 +1,21 @@
-%% Machine Learning Online Class
-%  Exercise 8 | Anomaly Detection and Collaborative Filtering
+%% æ©Ÿæ¢°å­¦ç¿’ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‚¯ãƒ©ã‚¹
+%  æ¼”ç¿’ 8 | Anomaly Detection and Collaborative Filtering
 %
-%  w¦
+%  æŒ‡ç¤º
 %  ------------
 %
-%  This file contains code that helps you get started on the
-%  exercise. Ÿ‚ÌŠÖ”‚ğŠ®¬‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+%  ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯ã€æ¼”ç¿’ã‚’é–‹å§‹ã™ã‚‹ã®ã«å½¹ç«‹ã¤ã‚³ãƒ¼ãƒ‰ãŒå«ã¾ã‚Œã¦ã„ã¾ã™ã€‚
+%  æ¬¡ã®é–¢æ•°ã‚’å®Œæˆã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚
 %
 %     estimateGaussian.m
 %     selectThreshold.m
 %     cofiCostFunc.m
 %
-%  ‚±‚Ì‰‰K‚Å‚ÍA‚±‚Ìƒtƒ@ƒCƒ‹‚Ü‚½‚Íã‹LˆÈŠO‚Ìƒtƒ@ƒCƒ‹“à‚ÌƒR[ƒh‚ğ
-%  •ÏX‚·‚é•K—v‚Í‚ ‚è‚Ü‚¹‚ñB
+%  ã“ã®æ¼”ç¿’ã§ã¯ã€ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¾ãŸã¯ä¸Šè¨˜ä»¥å¤–ã®ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ã‚³ãƒ¼ãƒ‰ã‚’
+%  å¤‰æ›´ã™ã‚‹å¿…è¦ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚
 %
 
-%% =============== ƒp[ƒg 1: Loading movie ratings dataset ================
+%% =============== ãƒ‘ãƒ¼ãƒˆ 1: Loading movie ratings dataset ================
 %  You will start by loading the movie ratings dataset to understand the
 %  structure of the data.
 %  
@@ -42,7 +42,7 @@ xlabel('Users');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ============ ƒp[ƒg 2: Collaborative Filtering Cost Function ===========
+%% ============ ãƒ‘ãƒ¼ãƒˆ 2: Collaborative Filtering Cost Function ===========
 %  You will now implement the cost function for collaborative filtering.
 %  To help you debug your cost function, we have included set of weights
 %  that we trained on that. Specifically, you should complete the code in 
@@ -69,7 +69,7 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ============== ƒp[ƒg 3: Collaborative Filtering Gradient ==============
+%% ============== ãƒ‘ãƒ¼ãƒˆ 3: Collaborative Filtering Gradient ==============
 %  Once your cost function matches up with ours, you should now implement 
 %  the collaborative filtering gradient function. Specifically, you should 
 %  complete the code in cofiCostFunc.m to return the grad argument.
@@ -83,7 +83,7 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ========= ƒp[ƒg 4: Collaborative Filtering Cost Regularization ========
+%% ========= ãƒ‘ãƒ¼ãƒˆ 4: Collaborative Filtering Cost Regularization ========
 %  Now, you should implement regularization for the cost function for 
 %  collaborative filtering. You can implement it by adding the cost of
 %  regularization to the original cost computation.
@@ -100,7 +100,7 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ======= ƒp[ƒg 5: Collaborative Filtering Gradient Regularization ======
+%% ======= ãƒ‘ãƒ¼ãƒˆ 5: Collaborative Filtering Gradient Regularization ======
 %  Once your cost matches up with ours, you should proceed to implement 
 %  regularization for the gradient. 
 %
@@ -115,7 +115,7 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ============== ƒp[ƒg 6: Entering ratings for a new user ===============
+%% ============== ãƒ‘ãƒ¼ãƒˆ 6: Entering ratings for a new user ===============
 %  Before we will train the collaborative filtering model, we will first
 %  add ratings that correspond to a new user that we just observed. This
 %  part of the code will also allow you to put in your own ratings for the
@@ -157,7 +157,7 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ================== ƒp[ƒg 7: Learning Movie Ratings ====================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 7: Learning Movie Ratings ====================
 %  Now, you will train the collaborative filtering model on a movie rating 
 %  dataset of 1682 movies and 943 users
 %
@@ -210,7 +210,7 @@ fprintf('Recommender system learning completed.\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ================== ƒp[ƒg 8: Recommendation for you ====================
+%% ================== ãƒ‘ãƒ¼ãƒˆ 8: Recommendation for you ====================
 %  After training the model, you can now make recommendations by computing
 %  the predictions matrix.
 %

@@ -1,21 +1,21 @@
 function [theta] = trainLinearReg(X, y, lambda)
-%TRAINLINEARREG Trains linear regression given a dataset (X, y) and a
-%regularization parameter lambda
-%   [theta] = TRAINLINEARREG (X, y, lambda) trains linear regression using
-%   the dataset (X, y) and regularization parameter lambda. Returns the
-%   trained parameters theta.
+% TRAINLINEARREG データセット(X, y)と正則化パラメーターlambdaを
+% 与えられた線形回帰をトレーニングする
+%   [theta] = TRAINLINEARREG (X, y, lambda) は、データセット(X, y)
+%   および正則化パラメーターlambdaを用いて線形回帰をトレーニングします。
+%   そして、トレーニングされたパラメーターthetaを返します。
 %
 
-% Initialize Theta
+% シータを初期化する
 initial_theta = zeros(size(X, 2), 1); 
 
-% Create "short hand" for the cost function to be minimized
+% コスト関数を最小化するための「short hand」を作成する
 costFunction = @(t) linearRegCostFunction(X, y, t, lambda);
 
-% Now, costFunction is a function that takes in only one argument
+% costFunctionは1つの引数しか取らない関数
 options = optimset('MaxIter', 200, 'GradObj', 'on');
 
-% Minimize using fmincg
+% fmincgを使用して最小化
 theta = fmincg(costFunction, initial_theta, options);
 
 end

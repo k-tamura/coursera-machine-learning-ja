@@ -1,11 +1,11 @@
-%% Machine Learning Online Class
-%  Exercise 7 | Principle Component Analysis and K-Means Clustering
+%% 機械学習オンラインクラス
+%  演習 7 | 主成分分析とK-Meansクラスタリング
 %
-%  �w��
+%  指示
 %  ------------
 %
-%  This file contains code that helps you get started on the
-%  exercise. ���̊֐�����������K�v������܂��B
+%  このファイルには、演習を開始するのに役立つコードが含まれています。
+%  次の関数を完成する必要があります。
 %
 %     pca.m
 %     projectData.m
@@ -14,24 +14,24 @@
 %     findClosestCentroids.m
 %     kMeansInitCentroids.m
 %
-%  ���̉��K�ł́A���̃t�@�C���܂��͏�L�ȊO�̃t�@�C�����̃R�[�h��
-%  �ύX����K�v�͂���܂���B
+%  この演習では、このファイルまたは上記以外のファイル内のコードを
+%  変更する必要はありません。
 %
 
-%% ������
+%% 初期化
 clear ; close all; clc
 
-%% ================== �p�[�g 1: Load Example Dataset  ===================
-%  We start this exercise by using a small dataset that is easily to
-%  visualize
+%% ================== パート 1: サンプルデータセットのロード  ===================
+%  簡単に可視化できる小さなデータセットを使用して、この演習を開始します
+%  
 %
 fprintf('Visualizing example dataset for PCA.\n\n');
 
-%  The following command loads the dataset. You should now have the 
-%  variable X in your environment
+%  次のコマンドは、データセットをロードします。
+%  環境に変数Xがロードされます。
 load ('ex7data1.mat');
 
-%  Visualize the example dataset
+%  サンプルのデータセットを可視化する
 plot(X(:, 1), X(:, 2), 'bo');
 axis([0.5 6.5 2 8]); axis square;
 
@@ -39,22 +39,22 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =============== �p�[�g 2: Principal Component Analysis ===============
-%  You should now implement PCA, a dimension reduction technique. You
-%  should complete the code in pca.m
+%% =============== パート 2: 主成分分析 ===============
+%  次元削減の技術であるPCAを実装する必要があります。
+%  pca.mのコードを完成させてください。
 %
 fprintf('\nRunning PCA on example dataset.\n\n');
 
-%  Before running PCA, it is important to first normalize X
+%  PCAを実行する前に、まずXを正規化することが重要です。
 [X_norm, mu, sigma] = featureNormalize(X);
 
-%  Run PCA
+%  PCAを実行する
 [U, S] = pca(X_norm);
 
-%  Compute mu, the mean of the each feature
+%  mu（各フィーチャーの平均）を計算する
 
-%  Draw the eigenvectors centered at mean of data. These lines show the
-%  directions of maximum variations in the dataset.
+%  データの平均を中心とする固有ベクトルを描く。
+%  これらの線は、データセットの最大変動の方向を示しています。
 hold on;
 drawLine(mu, mu + 1.5 * S(1,1) * U(:,1)', '-k', 'LineWidth', 2);
 drawLine(mu, mu + 1.5 * S(2,2) * U(:,2)', '-k', 'LineWidth', 2);
@@ -68,13 +68,13 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% =================== �p�[�g 3: Dimension Reduction ===================
-%  You should now implement the projection step to map the data onto the 
-%  first k eigenvectors. The code will then plot the data in this reduced 
-%  dimensional space.  This will show you what the data looks like when 
-%  using only the corresponding eigenvectors to reconstruct it.
+%% =================== パート 3: 次元削減 ===================
+%  ここで、最初のk個の固有ベクトルにデータをマッピングする射影のステップを
+%  実装する必要があります。コードは、この削減された次元空間にデータを
+%  プロットします。これにより、対応する固有ベクトルのみを使用して再構成した場合に、
+%  データがどのように見えるかが分かります。
 %
-%  You should complete the code in projectData.m
+%  projectData.mのコードを完成させる必要があります。
 %
 fprintf('\nDimension reduction on example dataset.\n\n');
 
@@ -103,7 +103,7 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== �p�[�g 4: Loading and Visualizing Face Data =============
+%% =============== パート 4: Loading and Visualizing Face Data =============
 %  We start the exercise by first loading and visualizing the dataset.
 %  The following code will load the dataset into your environment
 %
@@ -118,7 +118,7 @@ displayData(X(1:100, :));
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== �p�[�g 5: PCA on Face Data: Eigenfaces  ===================
+%% =========== パート 5: PCA on Face Data: Eigenfaces  ===================
 %  Run PCA and visualize the eigenvectors which are in this case eigenfaces
 %  We display the first 36 eigenfaces.
 %
@@ -139,7 +139,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ============= �p�[�g 6: Dimension Reduction for Faces =================
+%% ============= パート 6: Dimension Reduction for Faces =================
 %  Project images to the eigen space using the top k eigenvectors 
 %  If you are applying a machine learning algorithm 
 fprintf('\nDimension reduction for face dataset.\n\n');
