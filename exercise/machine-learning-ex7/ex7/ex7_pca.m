@@ -78,11 +78,11 @@ pause;
 %
 fprintf('\nDimension reduction on example dataset.\n\n');
 
-%  Plot the normalized dataset (returned from pca)
+%  （pcaから返される）正規化されたデータセットをプロットする
 plot(X_norm(:, 1), X_norm(:, 2), 'bo');
 axis([-4 3 -4 3]); axis square
 
-%  Project the data onto K = 1 dimension
+%  データをK = 1次元に射影する
 K = 1;
 Z = projectData(X_norm, U, K);
 fprintf('Projection of the first example: %f\n', Z(1));
@@ -92,7 +92,7 @@ X_rec  = recoverData(Z, U, K);
 fprintf('Approximation of the first example: %f %f\n', X_rec(1, 1), X_rec(1, 2));
 fprintf('\n(this value should be about  -1.047419 -1.047419)\n\n');
 
-%  Draw lines connecting the projected points to the original points
+%  投影された点と元の点を結ぶ線を引く
 hold on;
 plot(X_rec(:, 1), X_rec(:, 2), 'ro');
 for i = 1:size(X_norm, 1)
