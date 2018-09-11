@@ -1,14 +1,14 @@
 function plotDataPoints(X, idx, K)
-%PLOTDATAPOINTS plots data points in X, coloring them so that those with the same
-%index assignments in idx have the same color
-%   PLOTDATAPOINTS(X, idx, K) plots data points in X, coloring them so that those 
-%   with the same index assignments in idx have the same color
+% PLOTDATAPOINTS Xのデータ点をプロットし、idxの同じインデックス割り当てを持つものが
+% 同じ色になるように色付けします。
+%   PLOTDATAPOINTS(X, idx, K)は、 Xのデータ点をプロットし、idxの同じ
+%   インデックス割り当てを持つものが同じ色になるように色付けします。
 
-% Create palette
+% パレットを作成する
 palette = hsv(K + 1);
 colors = palette(idx, :);
 
-% Plot the data
+% データをプロットする
 scatter(X(:,1), X(:,2), 15, colors);
 
 end

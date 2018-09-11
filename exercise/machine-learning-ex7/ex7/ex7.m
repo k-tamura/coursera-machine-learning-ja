@@ -108,7 +108,7 @@ fprintf('\nRunning K-Means clustering on pixels from an image.\n\n');
 %  鳥の画像をロードする
 A = double(imread('bird_small.png'));
 
-% あなたの環境でimreadが動作しない場合は、代わりに試すことができます
+% あなたの環境でimreadが動作しない場合は、代わりにこれを試すことができます
 %   load ('bird_small.mat');
 
 A = A / 255; % すべての値が0〜1の範囲になるように255で割ります

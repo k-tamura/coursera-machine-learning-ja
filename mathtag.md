@@ -1,8 +1,8 @@
-## ������HTML�^�O�̃}�b�s���O
+## 数式とHTMLタグのマッピング
 
-���̉��K�Ŏg�p����鐔���́A�������摜���T�[�r�X�u[CodeCogs](https://www.codecogs.com/latex/eqneditor.php)�v�ŕϊ�����HTML�^�O�𗘗p���Ă��܂��B
+この演習で使用される数式は、数式を画像化サービス「[CodeCogs](https://www.codecogs.com/latex/eqneditor.php)」で変換したHTMLタグを利用しています。
 
-| ���� | HTML�^�O |
+| 数式 | HTMLタグ |
 ----|----
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\theta" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\theta" title="\theta" /></a> | `<img src="https://latex.codecogs.com/gif.latex?\theta" title="\theta" />` |
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\theta&space;_{0}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\theta&space;_{0}" title="\theta _{0}" /></a> | `<img src="https://latex.codecogs.com/gif.latex?\theta&space;_{0}" title="\theta _{0}" />` |
@@ -38,11 +38,11 @@
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{1}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{1}" title="x_{1}" /></a>| `<img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{1}" title="x_{1}" />` |
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;X\theta" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;X\theta" title="X\theta" /></a> | `<img src="https://latex.codecogs.com/gif.latex?\inline&space;X\theta" title="X\theta" />` |
 | <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\Theta&space;\in&space;\mathbb{R}^{K\times&space;(N&space;&plus;&space;1)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;\in&space;\mathbb{R}^{K\times&space;(N&space;&plus;&space;1)}" title="\Theta \in \mathbb{R}^{K\times (N + 1)}" /></a> | `<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;\in&space;\mathbb{R}^{K\times&space;(N&space;&plus;&space;1)}" title="\Theta \in \mathbb{R}^{K\times (N + 1)}" />` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
-| �[ | `�[` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
+| ー | `ー` |
