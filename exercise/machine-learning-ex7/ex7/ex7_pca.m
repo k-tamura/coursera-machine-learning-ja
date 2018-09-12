@@ -92,7 +92,7 @@ X_rec  = recoverData(Z, U, K);
 fprintf('Approximation of the first example: %f %f\n', X_rec(1, 1), X_rec(1, 2));
 fprintf('\n(this value should be about  -1.047419 -1.047419)\n\n');
 
-%  投影された点と元の点を結ぶ線を引く
+%  射影された点と元の点を結ぶ線を引く
 hold on;
 plot(X_rec(:, 1), X_rec(:, 2), 'ro');
 for i = 1:size(X_norm, 1)
@@ -180,7 +180,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% === パート 8(a): オプション（非評価）練習：可視化のためのPCA ===
+%% === パート 8(a): オプション（非評価）演習：可視化のためのPCA ===
 %  PCAの1つの有用な用途は、高次元のデータを可視化するためにそれを使用することです。
 %  K-Meansの最後の演習では、画像の3次元ピクセルカラーでK-Meansを実行しました。
 %  まずは、この出力を3Dで可視化し、PCAを適用して2Dで可視化します。
@@ -218,7 +218,7 @@ title('Pixel dataset plotted in 3D. Color shows centroid memberships');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% === パート 8(b): オプション（非評価）練習：可視化のためのPCA ===
+%% === パート 8(b): オプション（非評価）演習：可視化のためのPCA ===
 % PCAを使用してこのクラウドを2Dに射影して可視化します。
 
 % PCAを使用するために平均を引く
