@@ -119,7 +119,7 @@ load('ex4weights.mat');
 
 ![式3](images/ex4/ex4-NF3.png)
 
-たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />が数字5の画像である場合、対応する<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;y^{(i)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(i)}" title="y^{(i)}" /></a>（コスト関数とともに使用する必要があります）は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y_{5}&space;=&space;1" title="y_{5} = 1" />の10次元ベクトルであり、他の要素は全て0です。 
+たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />が数字5の画像である場合、対応する<img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(i)}" title="y^{(i)}" />（コスト関数とともに使用する必要があります）は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y_{5}&space;=&space;1" title="y_{5} = 1" />の10次元ベクトルであり、他の要素は全て0です。 
 すべてのサンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />に対して<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x^{(i)})" title="h_{\theta }(x^{(i)})" />を計算し、コストを合計するフィードフォワード計算を実装する必要があります。
 あなたのコードは、任意の数のラベルを持つ任意のサイズのデータセットに対しても機能するはずです
 （少なくとも<img src="https://latex.codecogs.com/gif.latex?\inline&space;K&space;\geq&space;3" title="K \geq 3" />のラベルがあると仮定することができます）。

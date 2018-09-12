@@ -19,7 +19,7 @@
  - `ex3data1.mat` - 手書き数字のトレーニング・セット
  - `ex3weights.mat` - ニューラル・ネットワークの演習の初期ウェイト
  - `submit.m` - 解答を我々のサーバーに送信する送信スクリプト
- - `displayData.m` - データセットを視覚化するための関数
+ - `displayData.m` - データセットを可視化するための関数
  - `fmincg.m` - 最小化ルーチンの関数（fminuncと同様）
  - `sigmoid.m` - シグモイド関数
  - [*] `lrCostFunction.m` - ロジスティック回帰コスト関数

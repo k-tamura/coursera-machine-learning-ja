@@ -62,7 +62,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 この演習では、異常検出アルゴリズムを実装して、サーバー・コンピューターの異常動作を検出します。
 この機能は、各サーバーのレスポンスのスループット（mb/s）とレイテンシー（ms）を測定します。
-あなたは、サーバーが稼動している間にm = 307のサンプルを収集しており、ラベルなしのデータセット{x(1), . . . , x(m)}を持っています。
+あなたは、サーバーが稼動している間に<img src="https://latex.codecogs.com/gif.latex?\inline&space;m&space;=&space;307" title="m = 307" />のサンプルを収集しており、ラベルなしのデータセット<img src="https://latex.codecogs.com/gif.latex?\inline&space;\left&space;\{&space;x^{(1)},&space;...,&space;x^{(m)}&space;\right&space;\}" title="\left \{ x^{(1)}, ..., x^{(m)} \right \}" />を持っています。
 これらのサンプルの大部分は、正常に動作するサーバーの「通常の」（異常ではない）サンプルですが、このデータセット内に異常な動作をするサーバーのサンプルもいくつか存在する可能性があります。
 
 ガウスモデルを使用して、データセット内の異常なサンプルを検出します。
@@ -81,17 +81,17 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 異常検出を実行するには、まずデータの分布にモデルを適合させる必要があります。
 
-与えられたトレーニングセット{x(1), ..., x(m)}（ここで x(i) ∈ Rn）に対して、各フィーチャー<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x^{(i)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" /></a>のガウス分布を推定する必要があります。
-各フィーチャーについて、i = 1...n,の場合、i番目の次元{x(1)i、...、x(m)i}（各サンプルのi番目の次元）のデータに適合するパラメーターμiとσi^2を見つける必要があります。
+与えられたトレーニングセット<img src="https://latex.codecogs.com/gif.latex?\inline&space;m&space;=&space;307" title="m = 307" />のサンプルを収集しており、ラベルなしのデータセット<img src="https://latex.codecogs.com/gif.latex?\inline&space;\left&space;\{&space;x^{(1)},&space;...,&space;x^{(m)}&space;\right&space;\}" title="\left \{ x^{(1)}, ..., x^{(m)} \right \}" />（ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}&space;\in&space;\mathbb{R}^{n}" title="x^{(i)} \in \mathbb{R}^{n}" />）に対して、各フィーチャー<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />のガウス分布を推定する必要があります。
+各フィーチャーについて、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i&space;=&space;1,&space;...,&space;n" title="i = 1, ..., n" />の場合、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の次元<img src="https://latex.codecogs.com/gif.latex?\inline&space;\left&space;\{&space;x_{i}^{(1)},&space;...,&space;x_{i}^{(m)}&space;\right&space;\}" title="\left \{ x_{i}^{(1)}, ..., x_{i}^{(m)} \right \}" />（各サンプルの<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の次元）のデータに適合するパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\mu&space;_{i}" title="\mu _{i}" />と<img src="https://latex.codecogs.com/gif.latex?\inline&space;\sigma_{i}^{2}" title="\sigma_{i}^{2}" />を見つける必要があります。
 ガウス分布は、以下の式で与えられます。
 
 ![式1](images/ex8/ex8-NF1.png)
 
-ここで、μは平均値、σ^2は分散を制御します。
+ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\mu" title="\mu" />は平均値、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\sigma^{2}" title="\sigma^{2}" />は分散を制御します。
 
 ### 1.2. ガウス分布のパラメーターの推定
 
-次の式を使用して、i番目のフィーチャーのパラメーター(μi, σ2)を見積もることができます。
+次の式を使用して、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目のフィーチャーのパラメーター(<img src="https://latex.codecogs.com/gif.latex?\inline&space;\mu&space;_{i}" title="\mu _{i}" />, <img src="https://latex.codecogs.com/gif.latex?\inline&space;\sigma&space;^{2}" title="\sigma ^{2}" />)を見積もることができます。
 平均を推定するには、次を使用します。
 
 ![式2](images/ex8/ex8-NF2.png)
@@ -101,10 +101,10 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 ![式3](images/ex8/ex8-NF3.png)
 
 あなたがすべきことは、`estimateGaussian.m`のコードを完成させることです。
-この関数は、データ行列Xを入力として受け取り、すべてのn個のフィーチャーの平均を保持するn次元ベクトルmuと、すべてのフィーチャーの分散を保持する別のn次元ベクトルsigma2を出力する必要があります。
+この関数は、データ行列`X`を入力として受け取り、すべての<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />個のフィーチャーの平均を保持する<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元ベクトル`mu`と、すべてのフィーチャーの分散を保持する別の<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元ベクトル`sigma2`を出力する必要があります。
 すべての機能とすべてのトレーニングのサンプルでforループを使用して実装することができます。
 ベクトル化された実装はより効率的かもしれませんが、そうしなくてもかまいません。
-Octave/MATLABでは、var関数は（デフォルトで）σi^2を計算するときに1/mではなく1/(m-1)を使用することに注意してください。
+Octave/MATLABでは、var関数は（デフォルトで）<img src="https://latex.codecogs.com/gif.latex?\inline&space;\sigma_{i}^{2}" title="\sigma_{i}^{2}" />を計算するときに<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{1}{m}" title="\frac{1}{m}" />ではなく、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{1}{m&space;-&space;1}" title="\frac{1}{m - 1}" />を使用することに注意してください。
  
 `estimateGaussian.m`のコードを完成すると、`ex8.m`の次のパートでは、フィットしたガウス分布の輪郭が可視化されます。
 図2のようなプロットが得られるはずです。
@@ -116,28 +116,28 @@ Octave/MATLABでは、var関数は（デフォルトで）σi^2を計算する�
 
 &nbsp;&ensp;&nbsp;&ensp; 図2：データセットにフィットする分布のガウス分布の等高線
 
-### 1.3. 閾値εを選択する
+### 1.3. 閾値<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />を選択する
 
 ガウス分布のパラメーターを推定したので、どの分布のサンプルが非常に高い可能性があり、どの分布が非常に低いかを調べることができます。
 低確率のサンプルは、我々のデータセットの異常である可能性が高いです。
 どのサンプルが異常であるかを判断する1つの方法は、クロス・バリデーション・セットに基づいて閾値を選択することです。
-演習のこのパートでは、クロス・バリデーション・セットでF1スコアを使用してしきい値εを選択するアルゴリズムを実装します。
+演習のこのパートでは、クロス・バリデーション・セットで<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアを使用してしきい値<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />を選択するアルゴリズムを実装します。
 
 ここで、`selectThreshold.m`のコードを完成させる必要があります。
 このために、クロス・バリデーション・セット{(x(1)cv,y(1)cv),...,(x(mcv)cv ; y(mcv)cv)}を使用します。
 ここで、ラベル<img src="https://latex.codecogs.com/gif.latex?\inline&space;y&space;=&space;1" title="y = 1" />は異常なサンプルに対応し、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y&space;=&space;0" title="y = 0" />は通常のサンプルに対応します。
 各クロス・バリデーションのサンプルでは、p(x(i))を計算します。
-これらの確率のすべてのベクトル（p(x(1)cv),...,p(x(mcv)cv）は、ベクトルpvalで`selectThreshold.m`に渡されます。
-対応するラベルy(1)cv,...,y(mcv)cvは、ベクトルyvalで同じ関数に渡されます。
+これらの確率のすべてのベクトル（p(x(1)cv),...,p(x(mcv)cv）は、ベクトル`pval`で`selectThreshold.m`に渡されます。
+対応するラベルy(1)cv,...,y(mcv)cvは、ベクトル`yval`で同じ関数に渡されます。
 
 関数`selectThreshold.m`は2つの値を返す必要があります。
-1つ目は選択された閾値εです。
-サンプルxが低い確率p(x)<εを有する場合、それは異常とみなされます。
-この関数はF1スコアも返す必要があります。
-F1スコアは、特定の閾値を与えられたグラウンド・トゥルース（Ground Truth）の異常を見つけることがどれだけうまくいっているかを示します。
-εのさまざまな値に対して、現在の閾値が正しく分類されているかどうかのサンプル数を計算することで、結果のF1スコアを計算します。
+1つ目は選択された閾値<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />です。
+サンプルxが低い確率<img src="https://latex.codecogs.com/gif.latex?\inline&space;p(x)&space;<&space;\varepsilon" title="p(x) < \varepsilon" />を有する場合、それは異常とみなされます。
+この関数は<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアも返す必要があります。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアは、特定の閾値を与えられたグラウンド・トゥルース（Ground Truth）の異常を見つけることがどれだけうまくいっているかを示します。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />のさまざまな値に対して、現在の閾値が正しく分類されているかどうかのサンプル数を計算することで、結果の<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアを計算します。
 
-F1スコアは、精度（prec）と再現率（rec）を使用して計算されます。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアは、精度（prec）と再現率（rec）を使用して計算されます。
 
 ![式4](images/ex8/ex8-NF4.png)
  
@@ -149,10 +149,10 @@ F1スコアは、精度（prec）と再現率（rec）を使用して計算さ�
  - fpは偽陽性の数です：グラウンド・トゥルースラベルは異常ではなく、アルゴリズムでは誤って異常として分類されています。
  - fnは偽陰性の数です：グラウンド・トゥルースラベルは異常ですが、アルゴリズムでは異常ではないと誤って分類しています。
  
-提供した`selectThreshold.m`のコードには、すでにεの多くの異なる値を試し、F1スコアに基づいて最適なεを選択するループがあります。
+提供した`selectThreshold.m`のコードには、すでに<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />の多くの異なる値を試し、<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアに基づいて最適な<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />を選択するループがあります。
 ここで、`selectThreshold.m`のコードを完成する必要があります。
-forループを使用して、すべてのクロス・バリデーションのサンプル（tp、fp、fnの値を計算する）を使用して、F1スコアの計算を実装できます。
-約8.99e-05のイプシロンの値が表示されます。
+forループを使用して、すべてのクロス・バリデーションのサンプル（tp、fp、fnの値を計算する）を使用して、<img src="https://latex.codecogs.com/gif.latex?\inline&space;F_{1}" title="F_{1}" />スコアの計算を実装できます。
+約`8.99e-05`のイプシロンの値が表示されます。
 
 ----
 
@@ -161,10 +161,10 @@ forループを使用して、すべてのクロス・バリデーションの�
 
 tp、fp、fnを計算するために、すべてのサンプルをループするのではなく、ベクトル化された実装を使用できます。
 これは、ベクトルと単一の数値の間のOctave/MATLABの同等性テストによって実装できます。
-n次元バイナリーベクトルv∈{0,1}nに複数のバイナリー値がある場合、sum(v == 0)を使用すると、このベクトルの値の数が0であることが分かります。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元バイナリーベクトルv∈{0,1}nに複数のバイナリー値がある場合、sum(v == 0)を使用すると、このベクトルの値の数が0であることが分かります。
 また、そのようなバイナリーベクトルに論理演算子を適用することもできます。
 たとえば、cvPredictionsをクロス・バリデーション・セットのサイズのバイナリーベクトルとします。
-ここで、i番目の要素は、アルゴリズムがcvを異常とみなす場合は1であり、そうでない場合は0です。
+ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の要素は、アルゴリズムがcvを異常とみなす場合は1であり、そうでない場合は0です。
 たとえば、以下を使用して偽陽性の数を計算することができます。
 
 fp = sum((cvPredictions == 1) & (yval  ==  0))
@@ -184,8 +184,8 @@ fp = sum((cvPredictions == 1) & (yval  ==  0))
 スクリプト`ex8.m`の最後のパートは、より現実的ではるかに難しいデータセットで実装した異常検出アルゴリズムを実行します。
 このデータセットでは、各サンプルが11のフィーチャーで記述され、コンピューティングサーバーの多くのプロパティーを取得します。
 
-このスクリプトでは、実装したコードを使用してガウスパラメーター（μiとσi^2）を推定し、ガウスパラメーターを推定したトレーニング・データXの両方の確率を評価し、クロス・バリデーション・セットXvalの確率を評価します。
-最後に、selectThresholdを使用して最高の閾値εを探します。
+このスクリプトでは、実装したコードを使用してガウスパラメーター（<img src="https://latex.codecogs.com/gif.latex?\inline&space;\mu&space;_{i}" title="\mu _{i}" />と<img src="https://latex.codecogs.com/gif.latex?\inline&space;\sigma_{i}^{2}" title="\sigma_{i}^{2}" />）を推定し、ガウスパラメーターを推定したトレーニング・データXの両方の確率を評価し、クロス・バリデーション・セットXvalの確率を評価します。
+最後に、selectThresholdを使用して最高の閾値<img src="https://latex.codecogs.com/gif.latex?\inline&space;\varepsilon" title="\varepsilon" />を探します。
 約1.38e-18のイプシロン値と117の異常が見つかるはずです。
 
 ## 2. レコメンダー・システム
@@ -215,8 +215,8 @@ fp = sum((cvPredictions == 1) & (yval  ==  0))
 
 ![式6](images/ex8/ex8-NF6.png)
 
-Xのi行目はi番目の映画のフィーチャー・ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />に対応し、Thetaの<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />番目の行は1つの（<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />番目のユーザーの）パラメータベクトルθ(j)に対応します。
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />とθ(j)はともにn次元ベクトルです。
+Xのi行目は<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の映画のフィーチャー・ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />に対応し、Thetaの<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />番目の行は1つの（<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />番目のユーザーの）パラメータベクトルθ(j)に対応します。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />とθ(j)はともに<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元ベクトルです。
 この演習では、n = 100を使用するため、x(i) ∈ R100とθ(j) ∈ R100を使用します。
 それに対応して、Xはnm×100のマトリックスであり、シータはnu×100のマトリックスです。
 
@@ -225,7 +225,7 @@ Xのi行目はi番目の映画のフィーチャー・ベクトル<img src="http
 ここから、協調フィルタリングの学習アルゴリズムの実装が開始します。
 コスト関数（正則化なし）を実装することから始めます。
 
-映画推薦の設定における協調フィルタリングアルゴリズムは、n次元パラメータベクトルx(1),...,x(nm)およびθ(1),...,θ(nu)です。
+映画推薦の設定における協調フィルタリングアルゴリズムは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元パラメータベクトルx(1),...,x(nm)およびθ(1),...,θ(nu)です。
 ここで、モデルはユーザーjによる映画iの評価をy(i,j) = (θ(j))T x(i)として予測します。
 いくつかの映画でいくつかのユーザーによって生成された評価のセットからなるデータセットが与えられた場合、最適なフィットとなる（2乗誤差を最小限に抑える）パラメータベクトルx(1),...,x(nm)、θ(1),...,θ(nu) を学習することが目的です。
 
@@ -296,16 +296,16 @@ X_gradはXと同じ大きさの行列でなければならず、同様にTheta_g
 
 ベクトル化を実行するには、次の情報が役立ちます。
 x(i)1、x(i)2、...、x(i)nに関連するすべての導関数（すなわち、フィーチャー・ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />に関連する導関数）を同時に計算する方法を考え出すべきです。
-i番目の映画のフィーチャー・ベクトルの導関数を次のように定義します。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の映画のフィーチャー・ベクトルの導関数を次のように定義します。
 
 ![式9](images/ex8/ex8-NF9.png)
 
 上記の式をベクトル化するには、ThetaとYにインデックスを付けて、関心のある要素(つまりr(i、j)= 1の要素)のみを選択します。
-直感的に、i番目の映画のフィーチャーを検討するときは、映画に評価を与えたユーザーの関心だけが必要です。
+直感的に、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の映画のフィーチャーを検討するときは、映画に評価を与えたユーザーの関心だけが必要です。
 これにより、他のすべてのユーザーをThetaとYから取り除くことができます。
 
 具体的には、idx = find(R(i、：)== 1)を映画iを評価したすべてのユーザーのリストに設定できます。
-これにより、Theatatemp = Theta(idx、:)とYtemp = Y(i、idx)を作成して、ThetaとYにインデックスを付けて、i番目の映画を評価したユーザーの集合のみを与えることができます。
+これにより、Theatatemp = Theta(idx、:)とYtemp = Y(i、idx)を作成して、ThetaとYにインデックスを付けて、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の映画を評価したユーザーの集合のみを与えることができます。
 これにより、以下のように導関数を書くことができます：
 
 ![式10](images/ex8/ex8-NF10.png)
