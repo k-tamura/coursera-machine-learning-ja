@@ -1,42 +1,42 @@
 function [h, display_array] = displayData(X, example_width)
-%DISPLAYDATA Display 2D data in a nice grid
-%   [h, display_array] = DISPLAYDATA(X, example_width) displays 2D data
-%   stored in X in a nice grid. It returns the figure handle h and the 
-%   displayed array if requested.
+%DISPLAYDATA グリッドに2Dデータを表示する
+%   [h, display_array] = DISPLAYDATA(X, example_width) は、
+%   Xに格納された2Dデータをグリッドに表示します。要求された場合は、
+%   フィギュアー・ハンドルhと表示された配列を返します。
 
-% Set example_width automatically if not passed in
+% 渡されない場合は、example_widthを自動的に設定します
 if ~exist('example_width', 'var') || isempty(example_width) 
 	example_width = round(sqrt(size(X, 2)));
 end
 
-% Gray Image
+% グレーイメージ
 colormap(gray);
 
-% Compute rows, cols
+% 行、列を計算する
 [m n] = size(X);
 example_height = (n / example_width);
 
-% Compute number of items to display
+% 表示するアイテム数を計算する
 display_rows = floor(sqrt(m));
 display_cols = ceil(m / display_rows);
 
-% Between images padding
+% 画像間のパディング
 pad = 1;
 
-% Setup blank display
+% 空白の表示を設定する
 display_array = - ones(pad + display_rows * (example_height + pad), ...
                        pad + display_cols * (example_width + pad));
 
-% Copy each example into a patch on the display array
+% 各サンプルをディスプレイ配列上のパッチにコピーします。
 curr_ex = 1;
 for j = 1:display_rows
 	for i = 1:display_cols
 		if curr_ex > m, 
 			break; 
 		end
-		% Copy the patch
+		% パッチをコピーする
 		
-		% Get the max value of the patch
+		% パッチの最大値を取得する
 		max_val = max(abs(X(curr_ex, :)));
 		display_array(pad + (j - 1) * (example_height + pad) + (1:example_height), ...
 		              pad + (i - 1) * (example_width + pad) + (1:example_width)) = ...
@@ -48,10 +48,10 @@ for j = 1:display_rows
 	end
 end
 
-% Display Image
+% 画像を表示する
 h = imagesc(display_array, [-1 1]);
 
-% Do not show axis
+% 軸を表示しない
 axis image off
 
 drawnow;

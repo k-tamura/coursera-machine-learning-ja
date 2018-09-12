@@ -103,45 +103,45 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== パート 4: Loading and Visualizing Face Data =============
-%  We start the exercise by first loading and visualizing the dataset.
-%  The following code will load the dataset into your environment
+%% =============== パート 4: 顔データのロードと可視化 =============
+%  最初にデータセットをロードして可視化することから、この演習を開始します。
+%  次のコードは、データセットを環境にロードします
 %
 fprintf('\nLoading face dataset.\n\n');
 
-%  Load Face dataset
+%  顔データをロードする
 load ('ex7faces.mat')
 
-%  Display the first 100 faces in the dataset
+%  データセットの最初の100個の顔を表示する
 displayData(X(1:100, :));
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =========== パート 5: PCA on Face Data: Eigenfaces  ===================
-%  Run PCA and visualize the eigenvectors which are in this case eigenfaces
-%  We display the first 36 eigenfaces.
+%% =========== パート 5: 顔データのPCA：固有顔  ===================
+%  PCAを実行し、固有ベクトル（このけーすでは固有顔）を可視化します。
+%  最初の36個の固有顔表示します。
 %
 fprintf(['\nRunning PCA on face dataset.\n' ...
          '(this might take a minute or two ...)\n\n']);
 
-%  Before running PCA, it is important to first normalize X by subtracting 
-%  the mean value from each feature
+%  PCAを実行する前に、各フィーチャーから平均値を引いて、最初にXを
+%  正規化することが重要です。
 [X_norm, mu, sigma] = featureNormalize(X);
 
-%  Run PCA
+%  PCAを実行する
 [U, S] = pca(X_norm);
 
-%  Visualize the top 36 eigenvectors found
+%  見つかった上位36個の固有ベクトルを可視化する。
 displayData(U(:, 1:36)');
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% ============= パート 6: Dimension Reduction for Faces =================
-%  Project images to the eigen space using the top k eigenvectors 
-%  If you are applying a machine learning algorithm 
+%% ============= パート 6: 顔の次元削減 =================
+%  機械学習アルゴリズムを適用する場合は、上位k個の固有ベクトルを使用して、
+%  固有空間に画像を射影します。
 fprintf('\nDimension reduction for face dataset.\n\n');
 
 K = 100;
@@ -153,23 +153,24 @@ fprintf('%d ', size(Z));
 fprintf('\n\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ==== Part 7: Visualization of Faces after PCA Dimension Reduction ====
-%  Project images to the eigen space using the top K eigen vectors and 
-%  visualize only using those K dimensions
-%  Compare to the original input, which is also displayed
+
+%% ==== パート 7: PCA次元削減後の顔の可視化 ====
+%  上位k個の固有ベクトルを使用して固有空間に画像を射影し、それらのK次元のみを
+%  使用して可視化します。
+%  元の入力と比較して表示されます
 
 fprintf('\nVisualizing the projected (reduced dimension) faces.\n\n');
 
 K = 100;
 X_rec  = recoverData(Z, U, K);
 
-% Display normalized data
+% 正規化されたデータを表示する
 subplot(1, 2, 1);
 displayData(X_norm(1:100,:));
 title('Original faces');
 axis square;
 
-% Display reconstructed data from only k eigenfaces
+% k個の固有顔からの再構築したデータの表示
 subplot(1, 2, 2);
 displayData(X_rec(1:100,:));
 title('Recovered faces');
@@ -179,19 +180,19 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 
-%% === Part 8(a): Optional (ungraded) Exercise: PCA for Visualization ===
-%  One useful application of PCA is to use it to visualize high-dimensional
-%  data. In the last K-Means exercise you ran K-Means on 3-dimensional 
-%  pixel colors of an image. We first visualize this output in 3D, and then
-%  apply PCA to obtain a visualization in 2D.
+%% === パート 8(a): オプション（非評価）練習：可視化のためのPCA ===
+%  PCAの1つの有用な用途は、高次元のデータを可視化するためにそれを使用することです。
+%  K-Meansの最後の演習では、画像の3次元ピクセルカラーでK-Meansを実行しました。
+%  まずは、この出力を3Dで可視化し、PCAを適用して2Dで可視化します。
+%  
 
 close all; close all; clc
 
-% Reload the image from the previous exercise and run K-Means on it
-% For this to work, you need to complete the K-Means assignment first
+% 以前の演習の画像をリロードし、K-Meansを実行します
+% これが機能するには、最初にK-Meansの課題を完了する必要があります
 A = double(imread('bird_small.png'));
 
-% If imread does not work for you, you can try instead
+% あなたの環境でimreadが動作しない場合は、代わりにこれを試すことができます
 %   load ('bird_small.mat');
 
 A = A / 255;
@@ -202,32 +203,32 @@ max_iters = 10;
 initial_centroids = kMeansInitCentroids(X, K);
 [centroids, idx] = runkMeans(X, initial_centroids, max_iters);
 
-%  Sample 1000 random indexes (since working with all the data is
-%  too expensive. If you have a fast computer, you may increase this.
+%  1000個のランダムなインデックスをサンプリングします（すべてのデータを処理するのは
+%  高価すぎるため）。高速なコンピューターを使用している場合は、これを増加できます。
 sel = floor(rand(1000, 1) * size(X, 1)) + 1;
 
-%  Setup Color Palette
+%  カラーパレットをセットアップ
 palette = hsv(K);
 colors = palette(idx(sel), :);
 
-%  Visualize the data and centroid memberships in 3D
+%  データと重心メンバーシップを3Dで可視化する
 figure;
 scatter3(X(sel, 1), X(sel, 2), X(sel, 3), 10, colors);
 title('Pixel dataset plotted in 3D. Color shows centroid memberships');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% === Part 8(b): Optional (ungraded) Exercise: PCA for Visualization ===
-% Use PCA to project this cloud to 2D for visualization
+%% === パート 8(b): オプション（非評価）練習：可視化のためのPCA ===
+% PCAを使用してこのクラウドを2Dに射影して可視化します。
 
-% Subtract the mean to use PCA
+% PCAを使用するために平均を引く
 [X_norm, mu, sigma] = featureNormalize(X);
 
-% PCA and project the data to 2D
+% PCAでデータを2Dに射影する
 [U, S] = pca(X_norm);
 Z = projectData(X_norm, U, 2);
 
-% Plot in 2D
+% 2Dでプロットする
 figure;
 plotDataPoints(Z(sel, :), idx(sel), K);
 title('Pixel dataset plotted in 2D, using PCA for dimensionality reduction');

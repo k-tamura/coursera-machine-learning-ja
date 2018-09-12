@@ -1,26 +1,26 @@
 function plotProgresskMeans(X, centroids, previous, idx, K, i)
-%PLOTPROGRESSKMEANS is a helper function that displays the progress of 
-%k-Means as it is running. It is intended for use only with 2D data.
-%   PLOTPROGRESSKMEANS(X, centroids, previous, idx, K, i) plots the data
-%   points with colors assigned to each centroid. With the previous
-%   centroids, it also plots a line between the previous locations and
-%   current locations of the centroids.
+% PLOTPROGRESSKMEANS 実行中のk-Meansの進行状況を表示するヘルパー関数です。
+% 2Dデータでの使用のみを目的としています。
+%   PLOTPROGRESSKMEANS(X, centroids, previous, idx, K, i)は、各重心に
+%   割り当てられた色でデータ点をプロットします。以前の重心を使用して、
+%   以前の重心の位置と現在の重心の位置を結ぶ線もプロットします。
+%   
 %
 
-% Plot the examples
+% サンプルをプロットする
 plotDataPoints(X, idx, K);
 
-% Plot the centroids as black x's
+% 重心を黒のxとしてプロットする
 plot(centroids(:,1), centroids(:,2), 'x', ...
      'MarkerEdgeColor','k', ...
      'MarkerSize', 10, 'LineWidth', 3);
 
-% Plot the history of the centroids with lines
+% 重心の履歴を線でプロットする
 for j=1:size(centroids,1)
     drawLine(centroids(j, :), previous(j, :));
 end
 
-% Title
+% タイトル付けする
 title(sprintf('Iteration number %d', i))
 
 end

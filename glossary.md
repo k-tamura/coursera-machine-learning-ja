@@ -32,7 +32,7 @@
 | ディストーション | Distortion |  | 歪み |
 | テストセット | Test Set |  |  |
 | トレーニング | Training |  |  |
-| トレーニング・セット | Training Set |  | 訓練 |
+| トレーニング・セット | Training Set |  | トレーニング |
 | ニューラル・ネットワーク | Neural Network  |  |  |
 | ノルム | Norm |  |  |
 | バイアス| Bias |  |  |
@@ -80,6 +80,7 @@
 | 誤差 | Error |  |  |
 | 誤差解析 | Error Analysis |  | 誤差分析 |
 | 誤差項 | Error Term |  |  |
+| 固有顔 | Eigenface | https://ja.wikipedia.org/wiki/%E5%9B%BA%E6%9C%89%E9%A1%94 |  |
 | 固有ベクトル | Eigenvector |  |  |
 | 最急降下法 | Gradient Descent |  |  |
 | 再現率 | Recall |  |  |
