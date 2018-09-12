@@ -226,7 +226,7 @@ forループを使用して、すべてのクロス・バリデーションの�
 コスト関数（正則化なし）を実装することから始めます。
 
 映画推薦の設定における協調フィルタリングアルゴリズムは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;n" title="n" />次元パラメータベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(1)},&space;...,&space;x^{(n_{m})}" title="x^{(1)}, ..., x^{(n_{m})}" />および<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta^{(1)},&space;...,&space;\theta^{(n_{n})}" title="\theta^{(1)}, ..., \theta^{(n_{n})}" />です。
-ここで、モデルはユーザー<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />による映画<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />の評価をy(i,j) = (θ(j))T x(i)として予測します。
+ここで、モデルはユーザー<img src="https://latex.codecogs.com/gif.latex?\inline&space;j" title="j" />による映画<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />の評価を<img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(i,j)}&space;=&space;(\theta^{(j)})^{T}&space;x^{(i)}" title="y^{(i,j)} = (\theta^{(j)})^{T} x^{(i)}" />として予測します。
 いくつかの映画でいくつかのユーザーによって生成された評価のセットからなるデータセットが与えられた場合、最適なフィットとなる（2乗誤差を最小限に抑える）パラメータベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(1)},&space;...,&space;x^{(n_{m})}" title="x^{(1)}, ..., x^{(n_{m})}" />、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta^{(1)},&space;...,&space;\theta^{(n_{n})}" title="\theta^{(1)}, ..., \theta^{(n_{n})}" />を学習することが目的です。
 
 `cofiCostFunc.m`のコードを完成させて、協調フィルタリングのコスト関数と勾配を計算します。
@@ -286,7 +286,7 @@ forループを使用して、すべてのクロス・バリデーションの�
 
 まず、映画のforループ<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(i)}}" title="\frac{\partial J}{\partial x_{k}^{(i)}}" />を計算する）とfor-loop overユーザー<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(j)}}" title="\frac{\partial J}{\partial x_{k}^{(j)}}" />を計算する）を使って勾配を実装できます。
 最初に勾配を実装するときは、集計の各要素を計算する別の内部for-loopを実装することで、ベクトル化されていないバージョンから開始することができます。
-このように勾配計算を完了したら、インプリメンテーションをベクトル化して（for-loopの内側をベクトル化する）、forループを2つだけ残すようにする必要があります（1つはループで<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(i)}}" title="\frac{\partial J}{\partial x_{k}^{(i)}}" />各映画についてk、ユーザーごとに<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(j)}}" title="\frac{\partial J}{\partial x_{k}^{(j)}}" />を計算するためにユーザーをループするためのものです）。
+このように勾配計算を完了したら、インプリメンテーションをベクトル化して（for-loopの内側をベクトル化する）、forループを2つだけ残すようにする必要があります（1つはループで<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(i)}}" title="\frac{\partial J}{\partial x_{k}^{(i)}}" />各映画について、ユーザーごとに<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;J}{\partial&space;x_{k}^{(j)}}" title="\frac{\partial J}{\partial x_{k}^{(j)}}" />を計算するためにユーザーをループするためのものです）。
 
 ----
 
