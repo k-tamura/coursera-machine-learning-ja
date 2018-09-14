@@ -1,24 +1,24 @@
 function [mu sigma2] = estimateGaussian(X)
-%ESTIMATEGAUSSIAN This function estimates the parameters of a 
-%Gaussian distribution using the data in X
+% ESTIMATEGAUSSIAN この関数は、Xのデータを使用してガウス分布のパラメーターを
+% 推定します。
 %   [mu sigma2] = estimateGaussian(X), 
-%   The input X is the dataset with each n-dimensional data point in one row
-%   The output is an n-dimensional vector mu, the mean of the data set
-%   and the variances sigma^2, an n x 1 vector
+%   入力Xは、各行にn次元のデータ点を持つデータセットです。
+%   出力は、データセットの平均であるn次元ベクトルmuと、n×1ベクトルである
+%   分散sigma^2です。
 % 
 
-% Useful variables
+% 有用な変数
 [m, n] = size(X);
 
-% You should return these values correctly
+% これらの値を正しく返す必要があります
 mu = zeros(n, 1);
 sigma2 = zeros(n, 1);
 
 % ====================== ここにコードを実装する ======================
-% 指示: Compute the mean of the data and the variances
-%               In particular, mu(i) should contain the mean of
-%               the data for the i-th feature and sigma2(i)
-%               should contain variance of the i-th feature.
+% 指示: データと分散の平均を計算してください。
+%       特に、mu(i)はi番目のフィーチャーのデータの平均を含み、
+%       sigma2(i)はi番目のフィーチャーの分散を含む必要があります。
+%       
 %
 
 

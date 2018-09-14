@@ -8,7 +8,7 @@
 | アクティベーション・ユニット | Activation Unit |  |  |
 | アスペクト比 | Aspect Ratio |  |  |
 | アンダーフィッティング | Underfitting |  |  |
-| ウェイト | Weight |  |  |
+| ウェイト | Weight |  | 重み |
 | オーバーフィッティング | Overfitting | 過学習と同意| 過剰適合 |
 | カーネル | Kernel |  |  |
 | ガウス・カーネル | Gaussian Kernel |  |  |
@@ -29,6 +29,7 @@
 | スライディング・ウィンドウ | Sliding Window |  |  |
 | データ点 | Data Point |  |  |
 | データセット | Dataset |  |  |
+| ディープ・ラーニング | Deep Learning |  | 深層学習 |
 | ディストーション | Distortion |  | 歪み |
 | テストセット | Test Set |  |  |
 | トレーニング | Training |  |  |
@@ -40,9 +41,11 @@
 | バックプロパゲーション | Backpropagation |  |  |
 | バッチ最急降下法 | Batch Gradient Descent |  |  |
 | パフォーマンス | Performance |  |  |
+| パラメーター推定 | Parameter Estimation |  |  |
 | バンド幅 | Bandwidth |  |  |
 | フィーチャー | Feature | 説明変数と同意 | 特徴 |
 | フィーチャー・スケーリング | Feature Scaling |  |  |
+| フィーチャー・ラーニング | Feature Learning |  |  |
 | フィードフォワード・プロパゲーション | Feedforward Propagation |  |  |
 | ベクトル | Vector |  | ベクター |
 | ベクトル化 | Vectorization |  |  |
@@ -55,6 +58,7 @@
 | 異常 | Anomaly |  | アノマリー |
 | 異常検知 | Anomaly Detection |  |  |
 | 一対全て | One-vs-All |  | 一対他、一対全 |
+| 一般化 | Generalization |  |  |
 | 回帰 | Regression |  |  |
 | 解析的勾配 | Analytic Gradient |  |  |
 | 可逆行列 | Invertible Matrix | 正則行列行列、非特異行列と同意 |  |
@@ -74,6 +78,7 @@
 | 協調フィルタリング | Collaborative Filtering |  |  |
 | 共分散行列 | Covariance Matrix |  |  |
 | 行列 | Matrix |  |  |
+| 行列式 | Determinant | https://ja.wikipedia.org/wiki/%E8%A1%8C%E5%88%97%E5%BC%8F |  |
 | 決定境界 | Decision Boundary  |  |  |
 | 項 | Term |  |  |
 | 勾配 | Gradient |  | 傾き |
@@ -85,6 +90,7 @@
 | 最急降下法 | Gradient Descent |  |  |
 | 再現率 | Recall |  |  |
 | 最適化ソルバー | Optimization Solver |  |  |
+| 最尤推定 | Maximum Likelihood Estimation | https://ja.wikipedia.org/wiki/%E6%9C%80%E5%B0%A4%E6%8E%A8%E5%AE%9A | 最尤法 |
 | 三次元行列 | three-dimensional matrix |  |  |
 | 閾値 | Threshold |  | しきい値 |
 | 軸 | Axis |  |  |
@@ -111,7 +117,9 @@
 | 切片項 | Intercept Term |  |  |
 | 線形回帰 | Linear Regression |  | 単回帰 |
 | 線形近似 | Linear Fit |  |  |
+| 線型代数学 | Linear Algebra |  |  |
 | 層 | Layer |  | レイヤー |
+| 対角行列 | Diagonal Matrix | https://ja.wikipedia.org/wiki/%E5%AF%BE%E8%A7%92%E8%A1%8C%E5%88%97 |  |
 | 対角共分散行列 | Diagonal Covariance Matrix |  |  |
 | 多クラス分類 | Multiclass Classification |  | 複数クラス分類、マルチクラス分類 |
 | 多項式回帰 | Polynomial Regression |  | 多項回帰 |
@@ -122,16 +130,18 @@
 | 低ランク行列分解 | Low Rank Matrix Factorization |  |  |
 | 適合率 | Precision |  |  |
 | 天井分析 | Ceiling Analysis |  |  |
+| 転置行列 | Transposed Matrix |  |  |
 | 導関数 | Derivative |  | 微分係数 |
 | 動径基底関数カーネル | Radial Basis Function |  | RBF |
 | 等高線 | Contour |  |  |
 | 特異行列 | Singular Matrix |  |  |
 | 特異値分解 | Singular Value Decomposition |  | SVG | 
 | 内積 | Inner Product |  |  |
+| 二乗誤差 | Square Error |  |  |
 | 二乗射影誤差 | Square Projection Error |  |  |
 | 入力層 | Input Layer |  |  |
 | 外れ値 | Outlier |  |  |
-| 平均標準化  | Mean Normalize |  |  |
+| 平均標準化 | Mean Normalize |  |  |
 | 非特異行列 | Non-singular Matrix | 正則行列行列、可逆行列と同意 |  |
 | 微分 | Differentiation |  |  |
 | 微分係数 | Differential Coefficient |  |  |
@@ -143,6 +153,7 @@
 | 平均値 | Mean Value |  |  |
 | 偏微分 | Partial Derivative |  |  |
 | 目的関数 | Objective Function | コスト関数と同意 |  |
+| 予測 | Prediction |  |  |
 | 類似性 | Similarity |  |  |
 | F値 | F Score |  |  |
 | K-means | K-means |  |  |

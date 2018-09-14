@@ -1,5 +1,5 @@
 %% 機械学習オンラインクラス
-%  演習 8 | Anomaly Detection and Collaborative Filtering
+%  演習 8 | 異常検出と協調フィルタリング
 %
 %  指示
 %  ------------
@@ -18,22 +18,22 @@
 %% 初期化
 clear ; close all; clc
 
-%% ================== パート 1: Load Example Dataset  ===================
-%  We start this exercise by using a small dataset that is easy to
-%  visualize.
+%% ================== パート 1: サンプルデータセットのロード  ===================
+%  可視化しやすい小さなデータセットを使ってこの演習を開始します。
+%  
 %
-%  Our example case consists of 2 network server statistics across
-%  several machines: the latency and throughput of each machine.
-%  This exercise will help us find possibly faulty (or very fast) machines.
+%  このサンプルのケースは、複数のマシン間の2つのネットワーク・サーバーの
+%  統計情報（各マシンの待ち時間とスループット）で構成されています。この演習は、
+%  おそらく障害のある（または非常に速い）マシンを見つけるのに役立ちます。
 %
 
 fprintf('Visualizing example dataset for outlier detection.\n\n');
 
-%  The following command loads the dataset. You should now have the
-%  variables X, Xval, yval in your environment
+%  次のコマンドは、データセットをロードします。
+%  環境に変数X、Xval、yvalがロードされます。
 load('ex8data1.mat');
 
-%  Visualize the example dataset
+%  サンプルのデータセットを可視化する
 plot(X(:, 1), X(:, 2), 'bx');
 axis([0 30 0 30]);
 xlabel('Latency (ms)');
@@ -43,24 +43,24 @@ fprintf('Program paused. Press enter to continue.\n');
 pause
 
 
-%% ================== パート 2: Estimate the dataset statistics ===================
-%  For this exercise, we assume a Gaussian distribution for the dataset.
+%% ================== パート 2: データセットの統計の推定 ===================
+%  この演習では、データセットはガウス分布していることを仮定します。
 %
-%  We first estimate the parameters of our assumed Gaussian distribution, 
-%  then compute the probabilities for each of the points and then visualize 
-%  both the overall distribution and where each of the points falls in 
-%  terms of that distribution.
+%  最初に仮定したガウス分布のパラメーターを推定し、各点の確率を計算し、
+%  全体分布と各点がその分布に対してどこにあるかを可視化します。
+%  
+%  
 %
 fprintf('Visualizing Gaussian fit.\n\n');
 
-%  Estimate my and sigma2
+%  muとsigma2を推定する
 [mu sigma2] = estimateGaussian(X);
 
-%  Returns the density of the multivariate normal at each data point (row) 
-%  of X
+%  Xの各データ点（行）での多変量正規分布の密度を返す
+%  
 p = multivariateGaussian(X, mu, sigma2);
 
-%  Visualize the fit
+%  フィットしているかを可視化する
 visualizeFit(X,  mu, sigma2);
 xlabel('Latency (ms)');
 ylabel('Throughput (mb/s)');
@@ -68,9 +68,9 @@ ylabel('Throughput (mb/s)');
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ================== パート 3: Find Outliers ===================
-%  Now you will find a good epsilon threshold using a cross-validation set
-%  probabilities given the estimated Gaussian distribution
+%% ================== パート 3: 異常値を見つける ===================
+%  次は、推定されたガウス分布を考慮したクロス・バリデーション・セットの確率を
+%  使用して、適切な閾値epsilonを見つけます。
 % 
 
 pval = multivariateGaussian(Xval, mu, sigma2);
