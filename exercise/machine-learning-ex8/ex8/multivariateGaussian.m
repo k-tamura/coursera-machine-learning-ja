@@ -1,12 +1,12 @@
 function p = multivariateGaussian(X, mu, Sigma2)
-%MULTIVARIATEGAUSSIAN Computes the probability density function of the
-%multivariate gaussian distribution.
-%    p = MULTIVARIATEGAUSSIAN(X, mu, Sigma2) Computes the probability 
-%    density function of the examples X under the multivariate gaussian 
-%    distribution with parameters mu and Sigma2. If Sigma2 is a matrix, it is
-%    treated as the covariance matrix. If Sigma2 is a vector, it is treated
-%    as the \sigma^2 values of the variances in each dimension (a diagonal
-%    covariance matrix)
+% MULTIVARIATEGAUSSIAN 多変量ガウス分布の確率密度関数を計算する。
+% 
+%    p = MULTIVARIATEGAUSSIAN(X, mu, Sigma2) は、パラメーターmuとSigma2を持つ
+%    多変量ガウス分布の下でのサンプルXの確率密度関数を計算します。
+%    Sigma2が行列の場合は、共分散行列として扱われます。
+%    Sigma2がベクトルの場合は、各次元の分散sigma^2の値（対角共分散行列）として
+%    扱われます。
+%    
 %
 
 k = length(mu);

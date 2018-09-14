@@ -10,7 +10,7 @@ function [centroids, idx] = runkMeans(X, initial_centroids, ...
 %   プロットする必要があるかどうかを示すtrue/falseのフラグです。
 %   デフォルトではfalseに設定されています。
 %   runkMeansは、計算された重心のk×n行列centroidsと、重心割り当て
-%   （すなわち、範囲[1..K]内の各エントリー）のm×1ベクトルであるidxを返します。
+%   （すなわち、[1..K]の範囲内の各エントリー）のm×1ベクトルであるidxを返します。
 %
 
 % プロットの進行のデフォルト値を設定する
@@ -18,7 +18,7 @@ if ~exist('plot_progress', 'var') || isempty(plot_progress)
     plot_progress = false;
 end
 
-% 進行状況をプロットしている場合はデータをプロットする
+% 進行状況をプロットしている場合は、データをプロットする
 if plot_progress
     figure;
     hold on;

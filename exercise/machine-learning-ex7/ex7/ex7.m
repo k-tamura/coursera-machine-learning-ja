@@ -87,8 +87,8 @@ max_iters = 10;
 % 
 initial_centroids = [3 3; 6 2; 8 5];
 
-% K-Meansアルゴリズムを実行する。関数の最後の引数「true」は、K-Meansの進捗状況を
-% プロットするためのものです。
+% K-Meansアルゴリズムを実行してください。関数の最後の引数「true」は、K-Meansの
+% 進捗状況をプロットするためのものです。
 [centroids, idx] = runkMeans(X, initial_centroids, max_iters, true);
 fprintf('\nK-Means Done.\n\n');
 
@@ -121,8 +121,8 @@ img_size = size(A);
 % これにより、K-Meansで使用するデータセット行列Xが得られます。
 X = reshape(A, img_size(1) * img_size(2), 3);
 
-% このデータに対してK-Meansアルゴリズムを実行する。
-% ここでKとmax_itersの異なる値を試してみるべきです。
+% このデータに対してK-Meansアルゴリズムを実行します。
+% ここで、Kとmax_itersの異なる値を試してみるべきです。
 K = 16; 
 max_iters = 10;
 
@@ -141,7 +141,7 @@ pause;
 %% ================= パート 5: 画像の圧縮 ======================
 %  この演習では、K-Meansのクラスターを使用して画像を圧縮します。
 %  これを行うために、最初に各サンプルに最も近いクラスターを見つけます。
-%  その後、
+%  
 
 fprintf('\nApplying K-Means to compress an image.\n\n');
 

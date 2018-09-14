@@ -1,7 +1,7 @@
 function p = predict(Theta1, Theta2, X)
 %PREDICT トレーニングされたニューラル・ネットワークが与えられた場合の入力のラベルを予測する
-%   p = PREDICT(Theta1, Theta2, X) は、ニューラルネットワークのトレーニングされた
-%   ウェイト（Theta1、Theta2）が与えられたときの予測ラベルを出力する。
+%   p = PREDICT(Theta1, Theta2, X) は、ニューラル・ネットワークのトレーニングされた
+%   ウェイト（Theta1、Theta2）が与えられたときの予測ラベルを出力します。
 
 % 有用な値
 m = size(X, 1);

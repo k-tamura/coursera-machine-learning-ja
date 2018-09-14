@@ -1,6 +1,6 @@
 function [h, display_array] = displayData(X, example_width)
 %DISPLAYDATA グリッドに2Dデータを表示する
-%   [h, display_array] = DISPLAYDATA(X, example_width) は、
+%   [h, display_array] = DISPLAYDATA(X, example_width)は、
 %   Xに格納された2Dデータをグリッドに表示します。要求された場合は、
 %   フィギュアー・ハンドルhと表示された配列を返します。
 

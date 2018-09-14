@@ -6,7 +6,7 @@ Courseraは、スタンフォード大学コンピュータサイエンス教授
 
 ----
 
-:warning: 現在作成中です。誤訳を含んでいる可能性がありますので、意味が不明確な箇所は[機械学習コースの原文](https://www.coursera.org/learn/machine-learning/)を読んでください。
+:warning: 誤訳を含んでいる可能性がありますので、意味が不明確な箇所は[原文](https://www.coursera.org/learn/machine-learning/)を読んでください。
 誤訳の修正などに関するプルリクエストやイシュー登録をいただけると助かります。
 
 ----

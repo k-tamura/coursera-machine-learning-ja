@@ -2,7 +2,7 @@ function plotProgresskMeans(X, centroids, previous, idx, K, i)
 % PLOTPROGRESSKMEANS 実行中のk-Meansの進行状況を表示するヘルパー関数です。
 % 2Dデータでの使用のみを目的としています。
 %   PLOTPROGRESSKMEANS(X, centroids, previous, idx, K, i)は、各重心に
-%   割り当てられた色でデータ点をプロットします。以前の重心を使用して、
+%   割り当てられた色でデータ点をプロットします。以前の重心とともに、
 %   以前の重心の位置と現在の重心の位置を結ぶ線もプロットします。
 %   
 %

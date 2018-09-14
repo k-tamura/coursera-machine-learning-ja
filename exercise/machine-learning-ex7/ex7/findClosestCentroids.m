@@ -1,7 +1,7 @@
 function idx = findClosestCentroids(X, centroids)
 %FINDCLOSESTCENTROIDS 各サンプルの重心メンバーシップを計算する
 %   idx = FINDCLOSESTCENTROIDS (X, centroids)は、各行が単一のサンプルである
-%   データセットXのidxに最も近い重心を返します。idxは、
+%   データセットXの最も近い重心をidxにセットして返します。idxは、
 %   重心割り当てのm×1のベクトルです（すなわち、[1..K]の範囲内の各エントリー）。
 % 
 

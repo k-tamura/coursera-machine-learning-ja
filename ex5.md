@@ -17,8 +17,8 @@
  - `ex5.m` - 演習の手順を示すOctave/MATLABスクリプト
  - `ex5data1.mat` - データセット
  - `submit.m` - 解答を我々のサーバーに送信するスクリプト
- - `featureNormalize.m` - フィーチャー正規化関数
- - `fmincg.m` - 最小化ルーチンの関数（fminuncと同様）
+ - `featureNormalize.m` - フィーチャーの正規化関数
+ - `fmincg.m` - 最小化ルーチンの関数（`fminunc`と同様）
  - `plotFit.m` - 多項式近似をプロットする
  - `trainLinearReg.m` - コスト関数を使用して線形回帰をトレーニングする
  - [\*] `linearRegCostFunction.m` - 正則化された線形回帰コスト関数
@@ -81,7 +81,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 ![式1](images/ex5/ex5-NF1.png)
 
 ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />は正則化の程度を制御する正則化パラメーターです（したがって、オーバーフィッティングを防ぐのに役立ちます）。
-正則化項はコストJ全体にペナルティーを課します。
+正則化項はコスト<img src="https://latex.codecogs.com/gif.latex?J" title="J" />全体にペナルティーを課します。
 モデル・パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{j}" title="\theta _{j}" />の大きさが増加するにつれて、ペナルティーも増加します。
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{0}" title="\theta _{0}" />項は正則化しないでください（Octave/MATLABのインデックス付けが1から始まるので、Octave/MATLABでは<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{0}" title="\theta _{0}" />項は`theta(1)`として表されます）。
 
@@ -133,25 +133,25 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 ### 2.1. 学習曲線
 
 では、学習アルゴリズムのデバッグに役立つ学習曲線を生成するコードを実装しましょう。
-学習曲線は、トレーニング・セットのサイズの関数としてトレーニングとクロス・バリデーションの誤差をプロットすることを思い出してください。
-あなたがすべきことは、`learningCurve.m`を実装し、トレーニング・セットとクロス・バリデーション・セットの誤差のベクトルを返すことです。
+学習曲線は、トレーニング・セットのサイズの関数としてトレーニング・セットの誤差とクロス・バリデーション・セットの誤差をプロットすることを思い出してください。
+あなたがすべきことは、`learningCurve.m`を実装し、トレーニング・セットの誤差とクロス・バリデーション・セットの誤差のベクトルを返すことです。
 
-学習曲線をプロットするには、異なるトレーニング・セットのサイズに対して、トレーニング・セットとクロス・バリデーション・セットの誤差が必要です。
+学習曲線をプロットするには、異なるトレーニング・セットのサイズに対して、トレーニング・セットの誤差とクロス・バリデーション・セットの誤差が必要です。
 具体的には、トレーニング・セットのサイズが`i`の場合は、最初の<img src="https://latex.codecogs.com/gif.latex?i" title="i" />個のサンプル（つまり、`X(1:i,:)`と`y(1:i)`）を使います。
 
 `trainLinearReg`関数を使用してパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を見つけることができます。
 `lambda`は、パラメーターとして`learningCurve`関数に渡されることに注意してください。
-パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習した後、トレーニング・セットとクロス・バリデーション・セットの誤差を計算する必要があります。
+パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習した後、トレーニング・セットの誤差とクロス・バリデーション・セットの誤差を計算する必要があります。
 データセットのトレーニング誤差は次のように定義されることを思い出してください。
 
 ![式3](images/ex5/ex5-NF3.png)
 
 特に、トレーニング誤差には正則化項は含まれないことに注意してください。
 トレーニング誤差を計算する方法の1つは、既存のコスト関数を使用して、トレーニング誤差とクロス・バリデーション誤差を計算するときにのみ<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />を0に設定することです。
-トレーニング・セット誤差を計算するときは、（トレーニング・セット全体ではなく）トレーニングサブセット（つまり、`X(1:n,:)`と`y(1:n)`）で必ず計算してください。
+トレーニング・セット誤差を計算するときは、（トレーニング・セット全体ではなく）トレーニング・サブセット（つまり、`X(1:n,:)`と`y(1:n)`）で必ず計算してください。
 ただし、クロス・バリデーション誤差の場合は、クロス・バリデーション・セット全体で計算する必要があります。
 計算された誤差をベクトル`error_train`と`error_val`に格納する必要があります。
-終了したら、`ex5.m`は学習曲線を印刷し、図3と同様のプロットを作成します。
+終了したら、`ex5.m`は学習曲線をプリントし、図3と同様のプロットを作成します。
 
 *ここで解答を提出する必要があります。*
 
@@ -169,19 +169,20 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 我々の線形モデルの問題は、それがデータにとってはあまりにも単純であり、アンダーフィッティング（高バイアス）であるということでした。
 演習のこのパートでは、より多くのフィーチャーを追加することでこの問題に対処します。
-多項式回帰を使用するために、仮説は以下の形式となります。
+多項式回帰を使用するための仮説は以下のようになります。
 
 ![式4](images/ex5/ex5-NF4.png)
 
 <img src="https://latex.codecogs.com/gif.latex?x_{1}&space;=&space;(waterLevel),&space;x_{2}&space;=&space;(waterLevel)^{2}&space;,...,&space;x_{p}&space;=&space;(waterLevel)^{p}" title="x_{1} = (waterLevel), x_{2} = (waterLevel)^{2} ,..., x_{p} = (waterLevel)^{p}" />を定義することに注意してください。
 フィーチャーが元の値<img src="https://latex.codecogs.com/gif.latex?(waterLevel)" title="(waterLevel)" />のさまざまな累乗である線形回帰モデルが得られます。
 
-これで、データセット内の既存のフィーチャー<img src="https://latex.codecogs.com/gif.latex?x" title="x" />の高次の累乗を使うことで、より多くのフィーチャーを追加します。
-このパートであなたがすべきことは、関数がm×1の元のトレーニング・セット`X`に、より高い乗数をマップするように、`polyFeatures.m`のコードを完成させることです。
-具体的には、サイズm×1のトレーニング・セット`X`が関数に渡されるとき、関数はm×p行列の`X_poly`を返すべきです。
+ここで、データセット内の既存のフィーチャー<img src="https://latex.codecogs.com/gif.latex?x" title="x" />の高次の累乗を使って、より多くのフィーチャーを追加します。
+このパートであなたがすべきことは、関数が<img src="https://latex.codecogs.com/gif.latex?m&space;\times&space;1" title="m \times 1" />の元のトレーニング・セット`X`に、より高い乗数をマップするように、`polyFeatures.m`のコードを完成させることです。
+具体的には、サイズ<img src="https://latex.codecogs.com/gif.latex?m&space;\times&space;1" title="m \times 1" />のトレーニング・セット`X`が関数に渡されたら、関数は<img src="https://latex.codecogs.com/gif.latex?m&space;\times&space;p" title="m \times p" />行列の`X_poly`を返すように実装する必要があります。
 列1には`X`の元の値が格納され、列2には`X.^2`の値が格納され、列3には`X.^3`の値が格納されます。
 このフィーチャーで0乗を考慮する必要はありません。
-今度はフィーチャーを高次元にマップする関数があり、`ex5.m`のパート6では、トレーニング・セット、テストセット、クロス・バリデーション・セット（まだ使用していない）に適用されます。
+
+これで、フィーチャーを高次元にマップする関数ができました。`ex5.m`のパート6では、トレーニング・セット、テストセット、クロス・バリデーション・セット（まだ使用していない）にそれを適用します。
 
 *ここで解答を提出する必要があります。*
 
@@ -199,7 +200,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 したがって、フィーチャーの正規化を使用する必要があります。
 
 多項式回帰のパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習する前に、`ex5.m`は`featureNormalize`を呼び出し、トレーニング・セットのフィーチャーを正規化し、パラメーター`mu`、`sigma`を別々に記憶します。
-この機能はすでに実装されており、最初の演習と同じ機能です。
+この関数はすでに実装されており、最初の演習から呼び出された関数と同じです。
 パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習すると、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;0" title="\lambda = 0" />の多項式回帰のために2つのプロット（図4,5）が生成されます。
 
 図4から、多項式近似がデータ点に非常によく追従できることが分かります。
@@ -222,16 +223,16 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 ### 3.2. オプション（非評価）演習：正則化パラメーターの調整
 
-このセクションでは、正則化パラメーターが正則化多項式回帰のバイアス・分散にどのように影響するかを観察します。
+このセクションでは、正則化パラメーターが正則化された多項式回帰のバイアス・分散にどのように影響するかを観察します。
 `ex5.m`の`lambda`パラメーターを変更して<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1,&space;100" title="\lambda = 1, 100" />を試してみるべきです。
 これらの値のそれぞれについて、スクリプトはデータと学習曲線の多項式近似を生成するはずです。
 
-<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />の場合、クロス・バリデーションとトレーニングの誤差の両方が比較的低い値に収束していることを示す、データ傾向（図6）と学習曲線（図7）に従った多項式近似を確認するはずです。
+<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />の場合、クロス・バリデーション誤差とトレーニング誤差の両方が比較的低い値に収束していることを示す、データ傾向（図6）と学習曲線（図7）に従った多項式近似を確認するはずです。
 これは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />の正則化された多項式回帰モデルが高バイアスまたは高分散の問題を持たないことを示しています。
 事実上、バイアスと分散との間の良好なトレードオフを達成します。
 
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;100" title="\lambda = 100" />の場合、データによく従わない多項式近似（図8）が表示されます。
-この場合、正則化があまりにも多く、モデルはトレーニング・データに適合できません。
+この場合、正則化があまりにも大きく、モデルはトレーニング・データに適合できません。
 
 *このオプションの（非評価）演習は、解答を提出する必要はありません。*
 
@@ -251,7 +252,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 演習の前のパートからは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />の値がトレーニング・セットとクロス・バリデーション・セットで正則化された多項式回帰の結果に、大きく影響する可能性があることが分かりました。
 特に、正則化のないモデル（<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;0" title="\lambda = 0" />）は、トレーニング・セットによく適合しますが、一般化しません。
-逆に、正則化があまりにも多いモデル（<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;100" title="\lambda = 100" />）は、トレーニング・セットとテストセットにうまく適合しません。 
+逆に、正則化があまりにも大きいモデル（<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;100" title="\lambda = 100" />）は、トレーニング・セットとテストセットにうまく適合しません。 
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />の良好な選択（たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />）は、データに良好な適合を提供することができます。
 
 このセクションでは、パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />を選択するための自動化された方法を実装します。
@@ -269,8 +270,8 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 コードを完成すると、`ex5.m`の次のパートがあなたの関数を実行し、誤差対<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />のクロス・バリデーション曲線をプロットすることができます。
 これにより、使用するパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />を選択できます。
 図9と同様のプロットが表示されます。
-この図では、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />の最良値は約3であることが分かります。
-データセットをトレーニングとバリデーションに分割する際のランダム性のために、クロス・バリデーション誤差はトレーニング誤差より低い場合があります。
+この図からは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />の最良値は約3であることが分かります。
+データセットをトレーニングセットとバリデーションセットに分割する際のランダム性のために、クロス・バリデーション誤差はトレーニング誤差より低い場合があります。
 
 *ここで解答を提出する必要があります。*
 
@@ -278,6 +279,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 演習の前半では、正則化パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />のさまざまな値に対するクロス・バリデーション誤差を計算するコードを実装しました。
 しかし、現実世界でのモデルのパフォーマンスをより正確に把握するためには、トレーニングのどの部分でも使用されなかったテストセットの「最終」モデルを評価することが重要です（つまり、 パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />を学習したり、モデル・パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習することはできません）。
+
 このオプションの（非評価）演習では、見つかった<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />の最良の値を使ってテスト誤差を計算する必要があります。
 クロス・バリデーションでは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;3" title="\lambda = 3" />で`3.8599`のテスト誤差が得られました。
 
@@ -286,9 +288,11 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 ### 3.5. オプション（非評価）演習：ランダムに選択されたサンプルによる学習曲線のプロット
 
 実際には（特に小さなトレーニング・セットでは）、学習曲線をプロットしてアルゴリズムをデバッグする際に、ランダムに選択された複数のサンプルセットの平均を取って、トレーニング誤差とクロス・バリデーション誤差を判断すると便利です。
+
 具体的には、サンプル<img src="https://latex.codecogs.com/gif.latex?i" title="i" />のトレーニング誤差とクロス・バリデーション誤差を特定するには、まずトレーニング・セットのサンプル<img src="https://latex.codecogs.com/gif.latex?i" title="i" />とクロス・バリデーション・セットのサンプル<img src="https://latex.codecogs.com/gif.latex?i" title="i" />をランダムに選択する必要があります。
 ランダムに選択されたトレーニング・セットを使用してパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を学習し、ランダムに選択されたトレーニング・セットとクロス・バリデーション・セットでパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を評価します。
 上記のステップを複数回（たとえば50回）繰り返す必要があり、平均化された誤差を使用して<img src="https://latex.codecogs.com/gif.latex?i" title="i" />のサンプルのトレーニング誤差とクロス・バリデーション誤差を決定すべきです。
+
 このオプションの（非評価）演習では、学習曲線を計算するための上記の戦略を実装する必要があります。
 参考までに、図10は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;0.01" title="\lambda = 0.01" />の多項式回帰のために得られた学習曲線を示す。
 サンプルはランダムに選択されているため、数字が多少異なる場合があります。

@@ -25,7 +25,7 @@
  - `computeNumericalGradient.m` - 数値的に勾配を計算する
  - `checkNNGradients.m` - 勾配の確認に役立つ機能
  - `debugInitializeWeights.m` - ウェイトを初期化する関数
- - `predict.m` - ニューラル・ネットワーク予測関数
+ - `predict.m` - ニューラル・ネットワークの予測関数
  - [*] `sigmoidGradient.m` - シグモイド関数の勾配を計算する
  - [*] `randInitializeWeights.m` - ランダムにウェイトを初期化する
  - [*] `nnCostFunction.m` - ニューラル・ネットワークのコスト関数
@@ -62,22 +62,22 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 ### 1.1. データの可視化
 
-`ex4.m`の最初のパートでは、関数`displayData`を呼び出すことによって、コードがデータをロードし、2次元プロット上（図1）に表示します。
+`ex4.m`の最初のパートでは、関数`displayData`を呼び出すことによって、データをロードし、2次元プロット上（図1）に表示します。
 
 ![図1:データセットのサンプル](images/ex4/ex4-F1.png)
 
 &nbsp;&ensp;&nbsp;&ensp; 図1：データセットのサンプル
 
-これは、前の演習で使用したのと同じデータセットです。
+これは、前の演習で使用したデータセットと同じデータセットです。
 `ex4data1.mat`には5000個のトレーニング・サンプルがあり、各トレーニング・サンプルは数字の20×20ピクセルのグレースケール画像です。
 各ピクセルは、その位置におけるグレースケール強度を示す浮動小数点数によって表されます。
 20×20グリッドのピクセルは、400次元のベクトルに「アンロール」(展開)されます。
-これらのトレーニング・サンプルはそれぞれ、データ行列<img src="https://latex.codecogs.com/gif.latex?\inline&space;X" title="X" />の1行になります。
-これは5000×400の行列`X`を与え、各行は手書きの数字の画像のトレーニング・サンプルです。
+これらのトレーニング・サンプルは、それぞれデータ行列<img src="https://latex.codecogs.com/gif.latex?\inline&space;X" title="X" />の1行になります。
+つまり、各行が手書きの数字画像のトレーニング・サンプルである5000×400の行列`X`が与えられます。
 
 ![式1](images/ex4/ex4-NF1.png)
 
-トレーニング・セットの第2のパートは、トレーニング・セットのラベルを含む5000次元のベクトルyです。
+トレーニング・セットの2番目の部分は、トレーニング・セットのラベルを含む5000次元のベクトル`y`です。
 ゼロインデックスがないOctave/MATLABインデックスとの互換性を高めるために、数字の0を10にマッピングしました。
 したがって、数字の「0」は「10」とラベル付けされ、数字の「1」〜「9」はそのままの順序で「1」〜「9」とラベル付けされます。
 
@@ -114,21 +114,21 @@ load('ex4weights.mat');
 
 ここで、図2に示すように<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x^{(i)})" title="h_{\theta }(x^{(i)})" />が計算され、<img src="https://latex.codecogs.com/gif.latex?\inline&space;K&space;=&space;10" title="K = 10" />は可能なラベルの総数です。
 なお、<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x^{(i)})_{k}&space;=&space;a_{k}^{(3)}" title="h_{\theta }(x^{(i)})_{k} = a_{k}^{(3)}" />は<img src="https://latex.codecogs.com/gif.latex?\inline&space;k" title="k" />番目の出力ユニットのアクティベーション（出力値）です。
-また、元のラベル（変数`y`内の）は<img src="https://latex.codecogs.com/gif.latex?\inline&space;1,&space;2,&space;...,&space;10" title="1, 2, ..., 10" />であるのに対して、ニューラル・ネットワークをトレーニングする目的で、値0または1だけを含むベクトルとしてラベルを再コード化する必要があることを思い出してください。
+また、元のラベル（変数`y`内の）は<img src="https://latex.codecogs.com/gif.latex?\inline&space;1,&space;2,&space;...,&space;10" title="1, 2, ..., 10" />であるのに対して、ニューラル・ネットワークをトレーニングする目的で、0または1の値だけを含むベクトルとしてラベルを実装し直す必要があることを思い出してください。
 つまり、
 
 ![式3](images/ex4/ex4-NF3.png)
 
-たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />が数字5の画像である場合、対応する<img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(i)}" title="y^{(i)}" />（コスト関数とともに使用する必要があります）は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y_{5}&space;=&space;1" title="y_{5} = 1" />の10次元ベクトルであり、他の要素は全て0です。 
+たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />が数字5の画像である場合、対応する<img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(i)}" title="y^{(i)}" />（コスト関数とともに使用する必要があります）は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y_{5}&space;=&space;1" title="y_{5} = 1" />の10次元ベクトルであり、他の要素はすべて0です。 
 すべてのサンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />に対して<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x^{(i)})" title="h_{\theta }(x^{(i)})" />を計算し、コストを合計するフィードフォワード計算を実装する必要があります。
 あなたのコードは、任意の数のラベルを持つ任意のサイズのデータセットに対しても機能するはずです
-（少なくとも<img src="https://latex.codecogs.com/gif.latex?\inline&space;K&space;\geq&space;3" title="K \geq 3" />のラベルがあると仮定することができます）。
+（少なくとも<img src="https://latex.codecogs.com/gif.latex?\inline&space;K&space;\geq&space;3" title="K \geq 3" />のラベルがあると仮定できます）。
 
 ----
 
 #### 実装上の注意：
 
-行列`X`の行にサンプルが含まれています（つまり、`X(i,:)`は<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目のトレーニング・サンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />で、n×1のベクトルで表されます）。
+行列`X`の行にサンプルが含まれています（つまり、`X(i,:)`は<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目のトレーニング・サンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(i)}" title="x^{(i)}" />で、<img src="https://latex.codecogs.com/gif.latex?n&space;\times&space;1" title="n \times 1" />のベクトルで表されます）。
 `nnCostFunction.m`のコードを完成させるには、`X`の行列に1の列を追加する必要があります。
 ニューラル・ネットワークの各ユニットのパラメーターは、`Theta1`と`Theta2`の1行で表されます。
 特に、`Theta1`の1行目は、2番目の層の最初の隠れユニットに対応します。
@@ -148,13 +148,13 @@ load('ex4weights.mat');
 ![式4](images/ex4/ex4-NF4.png)
 
 ニューラル・ネットワークは入力層、隠れ層、出力層の3つの層しか持たないと仮定できます。
-しかし、あなたのコードは、任意の数の入力ユニット、隠れユニット、および出力ユニットに対して機能するはずです。
+しかし、あなたのコードは、任意の数の入力ユニット、隠れユニット、出力ユニットに対して機能するはずです。
 明確にするために上記の指標を<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(1)" title="\Theta (1)" />と<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(2)" title="\Theta (2)" />に明示していますが、コードは一般に<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(1)" title="\Theta (1)" />と<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(2)" title="\Theta (2)" />の任意のサイズで機能するはずです。
 バイアスに対応する項を正則化すべきではないことに注意してください。
 `Theta1`と`Theta2`が行列の場合、これは各行列の最初の列に対応します。
 これで、コスト関数に正則化を追加できたはずです。
-まず、既存の`nnCostFunction.m`を使用して非正則化コスト関数Jを計算し、その後正則化項のコストを追加することができます。
-完了したら、`ex4.m`は、`Theta1`と`Theta2`、および<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />のパラメーターのロードセットを使用して`nnCostFunction`を呼び出します。
+まず、既存の`nnCostFunction.m`を使用して非正則化コスト関数<img src="https://latex.codecogs.com/gif.latex?J" title="J" />を計算し、その後、正則化項に対するコストを追加することができます。
+完了したら、`ex4.m`は、ロードされたパラメーターのセット`Theta1`と`Theta2`、および<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda&space;=&space;1" title="\lambda = 1" />を使用して、`nnCostFunction`を呼び出します。
 コストは約`0.383770`です。
 
 ## 2. バックプロパゲーション
@@ -176,16 +176,16 @@ load('ex4weights.mat');
 ![式6](images/ex4/ex4-NF6.png)
 
 完了したら、Octave/MATLABコマンドラインで`sigmoidGradient(z)`を呼び出して、いくつかの値をテストしてみてください。
-`z`が大きな値（正と負の両方）であれば勾配は0に近い値に、`z = 0`であれば勾配は正確に`0.25`になるはずです。
-あなたのコードはベクトルと行列でも動作する必要があります。
-行列の場合、あなたが作成した関数はすべての要素に対してシグモイド勾配関数を実行する必要があります。
+`z`（の絶対値）が大きな値（正と負の両方で）であれば勾配は0に近い値に、`z = 0`であれば勾配は正確に`0.25`になるはずです。
+コードはベクトルと行列でも動作する必要があります。
+行列の場合、作成した関数はすべての要素に対してシグモイド勾配関数を実行する必要があります。
 
 *ここで解答を提出する必要があります。*
 
-### 2.2. ランダム初期化
+### 2.2. ランダムな初期化
 
 ニューラル・ネットワークをトレーニングする場合、対称性の破壊のためにパラメーターをランダムに初期化することが重要です。
-ランダム初期化のための1つの効果的な方策は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;^{(l)}" title="\Theta ^{(l)}" />の値を<img src="https://latex.codecogs.com/gif.latex?\inline&space;[-\epsilon&space;_{init},&space;\epsilon&space;_{init}]" title="[-\epsilon _{init}, \epsilon _{init}]" />にすることです。
+ランダムな初期化のための1つの効果的な方策は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;^{(l)}" title="\Theta ^{(l)}" />の値を<img src="https://latex.codecogs.com/gif.latex?\inline&space;[-\epsilon&space;_{init},&space;\epsilon&space;_{init}]" title="[-\epsilon _{init}, \epsilon _{init}]" />にすることです。
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon&space;_{init}&space;=&space;0.12" title="\epsilon _{init} = 0.12" />を使うべきです（※2）。
 この値の範囲は、パラメーターを小さく保ち、学習をより効率的にします。
 あなたがすべきことは、`randInitializeWeights.m`を完成させて<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta" title="\Theta" />のウェイトを初期化することです。
@@ -209,7 +209,7 @@ W = rand(L_out, 1 + L_in) * 2 * epsilon_init - epsilon_init;
 &nbsp;&ensp;&nbsp;&ensp; 図3: バックプロパゲーションの更新
 
 では、バックプロパゲーションのアルゴリズムを実装しましょう。
-バックプロパゲーションのアルゴリズムの背後にある直観は、以下の通りであることを思い出してください。
+バックプロパゲーションのアルゴリズムの背後にある直観は、次の通りであることを思い出してください。
 トレーニング・サンプル(<img src="https://latex.codecogs.com/gif.latex?\inline&space;x^{(t)}" title="x^{(t)}" />、<img src="https://latex.codecogs.com/gif.latex?\inline&space;y^{(t)}" title="y^{(t)}" />)が与えられた場合、ネットワーク全体のすべてのアクティベーションを計算するために、まず「フォワードパス（forward pass）」を実行します（仮説<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\Theta&space;}(x)" title="h_{\Theta }(x)" />の出力値を含んでいます）。
 次に、<img src="https://latex.codecogs.com/gif.latex?l" title="l" />層の各ノード<img src="https://latex.codecogs.com/gif.latex?j" title="j" />に対して、誤差項<img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta&space;_{j}^{(l)}" title="\delta _{j}^{(l)}" />を計算します。
 誤差項<img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta&space;_{j}^{(l)}" title="\delta _{j}^{(l)}" />は、出力における誤差についてノードがどれくらい責任を持っていたかを測定するものです。
@@ -240,25 +240,25 @@ Octave/MATLABでは、`a_1`が列ベクトルの場合、1を加算すると`a_1
 
 4. 次の式を使用して、このサンプルの勾配を累積します。 
 
-    <img src="https://latex.codecogs.com/gif.latex?\delta&space;_{0}^{(2)}" title="\delta _{0}^{(2)}" />をスキップまたは削除する必要があることに注意してください。
-    Octave/MATLABでは、<img src="https://latex.codecogs.com/gif.latex?\delta&space;_{0}^{(2)}" title="\delta _{0}^{(2)}" />を削除すると、`delta_2 = delta_2(2：end)`に相当します。
+    <img src="https://latex.codecogs.com/gif.latex?\delta&space;_{0}^{(2)}" title="\delta _{0}^{(2)}" />をスキップまたは取り除く必要があることに注意してください。
+    Octave/MATLABでは、<img src="https://latex.codecogs.com/gif.latex?\delta&space;_{0}^{(2)}" title="\delta _{0}^{(2)}" />を取り除くことは、`delta_2 = delta_2(2：end)`に相当します。
 
     ![式9](images/ex4/ex4-NF9.png)
 
-5. 累積された勾配を<img src="https://latex.codecogs.com/gif.latex?m" title="m" />で割ることにより、（規則化されていない）ニューラル・ネットワークのコスト関数の勾配を得ることができます。
+5. 累積された勾配を<img src="https://latex.codecogs.com/gif.latex?m" title="m" />で割ることにより、（正則化されていない）ニューラル・ネットワークのコスト関数の勾配を得ることができます。
 
     ![式10](images/ex4/ex4-NF10.png)
 
 ----
 #### Octave/MATLABのヒント:
 
-バックプロパゲーションのアルゴリズムは、フィードフォワードおよびコスト関数を正常に完了した後にのみ実装する必要があります。
-バックプロパゲーションのアルゴリズムを実装する際に、`size`関数を使用して、次元の不一致エラー（Octave/MATLABの「nonconformant arguments」エラー）が発生した場合は、作業している変数のサイズを出力すると便利です。
+バックプロパゲーションのアルゴリズムは、フィードフォワードおよびコスト関数を正しく完成させた後で実装すべきです。
+バックプロパゲーションのアルゴリズムを実装する際に、`size`関数を使用して、次元の不一致エラー（Octave/MATLABの`nonconformant arguments`エラー）が発生した場合は、作業している変数のサイズを出力すると便利です。
 
 ----
 
-バックプロパゲーションのアルゴリズムを実装すると、スクリプト`ex4.m`は、実装上の勾配チェックを実行します。
-勾配チェックでは、コードが勾配を正しく計算しているという自信を高めることができます。
+バックプロパゲーションのアルゴリズムを実装すると、スクリプト`ex4.m`は、実装した勾配チェックを実行します。
+勾配チェックは、実装したコードが勾配を正しく計算していることを確認できます。
 
 ### 2.4. 勾配チェック
 
@@ -266,19 +266,19 @@ Octave/MATLABでは、`a_1`が列ベクトルの場合、1を加算すると`a_1
 パラメーターの勾配チェックを実行するために、パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(1)" title="\Theta (1)" />、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(2)" title="\Theta (2)" />を長いベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />に「アンロール」することが考えられます。
 そうすることで、コスト関数を<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />と考えることができ、次の勾配チェックの手順を使用することができます。
  
-確証はないけれど<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;}{\partial&space;\theta&space;_{i}}J(\theta&space;)" title="\frac{\partial }{\partial \theta _{i}}J(\theta )" />を計算するはずの関数<img src="https://latex.codecogs.com/gif.latex?\inline&space;f_{i}(\theta&space;)" title="f_{i}(\theta )" />があり、
+確証はないが<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{\partial&space;}{\partial&space;\theta&space;_{i}}J(\theta&space;)" title="\frac{\partial }{\partial \theta _{i}}J(\theta )" />を計算するはずの関数<img src="https://latex.codecogs.com/gif.latex?\inline&space;f_{i}(\theta&space;)" title="f_{i}(\theta )" />があり、
 <img src="https://latex.codecogs.com/gif.latex?f_{i}" title="f_{i}" />が正しい微分値を出力しているかどうかを確認したいとします。
 
 ![式11](images/ex4/ex4-NF11.png)
  
-したがって、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta^{(i&plus;)}" title="\theta^{(i+)}" />は<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />と同じで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の要素は<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon" title="\epsilon" />だけ増分されます。
-同様に、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta^{(i&minus;)}" title="\theta^{(i-)}" />は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の要素が<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon" title="\epsilon" />だけ減少した対応するベクトルです。
+とすると、その<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の要素が<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon" title="\epsilon" />だけ増加されている点を除けば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta^{(i&plus;)}" title="\theta^{(i+)}" />は<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />と同じです。
+同様に、<img src="https://latex.codecogs.com/gif.latex?\theta&space;^{\left&space;(&space;i-&space;\right&space;)}" title="\theta ^{\left ( i- \right )}" />は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の要素が<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon" title="\epsilon" />だけ減少したベクトルに対応します。
 各<img src="https://latex.codecogs.com/gif.latex?i" title="i" />について、<img src="https://latex.codecogs.com/gif.latex?\inline&space;f_{i}(\theta&space;)" title="f_{i}(\theta )" />の正しさを次のように数値で検証することができます。
 
 ![式12](images/ex4/ex4-NF12.png)
 
-これらの2つの値が互いに近似する程度は、<img src="https://latex.codecogs.com/gif.latex?J" title="J" />の詳細に依存します。
-しかし、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon&space;=&space;10^{-4}" title="\epsilon = 10^{-4}" />と仮定すると、通常、上記の左右の辺は少なくとも4桁の有効数字に一致します(そして多くの場合、さらに多く)。
+これらの2つの値が互いに近似する程度は、<img src="https://latex.codecogs.com/gif.latex?J" title="J" />の詳細さに依存します。
+しかし、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\epsilon&space;=&space;10^{-4}" title="\epsilon = 10^{-4}" />と仮定すると、通常、上記の左辺と右辺は少なくとも4桁の有効数字で一致します(そして多くの場合、さらに多くの桁で一致します)。
 `computeNumericalGradient.m`の数値的勾配を計算する関数を実装しました。
 ファイルを変更する必要はありませんが、どのように動作するかを理解するために、コードを確認してください。
 `ex4.m`の次のステップでは、与えられた関数`checkNNGradients.m`を実行します。
@@ -289,10 +289,9 @@ Octave/MATLABでは、`a_1`が列ベクトルの場合、1を加算すると`a_1
 
 #### 実際のヒント：
 
-勾配チェックを実行する場合、比較的少数の入力ユニットと隠れユニットを持つ小さなニューラル・ネットワークを使用する方がはるかに効率的です。
+勾配チェックを実行するときは、比較的少数の入力ユニットと隠れユニットを持つ小さなニューラル・ネットワークを使用する方がはるかに効率的です。
 <img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の各次元はコスト関数の2つの評価を必要とし、これは高価になる可能性があります。
-関数`checkNNGradients`で、コードは小さなランダムなモデルとデータセットを作成します。
-これは、勾配チェックのために`computeNumericalGradient`で使用されます。
+関数`checkNNGradients`の中のコードは、勾配チェックのために`computeNumericalGradient`とともに使用される小さくランダムなモデルとデータセットを作成します。
 さらに、勾配計算が正しいことを確信したら、学習アルゴリズムを実行する前に勾配チェックをオフにする必要があります。
 
 ----
@@ -307,14 +306,14 @@ Octave/MATLABでは、`a_1`が列ベクトルの場合、1を加算すると`a_1
 
 ----
 
-*コスト関数が（正則化されていない）ニューラル・ネットワークコスト関数の勾配チェックをパスしたら、ニューラル・ネットワーク勾配関数（バックプロパゲーション）を提出する必要があります。*
+*実装したコスト関数が（正則化されていない）ニューラル・ネットワークのコスト関数の勾配チェックをパスしたら、ニューラル・ネットワークの勾配関数（バックプロパゲーション）を提出する必要があります。*
 
 ### 2.5. 正則化されたニューラル・ネットワーク
 
 バックプロパゲーションのアルゴリズムを正常に実装したら、勾配に正則化を追加します。
-正則化を説明するために、バックプロパゲーションを使用して勾配を計算した後で、これを追加項として追加することができます。
+正則化を含めるために、バックプロパゲーションを使用して勾配を計算した後で、これを付加項として追加できることになります。
  
-具体的には、バックプロパゲーションを使用して<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Delta&space;_{ij}^{(l)}" title="\Delta _{ij}^{(l)}" />を計算した後、以下を使用して正則化を追加する必要があります。
+具体的には、バックプロパゲーションを使用して<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Delta&space;_{ij}^{(l)}" title="\Delta _{ij}^{(l)}" />を計算した後で、以下を使用して正則化を追加する必要があります。
 
 ![式13](images/ex4/ex4-NF13.png)
 
@@ -347,9 +346,9 @@ Octave/MATLABでは、`a_1`が列ベクトルの場合、1を加算すると`a_1
 ニューラル・ネットワークが何を学習しているかを理解する方法の一つは、隠れユニットによってどのような表現がキャプチャーされたかを可視化することです。
 平たく言えば、特定の隠れユニットが与えられた場合、それが何を計算するかを可視化する1つの方法は、それが活性化する（すなわち、アクティベーション値<img src="https://latex.codecogs.com/gif.latex?i" title="i" />を1に近づける）入力<img src="https://latex.codecogs.com/gif.latex?x" title="x" />を見つけることです。
 トレーニングしたニューラル・ネットワークでは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\Theta&space;(1)" title="\Theta (1)" />の<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の行は、<img src="https://latex.codecogs.com/gif.latex?\inline&space;i" title="i" />番目の隠れユニットのパラメーターを表す401次元ベクトルです。
-バイアス項を破棄すると、各入力ピクセルから隠れユニットまでの重みを表す400次元のベクトルが得られます。
+バイアス項を取り除くと、各入力ピクセルから隠れユニットまでの重みを表す400次元のベクトルが得られます。
 
-したがって、隠れユニットによって捕捉された「表現」を可視化する1つの方法は、この400次元ベクトルを20×20画像に再形成して表示することです（※3）。
+したがって、隠れユニットによって捕捉された「表現」を可視化する1つの方法は、この400次元のベクトルを20×20画像に再形成して表示することです（※3）。
 `ex4.m`の次のステップでは、`displayData`関数を使用してこれを行い、25個のユニットを持つ画像（図4と同様）を表示します。
 各ユニットは、ネットワーク内の1つの隠れユニットに対応しています。
 

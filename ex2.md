@@ -14,7 +14,7 @@
 
 ## この演習に含まれるファイル
 
- - `ex2.m` - 演習ex2を実行するOctave/MATLABスクリプト
+ - `ex2.m` - 演習を実行するOctave/MATLABスクリプト
  - `ex2_reg.m` - 演習の後半パートのOctave/MATLABスクリプト
  - `ex2data1.txt` - 演習の前半のトレーニング・セット
  - `ex2data2.txt` - 演習の後半のトレーニング・セット
@@ -56,23 +56,23 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 
 あなたは大学の部局の管理者であり、2つの試験の結果に基づいて各申請者の入学の可能性を判断したいとします。
 以前の応募者の履歴データがあり、ロジスティック回帰のトレーニング・セットとして使用できます。
-各トレーニングのサンプルでは、2つの試験の受験者の得点と入学の決定があります。
+トレーニング・サンプルごとに、2つの試験の受験者の得点と入学の決定があります。
 
 あなたがすべきことは、これらの2つの試験の得点に基づいて、申請者の入学確率を見積もる分類モデルを構築することです。
-この概要と`ex2.m`のフレームワークコードが、演習をガイドします。
+この概要と`ex2.m`のフレームワーク・コードが、演習をガイドします。
 
 ### 1.1. データの可視化
 
 学習アルゴリズムの実装を開始する前に、可能であればデータを可視化することは常に有益です。
 `ex2.m`の最初のパートのコードは、データをロードし、関数`plotData`を呼び出すことにより2次元プロット上にそれを表示します。
-`plotData`でコードを完成させると、図1のような図が表示されます。
+`plotData`のコードを完成させると、図1のような図が表示されます。
 ここで、軸は2つの試験のスコアで、正と負のサンプルは異なるマーカーで示されています。
 
 ![図1：トレーニング・データの散布図](images/ex2/ex2-F1.png)
 
 &nbsp;&ensp;&nbsp;&ensp; 図1：トレーニング・データの散布図
 
-作図にもっと慣れ親しむため、`plotData.m`を空のままにしているので、それをあなた自身で実装してみましょう。
+作図にもっと慣れ親しむため、`plotData.m`を空のままにしているので、それを実装してみましょう。
 ただし、これはオプション（非評価）の演習です。
 我々は、あなたがそれをコピーしたり参照したりできるように、以下の実装も提供します。
 サンプルをコピーする場合は、Octave/MATLABのドキュメントを参照して、それぞれのコマンドが何をしているのかを確認してください。
@@ -103,9 +103,9 @@ plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', ...
 
 あなたがすべき最初のステップは、この関数を`sigmoid.m`に実装して残りのプログラムから呼び出せるようにすることです。
 終了したら、Octave/MATLABのコマンドラインで`sigmoid(x)`を呼び出して、いくつかの値をテストしてみてください。
-`x`の正の大きな値の場合、シグモイドは`1`に近く、大きな負の値の場合、シグモイドは`0`に近くなければなりません。
+`x`が大きな正値の場合、シグモイドは`1`に近く、（絶対値が）大きな負値の場合、シグモイドは`0`に近くなければなりません。
 `sigmoid(0)`を評価すると正確に`0.5`になります。
-コードはベクトルと行列でも動作するはずです。
+コードはベクトルでも行列でも動作するはずです。
 行列の場合、関数はすべての要素に対してシグモイド関数を実行する必要があります。
 
 Octave/MATLABコマンドラインで`submit`と入力すると、評価のための解答を提出できます。
@@ -143,38 +143,39 @@ Webページから課題のための提出トークンを取得することが�
 Octave/MATLABの`fminunc`は、制約のない関数の（※2）の最小値を求める最適化ソルバーです。
 ロジスティック回帰の場合、コスト関数<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />をパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />で最適化する必要があります。
 
-具体的には、（`X`値と`y`値の）固定データセットが与えられた場合、`fminunc`を使用してロジスティック回帰のコスト関数の最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を求めます。
+具体的には、（`X`の値と`y`の値の）固定データセットが与えられた場合、`fminunc`を使用してロジスティック回帰のコスト関数の最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を求めます。
 次の入力を`fminunc`に渡します：
 
  - 最適化しようとしているパラメーターの初期値。
- - トレーニング・セットと特定の<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が与えられたときに、データセット（`X`, `y`）の<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />に対するロジスティック回帰のコストと勾配を計算する関数。
+ - トレーニング・セットと特定の<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が与えられたときに、データセット<img src="https://latex.codecogs.com/gif.latex?(X,&space;y)" title="(X, y)" />の<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />に対するロジスティック回帰のコストと勾配を計算する関数。
 
-`ex2.m`では、正しい引数を指定して`fminunc`を呼び出すコードがすでに作成されています。
+`ex2.m`には、正しい引数を指定して`fminunc`を呼び出すコードがすでに作成されています。
 
-※2：最適化における制約は、パラメーターの制約が多いです。
-たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が取ることができる可能な値（たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;\leq&space;1" title="\theta \leq 1" />）を限定する制約などです。
-ロジスティック回帰には、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が実際の値をとることが許されているため、このような制約はありません。
+※2：最適化における制約には、パラメーターの制約が多いです。
+たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が取ることができる値（たとえば、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;\leq&space;1" title="\theta \leq 1" />）を限定する制約などです。
+ロジスティック回帰では、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が任意の実数値をとることが許されているため、このような制約がありません。
 
 ```
 % fminuncのオプションを設定する
 options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  fminuncを実行して最適なthetaを取得する
-%  この関数はthetaとcostを返します [theta, cost] = ...
-fminunc(@(t)(costFunction(t, X, y)), initial theta, options);
+%  この関数はthetaとcostを返します
+[theta, cost] = ...
+    fminunc(@(t)(costFunction(t, X, y)), initial theta, options);
 ```
 
 このコードスニペットでは、最初に`fminunc`で使用するオプションを定義しました。
 具体的には、`GradObj`オプションを`on`に設定します。
 これは、関数がコストと勾配の両方を返すことを`fminunc`に通知します。
 これにより、関数を最小化するときに`fminunc`が勾配を使用できるようになります。
-さらに、`MaxIter`オプションを400に設定すると、`fminunc`は終了すまでに最大で400ステップを実行します。
+さらに、`MaxIter`オプションを`400`に設定すると、`fminunc`は終了すまでに最大で400ステップを実行します。
 
-最小化している実際の関数を指定するために、`@(t) ( costFunction(t, X, y) )`を使って関数を指定する「short-hand」を使用します。
-これは、`costFunction`を呼び出す引数`t`の関数を作成します。
+最小化する実際の関数を指定するために、`@(t) ( costFunction(t, X, y) )`で関数を指定する「short-hand」を使用します。
+これは、引数`t`で`costFunction`を呼び出す関数を作成します。
 これにより、`fminunc`で使用する`costFunction`をラップすることができます。
 
-`costFunction`を正しく完了すると、`fminunc`は正しい最適化パラメーターに収束し、コストと<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の最終値を返します。
+`costFunction`を正しく完成させると、`fminunc`は正しい最適化パラメーターに収束し、コストと<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の最終値を返します。
 `fminunc`を使用することで、ループを自分で書く必要はなく、最急降下法のように学習率を設定することもできます。
 これはすべて`fminunc`によって行われるので、あなたがすべきことはコストと勾配を計算する関数を用意するだけです。
 
@@ -194,7 +195,7 @@ fminunc(@(t)(costFunction(t, X, y)), initial theta, options);
 
 &nbsp;&ensp;&nbsp;&ensp; 図2：決定境界を持つトレーニング・データ
 
-このパートでは、`predict.m`でコードを完成させます。
+このパートでは、`predict.m`のコードを完成させます。
 予測関数は、データセットおよび学習されたパラメーター・ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />が与えられると、予測値`1`または`0`を生成します。
 `predict.m`でコードを完成させたら、`ex2.m`スクリプトは、正しいサンプルのパーセンテージを計算することによって、分類器のトレーニング精度を報告します。
 
@@ -203,9 +204,9 @@ fminunc(@(t)(costFunction(t, X, y)), initial theta, options);
 ## 2. 正則化されたロジスティック回帰
 
 この演習では、製造工場のマイクロチップが品質保証（QA）に合格しているかどうかを予測するために、正則化されたロジスティック回帰を実装します。
-QA中、各マイクロチップは、正しく機能していることを確認するために、さまざまなテストを行います。
+QA中は、各マイクロチップが正しく機能していることを確認するために、さまざまなテストを行います。
 
-あなたは工場の製品マネージャーであり、2つの異なるテストでいくつかのマイクロチップのテスト結果があるとします。
+あなたは工場の製品マネージャーであり、2つの異なるテストによるいくつかのマイクロチップのテスト結果を持っているとします。
 この2つのテストから、マイクロチップを受け入れるか拒否するかを決定したいと考えています。
 決定を手助けするために、過去のマイクロチップに関するテスト結果のデータセットがあり、ロジスティック回帰モデルを構築することができます。
  

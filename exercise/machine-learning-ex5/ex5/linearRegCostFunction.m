@@ -1,9 +1,9 @@
 function [J, grad] = linearRegCostFunction(X, y, theta, lambda)
-%LINEARREGCOSTFUNCTION 複数の変数を用いた正則化された線形回帰のコストと
-% 勾配を計算します。
-%   [J, grad] = LINEARREGCOSTFUNCTION(X, y, theta, lambda)は、Xとyにデータ点を
-%   フィットさせる線形回帰のパラメーターとしてthetaを使用したコストを計算します。
-%   コストをJで、勾配をgradで返します。
+% LINEARREGCOSTFUNCTION 複数変数の正則化された線形回帰のコストと勾配を
+% 計算します。
+%   [J, grad] = LINEARREGCOSTFUNCTION(X, y, theta, lambda)は、Xとyに
+%   データ点をフィットさせる線形回帰のパラメーターとしてthetaを使用した
+%   コストを計算します。コストをJで、勾配をgradで返します。
 
 % いくつかの有用な値を初期化する
 m = length(y); % トレーニング・サンプルの数
@@ -13,10 +13,10 @@ J = 0;
 grad = zeros(size(theta));
 
 % ====================== ここにコードを実装する ======================
-% 指示: 選択されたthetaに対して、正則化された線形回帰のコストと勾配を計算します。
-%         
+% 指示: 選択されたthetaに対して、正則化された線形回帰のコストと勾配を
+%       計算してください。 
 %
-%          Jにコストを、gradに勾配を設定する必要があります。
+%       Jにコストを、gradに勾配を設定する必要があります。
 %
 
 

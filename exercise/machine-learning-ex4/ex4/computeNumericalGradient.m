@@ -1,14 +1,14 @@
 function numgrad = computeNumericalGradient(J, theta)
-%COMPUTENUMERICALGRADIENT 「有限差分」を使用して勾配を計算し、勾配の数値的評価を行います。
-%
+% COMPUTENUMERICALGRADIENT 「有限差分」を使用して勾配を計算し、勾配の
+% 数値的評価を返します。
 %   numgrad = COMPUTENUMERICALGRADIENT(J, theta) は、theta付近の関数Jの
-%   数値的勾配を計算します。y = J（theta）を呼び出すと、thetaの関数値が返されます。
+%   数値的勾配を計算します。y = J(theta)を呼び出すと、thetaの関数値が返されます。
 %   
 
 % 注意: 次のコードは数値的勾配チェックを実装し、数値的勾配を返します。
-%      thetaで評価されたi番目の入力引数に関して、numgrad（i）にJの
-%      偏微分（の数値近似）を設定します（すなわち、numgrad（i）は
-%      theta（i）に関するJの偏微分でなければなりません）。
+%      thetaで評価されたi番目の入力引数に関して、numgrad(i)にJの
+%      偏微分（の数値近似）を設定します（すなわち、numgrad(i)はtheta(i)に関する
+%      Jの偏微分でなければなりません）。
 %        
 %        
 %                

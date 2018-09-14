@@ -5,7 +5,7 @@
 %
 %
 %  このファイルには、線形演習を開始するのに役立つコードが含まれています。
-%  この演習では、次の機能を完了する必要があります。
+%  この演習では、次の関数を完成させる必要があります。
 %
 %     warmUpExercise.m
 %     plotData.m
@@ -27,7 +27,7 @@
 clear ; close all; clc
 
 %% ==================== パート 1: 基本機能 ====================
-% warmUpExercise.mを完成する
+% warmUpExercise.mを完成させる
 fprintf('Running warmUpExercise ... \n');
 fprintf('5x5 Identity Matrix: \n');
 warmUpExercise()
@@ -52,7 +52,7 @@ pause;
 %% =================== パート 3: コストと最急降下法 ===================
 
 X = [ones(m, 1), data(:,1)]; % 1の列をxに追加する
-theta = zeros(2, 1); % フィッティングパラメータを初期化する
+theta = zeros(2, 1); % フィッティング・パラメーターを初期化する
 
 % 最急降下法の設定
 iterations = 1500;
@@ -86,7 +86,7 @@ fprintf(' -3.6303\n  1.1664\n\n');
 hold on; % 前のプロットを見えるようにする
 plot(X(:,2), X*theta, '-')
 legend('Training data', 'Linear regression')
-hold off % この図の上にそれ以上プロットを重ね合わせない
+hold off % この図の上にそれ以上プロットを重ねない
 
 % 人口サイズ35,000と70,000の予測値
 predict1 = [1, 3.5] *theta;
@@ -118,7 +118,7 @@ for i = 1:length(theta0_vals)
 end
 
 
-% surfコマンドでメッシュグリッドが動作する方法のために、surfを呼び出す前に
+% surfコマンドでメッシュグリッドが動作するように、surfを呼び出す前に
 % J_valsを転置する必要があります。そうしないと、軸が反転します
 J_vals = J_vals';
 % Surfaceプロット
@@ -128,7 +128,7 @@ xlabel('\theta_0'); ylabel('\theta_1');
 
 % 等高線図
 figure;
-% 対数的に0.01と100の間の15の等高線としてJ_valsをプロットする
+% J_valsを対数0.01から100までの15の等高線でプロットする
 contour(theta0_vals, theta1_vals, J_vals, logspace(-2, 3, 20))
 xlabel('\theta_0'); ylabel('\theta_1');
 hold on;

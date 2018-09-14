@@ -1,23 +1,23 @@
 function movieList = loadMovieList()
-%GETMOVIELIST reads the fixed movie list in movie.txt and returns a
-%cell array of the words
-%   movieList = GETMOVIELIST() reads the fixed movie list in movie.txt 
-%   and returns a cell array of the words in movieList.
+% GETMOVIELIST movie.txt内の固定の映画リストを読み込み、その単語のセル配列を
+% 返します。
+%   movieList = GETMOVIELIST()は、movie.txt内の固定の映画リストを読み込み、
+%   その単語のセル配列を返します。
 
 
-%% Read the fixed movieulary list
+%% 固定の映画リストを読み込む
 fid = fopen('movie_ids.txt');
 
-% Store all movies in cell array movie{}
+% すべての映画をセル配列movie{}に保存する
 n = 1682;  % Total number of movies 
 
 movieList = cell(n, 1);
 for i = 1:n
-    % Read line
+    % 行を読み込む
     line = fgets(fid);
-    % Word Index (can ignore since it will be = i)
+    % 単語のインデックス（= iになるので、無視することができます）
     [idx, movieName] = strtok(line, ' ');
-    % Actual Word
+    % 実際の単語
     movieList{i} = strtrim(movieName);
 end
 fclose(fid);

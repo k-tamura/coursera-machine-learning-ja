@@ -28,7 +28,7 @@ clear ; close all; clc
 fprintf('Loading and Visualizing Data ...\n')
 
 % ex5data1からロードする 
-% あなたの環境にはX、Y、Xval、yval、Xtest、ytestができます
+% 環境にはX、Y、Xval、yval、Xtest、ytestがロードされます
 load ('ex5data1.mat');
 
 % m = サンプルの数
@@ -73,8 +73,8 @@ pause;
 
 
 %% =========== パート 4: 線形回帰をトレーニングする =============
-%  コストと勾配を正しく実装すると、trainLinearReg関数はコスト関数を使用して
-%  正規化された線形回帰をトレーニングします。
+%  コストと勾配を正しく実装したら、trainLinearReg関数はコスト関数を使用して
+%  正則化された線形回帰をトレーニングします。
 % 
 % 
 %  注記: データは非線形であるため、これはあまり適合しません。
@@ -126,7 +126,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== パート 6: 多項式回帰のフィーチャー・マッピング =============
-%  これに対する1つの解決策は、多項式回帰を使用することです。 これで各サンプルを
+%  これに対する1つの解決策は、多項式回帰を使用することです。これで各サンプルを
 %  その累乗にマッピングするために、polyFeaturesを完成させる必要があります。
 
 p = 8;
@@ -166,7 +166,7 @@ pause;
 lambda = 0;
 [theta] = trainLinearReg(X_poly, y, lambda);
 
-% トレーニングデータをプロットして、フィットさせる
+% トレーニング・データをプロットして、フィットさせる
 figure(1);
 plot(X, y, 'rx', 'MarkerSize', 10, 'LineWidth', 1.5);
 plotFit(min(X), max(X), mu, sigma, theta, p);
@@ -195,9 +195,9 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== パート 8: Lambdaを選択するための検証 =============
-%  ここでvalidationCurveを実装して、バリデーション・セット上のlambdaのさまざまな値をテストします。
+%  ここでvalidationCurveを実装して、バリデーション・セット上のlambdaの
+%  さまざまな値をテストします。
 %  これを使用して「最良」のlambda値を選択します。
-%  
 %
 
 [lambda_vec, error_train, error_val] = ...

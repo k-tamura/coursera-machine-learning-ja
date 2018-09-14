@@ -81,10 +81,10 @@ fprintf('Best F1 on Cross Validation Set:  %f\n', F1);
 fprintf('   (you should see a value epsilon of about 8.99e-05)\n');
 fprintf('   (you should see a Best F1 value of  0.875000)\n\n');
 
-%  Find the outliers in the training set and plot the
+%  トレーニング・セットの外れ値を見つけてプロットする
 outliers = find(p < epsilon);
 
-%  Draw a red circle around those outliers
+%  それらの外れ値の周囲に赤い円を描く
 hold on
 plot(X(outliers, 1), X(outliers, 2), 'ro', 'LineWidth', 2, 'MarkerSize', 10);
 hold off
@@ -92,26 +92,26 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% ================== パート 4: Multidimensional Outliers ===================
-%  We will now use the code from the previous part and apply it to a 
-%  harder problem in which more features describe each datapoint and only 
-%  some features indicate whether a point is an outlier.
+%% ================== パート 4: 多次元異常値 ===================
+%  前半パートのコードを使用して、より多くのフィーチャーが各データ点を説明し、
+%  その中の一部のフィーチャーだけがデータ点が異常値であるかどうかを示すような、
+%  さらに難しい問題に適用します。
 %
 
-%  Loads the second dataset. You should now have the
-%  variables X, Xval, yval in your environment
+%  2番目のデータセットを読み込みます
+%  環境に変数X、Xval、yvalがロードされます。
 load('ex8data2.mat');
 
-%  Apply the same steps to the larger dataset
+%  より大きなデータセットに同じ手順を適用する
 [mu sigma2] = estimateGaussian(X);
 
-%  Training set 
+%  トレーニング・セット
 p = multivariateGaussian(X, mu, sigma2);
 
-%  Cross-validation set
+%  クロス・バリデーション・セット
 pval = multivariateGaussian(Xval, mu, sigma2);
 
-%  Find the best threshold
+%  最適な閾値を見つける
 [epsilon F1] = selectThreshold(yval, pval);
 
 fprintf('Best epsilon found using cross-validation: %e\n', epsilon);

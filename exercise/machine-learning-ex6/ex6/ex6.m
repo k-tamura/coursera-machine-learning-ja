@@ -31,7 +31,7 @@ fprintf('Loading and Visualizing Data ...\n')
 % 環境にX, yがロードされる
 load('ex6data1.mat');
 
-% トレーニングデータをプロットする
+% トレーニング・データをプロットする
 plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -122,7 +122,7 @@ fprintf('Loading and Visualizing Data ...\n')
 % 環境にX、yがロードされます
 load('ex6data3.mat');
 
-% トレーニングデータをプロットする
+% トレーニング・データをプロットする
 plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
@@ -138,7 +138,7 @@ pause;
 % 環境にX、yがロードされます
 load('ex6data3.mat');
 
-% ここで異なるSVMパラメータを試してみてください
+% ここで異なるSVMパラメーターを試してみてください
 [C, sigma] = dataset3Params(X, y, Xval, yval);
 
 % SVMをトレーニングする

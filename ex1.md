@@ -16,7 +16,7 @@
 
  - `ex1.m` - 演習の手順を示すOctave/MATLABスクリプト
  - `ex1_multi.m` - 演習の後半パートのOctave/MATLABスクリプト
- - `ex1data1.txt` - 1変数の線形回帰のデータセット
+ - `ex1data1.txt` - 一変数の線形回帰のデータセット
  - `ex1data2.txt` - 複数変数の線形回帰のデータセット
  - `submit.m` - 解答を我々のサーバーに送信するスクリプト
  - [\*] `warmUpExercise.m` - Octave/MATLABの簡単なサンプル関数
@@ -29,7 +29,7 @@
  - [y] `normalEqn.m` - 正規方程式を計算する関数
  
 \* はあなたが完了する必要があるものを示しています。
-y はオプションの演習を示しています。
+yはオプションの演習を示しています。
 
 演習では、`ex1.m`と`ex1_multi.m`というスクリプトを使用します。
 これらのスクリプトは、問題に対するデータセットをセットアップし、あなたが実装する関数を呼び出します。
@@ -96,7 +96,7 @@ Webページから課題のための提出トークンを取得することが�
 ## 2. 一変数による線形回帰
 
 演習のこのパートでは、食品トラックの利益を予測するために、一変数による線形回帰を実装します。
-あなたはレストラン・フランチャイズのCEO（最高経営責任者）であり、新しい店舗をオープンするための異なる都市を検討しているとします。
+あなたはレストラン・フランチャイズのCEO（最高経営責任者）であり、新しい店舗をオープンするために異なる都市を検討しているとします。
 チェーンにはすでにさまざまな都市にトラックがあり、都市の利益と人口に関するデータがあります。
 
 このデータを、次に拡大する都市を選択するために活用したいと考えています。
@@ -105,7 +105,7 @@ Webページから課題のための提出トークンを取得することが�
 最初の列は都市の人口であり、2番目の列はその都市の食品トラックの利益です。
 利益のマイナス値は損失を示します。
 
-`ex1.m`スクリプトは、このデータを読み込むようにすでに設定されています。
+`ex1.m`スクリプトは、このデータをロードするようにすでに設定されています。
 
 ### 2.1. データのプロット
 
@@ -132,7 +132,7 @@ xlabel('Population of City in 10,000s'); % x軸のラベルを設定する
 
 ここで`ex1.m`の実行を続けると、最終的な結果は図1のようになり、同じ赤いマーカー「x」と軸ラベルが表示されます。
 `plot`コマンドの詳細については、Octave/MATLABコマンドプロンプトで`help plot`と入力するか、`plot`の文書をオンラインで検索してください。
-マーカーの「x」を赤色に変更するために、`rx`オプションとともに`plot`コマンドを使用しています（`plot(..,[your options here],..,'rx');`）。
+マーカーの「x」を赤色に変更するために、`plot`コマンドを`rx`オプションとともに使用しています（`plot(..,[your options here],..,'rx');`）。
 
 ![図1 トレーニング・データの散布図](images/ex1/ex1-F1.png "図1 トレーニング・データの散布図")
 
@@ -144,22 +144,22 @@ xlabel('Population of City in 10,000s'); % x軸のラベルを設定する
 
 #### 2.2.1. 方程式の更新
 
-線形回帰の目的は、コスト関数を最小にすることです
+線形回帰の目的は、コスト関数を最小にすることで、
 
 ![式1](images/ex1/ex1-NF1.png)
 
-ここで仮説<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x)" title="h_{\theta }(x)" />は、線形モデルによって与えられる
+仮説<img src="https://latex.codecogs.com/gif.latex?\inline&space;h_{\theta&space;}(x)" title="h_{\theta }(x)" />は、線形モデルによって与えられる
 
 ![式2](images/ex1/ex1-NF2.png)
 
-です。モデルのパラメーターは<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{j}" title="\theta _{j}" />の値であることを思い出してください。
-コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を最小にするために調整する値です。
+です。モデルのパラメーターは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{j}" title="\theta _{j}" />の値であることを思い出してください。
+これらの値は、コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を最小にするために調整する値です。
 これを行う1つの方法は、バッチ最急降下法アルゴリズムを使用することです。
-バッチ最急降下法では、各反復が更新を実行します。
+バッチ最急降下法では、各反復で更新を実行します。
 
 ![式3](images/ex1/ex1-NF3.png)
 
-最急降下法の各ステップでは、パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{j}" title="\theta _{j}" />は、最小コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を達成する最適値に近づきます。
+最急降下法の各ステップでは、パラメーター<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{j}" title="\theta _{j}" />は、最小のコスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を達成する最適値に近づきます。
 
 ----
 
@@ -173,7 +173,7 @@ xlabel('Population of City in 10,000s'); % x軸のラベルを設定する
 
 #### 2.2.2. 実装
 
-`ex1.m`では、線形回帰のためのデータをすでに設定しています。
+`ex1.m`では、線形回帰のためのデータをすでにセットアップしています。
 次の行では、切片項<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta&space;_{0}" title="\theta _{0}" />に対応するためにデータに別の次元を追加します。
 また、初期パラメーターを`0`に、学習率<img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />を`0.01`に初期化します。
 
@@ -186,12 +186,12 @@ alpha = 0.01;
 
 #### 2.2.3. コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を計算する
 
-コスト関数<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を最小にすることを学ぶために最急降下法を実行する際に、コストを計算して収束を監視すると便利です。
+コスト関数<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を最小にすることを学習するため最急降下法を実行する際に、コストを計算して収束を監視すると便利です。
 このセクションでは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を計算する関数を実装して、最急降下法の実装の収束を確認することができます。
-次のタスクは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を計算する関数`computeCost.m`ファイル内のコードを完成させることです。
+次のタスクは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />を計算する関数である`computeCost.m`ファイル内のコードを完成させることです。
 これを行うとき、変数`X`と`y`はスカラー値ではなく、列がトレーニング・セットのサンプルを表す行列であることに注意してください。
 この機能を完了したら、`ex1.m`の次のステップでは、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />をゼロに初期化して`computeCost`を1回実行し、画面に表示されるコストを確認します。
-コストは32.07となるはずです。
+コストは`32.07`となるはずです。
 
 *ここで解答を提出する必要があります。*
 
@@ -201,8 +201,8 @@ alpha = 0.01;
 ループ構造がすでに書かれているので、その中に<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の更新処理を実装するだけで十分です。
 
 プログラムを作成する際に、何を最適化しようとし、何を更新しようとしているのかを理解してください。
-コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />は`X`と`y`ではなく、ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />によってパラメーター化されることに注意してください。
-つまり、ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の値を変更することで<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値を最小化し、Xまたはyを変更することはできません。
+コスト<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />は<img src="https://latex.codecogs.com/gif.latex?X" title="X" />と<img src="https://latex.codecogs.com/gif.latex?y" title="y" />ではなく、ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />によってパラメーター化されることに注意してください。
+つまり、ベクトル<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の値を変更することで<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値を最小化し、<img src="https://latex.codecogs.com/gif.latex?X" title="X" />または<img src="https://latex.codecogs.com/gif.latex?y" title="y" />を変更することはできません。
 不明な場合は、この配布資料の方程式とビデオ講義を参照してください。
 
 最急降下法が正しく機能しているかどうかを確認するには、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値を見て、それが各ステップで減少していることを確認します。
@@ -213,7 +213,7 @@ alpha = 0.01;
 結果は図2のようになります。
 
 最終的な<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の値は、35,000人と70,000人の利益の予測にも使用されます。
-予測を計算するための`ex1.m`内の以下の行は、明らかな総和やループ処理ではなく、行列乗算を使用するように注意してください。
+予測を計算するための`ex1.m`内の以降の行は、明らかな総和やループ処理ではなく、行列乗算を使用するように注意してください。
 これはOctave/MATLABのコードにおけるベクトル化の例です。
 
 *ここで解答を提出する必要があります。*
@@ -260,7 +260,7 @@ end
 ```
 
 これらの行が実行されると、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値の2次元配列が得られます。
-スクリプト`ex1.m`はこれらの値を使用して、surfコマンドおよびcontourコマンドで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />のサーフェスおよび等高線のプロットを作成します。
+スクリプト`ex1.m`はこれらの値を使用して、`surf`コマンドおよび`contour`コマンドで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />のサーフェスおよび等高線のプロットを作成します。
 プロットは図3のようになります。
 
 ![図3 コスト関数](images/ex1/ex1-F3.png "図3 コスト関数")
@@ -295,16 +295,16 @@ end
 値を見ると、住宅の大きさは寝室の数の約1000倍です。
 フィーチャーの値の大きさが異なる場合、フィーチャー・スケーリングを最初に実行すると、最急降下法がより迅速に収束できます。
 
-ここでの作業は、`featureNormalize.m`内のコードを
+ここでの作業は、`featureNormalize.m`内に以下のコードを実装することです。
 
 - 各フィーチャーの平均値をデータセットから減算する。
 - 平均値を減算した後、それぞれの標準偏差でフィーチャーの値をさらにスケール（除算）する。
 
-標準偏差は、特定のフィーチャーの値の範囲に、どれだけのばらつきがあるかを測定する方法です
+標準偏差を計算することは、特定のフィーチャーの値の範囲に、どれだけのばらつきがあるかを測定する1つの手段です
 （ほとんどのデータ点は平均の±2標準偏差内にあります）。 
 これは値の範囲（max-min）を取る代わりに使用されます。
 Octave/MATLABでは、標準偏差を計算するために`std`関数を使用することができます。
-たとえば、`featureNormalize.m`内では、数量`X(:,1)`にはトレーニング・セットの<img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{1}" title="x_{1}" />（住宅の大きさ）のすべての値が含まれるため、`std(X(:,1))`は住宅の大きさの標準偏差を計算します。
+たとえば、`featureNormalize.m`では、数量`X(:,1)`にトレーニング・セットの<img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{1}" title="x_{1}" />（住宅の大きさ）のすべての値が含まれるため、`std(X(:,1))`は住宅の大きさの標準偏差を計算することになります。
 `featureNormalize.m`が呼び出された時点で、<img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{0}&space;=&space;1" title="x_{0} = 1" />に対応する1の列はまだ`X`に追加されていません（詳細は`ex1_multi.m`を参照してください）。
 
 すべてのフィーチャーでこれを行うと、コードはあらゆるサイズのデータセット（任意の数のフィーチャー/サンプル）で動作するはずです。
@@ -318,16 +318,16 @@ Octave/MATLABでは、標準偏差を計算するために`std`関数を使用�
 
 フィーチャーを正規化するときは、正規化に使用される値（平均値と計算に使用される標準偏差）を保存することが重要です。
 モデルからパラメーターを学習した後、これまで見たことのない住宅の価格を予測したいことがよくあります。
-新しいx値（リビングルームとベッドルーム数）が与えられた場合、まずトレーニング・セットから計算した平均と標準偏差を使ってxを正規化する必要があります。
+新しい`x`の値（リビングルームとベッドルーム数）が与えられた場合、まずトレーニング・セットから計算した平均値と標準偏差を使って`x`を正規化する必要があります。
 
 ----
 
 ### 3.2. 最急降下法
 
-以前は、単変量回帰問題に対する最急降下法を実装しました。
-唯一の違いは、行列`X`にもう1つのフィーチャーがあることです。
+以前は、単変量の回帰問題に対する最急降下法を実装しました。
+ここでの唯一の違いは、行列`X`にもう1つのフィーチャーがあるということです。
 仮説関数とバッチ最急降下法の更新ルールは変更されません。
-`computeCostMulti.m`と`gradientDescentMulti.m`のコードを完了して、複数の変数による線形回帰のコスト関数と最急降下法を実装する必要があります。
+`computeCostMulti.m`と`gradientDescentMulti.m`のコードを完成させて、複数の変数による線形回帰のコスト関数と最急降下法を実装する必要があります。
 前のパート（一変数）のコードがすでに複数の変数をサポートしている場合は、ここでもそれを使用できます。
 コードが任意の数のフィーチャーをサポートし、うまくベクトル化されていることを確認してください。
 `size(X, 2)`を使用して、データセットに存在するフィーチャーの数を調べることができます。
@@ -357,7 +357,7 @@ Octave/MATLABでは、標準偏差を計算するために`std`関数を使用�
 学習率を変更するには、`ex1_multi.m`を変更し、学習率を設定する部分のコードを変更します。
 
 `ex1_multi.m`の次の段階では、`gradientDescent.m`関数が呼び出され、選択された学習率で約50回繰り返して最急降下法が実行されます。
-この関数は、ベクトルJの<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値の履歴も返さなければなりません。
+この関数は、ベクトル`J`の<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値の履歴も返さなければなりません。
 最後の反復の後、`ex1_multi.m`スクリプトは反復回数に対して`J`値をプロットします。
 良い範囲で学習率を選択した場合、プロットは図4のようになります。
 グラフが大きく異なる場合、特に<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />の値が大きくなったり、ブローアップしたりする場合は、学習率を調整してやり直してください。
@@ -372,9 +372,9 @@ Octave/MATLABでは、標準偏差を計算するために`std`関数を使用�
 
 **実装上の注意：**
 
-学習率が大きすぎると、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />が発散してブローアップすることがあり、コンピュータ計算には大きすぎる値になります。
+学習率が大きすぎると、<img src="https://latex.codecogs.com/gif.latex?\inline&space;J(\theta)" title="J(\theta)" />が発散してブローアップすることがあり、コンピューター計算には大きすぎる値になります。
 このような状況では、Octave/MATLABは`NaN`を返す傾向があります。
-`NaN`は「数ではない」の略で、-∞と+∞を含む定義されていない操作によって引き起こされることがよくあります。
+`NaN`は「not a number（数値ではない）」の略で、-∞と+∞を含む定義されていない操作によって引き起こされることがよくあります。
 
 ----
 
@@ -402,14 +402,14 @@ plot(1:50, J3(1:50), ‘k’);
 逆に、学習率が高い場合、最急降下法は収束しないか、または逸脱する可能性があります。
 あなたが見つけた最高の学習率を使って、`ex1_multi.m`スクリプトを実行して収束まで最急降下法を実行し、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />の最終値を見つけます。
 次に、この値<img src="https://latex.codecogs.com/gif.latex?\inline&space;\theta" title="\theta" />を使用して、1650平方フィートと3つの寝室を持つ住宅の価格を予測します。
-後で値を使用して、正規方程式の実装をチェックします。
+後でこの値を使用して、正規方程式の実装をチェックします。
 この予測をするときにフィーチャーを正規化することを忘れないでください！
 
 *ここで解答を提出する必要はありません。*
 
 ### 3.3. 正規方程式
 
-講義ビデオでは、線形回帰に対する閉形式解が
+講義ビデオでは、線形回帰に対する閉形式解が以下であることを学びました。
  
 ![式6](images/ex1/ex1-NF6.png)
  
@@ -433,8 +433,8 @@ plot(1:50, J3(1:50), ‘k’);
 | パート | 提出するファイル | 点数　|
 ----|----|---- 
 | ウォームアップ演習 | `warmUpExercise.m` | 10 点 |
-| 1変数のコスト計算 | `computeCost.m` | 40 点 |
-| 1変数の最急降下法 | `gradientDescent.m` | 50 点 |
+| 一変数のコスト計算 | `computeCost.m` | 40 点 |
+| 一変数の最急降下法 | `gradientDescent.m` | 50 点 |
 | 合計点 |  | 100 点 |
 
 オプションの演習

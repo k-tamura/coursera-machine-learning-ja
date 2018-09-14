@@ -53,8 +53,8 @@ fprintf('\nRunning PCA on example dataset.\n\n');
 
 %  mu（各フィーチャーの平均）を計算する
 
-%  データの平均を中心とする固有ベクトルを描く。
-%  これらの線は、データセットの最大変動の方向を示しています。
+%  データの平均値を中心とする固有ベクトルを描く。
+%  これらの線は、データセットの最大の変動の方向を示しています。
 hold on;
 drawLine(mu, mu + 1.5 * S(1,1) * U(:,1)', '-k', 'LineWidth', 2);
 drawLine(mu, mu + 1.5 * S(2,2) * U(:,2)', '-k', 'LineWidth', 2);
@@ -71,7 +71,7 @@ pause;
 %% =================== パート 3: 次元削減 ===================
 %  ここで、最初のk個の固有ベクトルにデータをマッピングする射影のステップを
 %  実装する必要があります。コードは、この削減された次元空間にデータを
-%  プロットします。これにより、対応する固有ベクトルのみを使用して再構成した場合に、
+%  プロットします。これにより、対応する固有ベクトルのみを使用して再構築した場合に、
 %  データがどのように見えるかが分かります。
 %
 %  projectData.mのコードを完成させる必要があります。
@@ -103,7 +103,7 @@ hold off
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
-%% =============== パート 4: 顔データのロードと可視化 =============
+%% =============== パート 4: 顔のデータのロードと可視化 =============
 %  最初にデータセットをロードして可視化することから、この演習を開始します。
 %  次のコードは、データセットを環境にロードします
 %
@@ -119,8 +119,8 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% =========== パート 5: 顔データのPCA：固有顔  ===================
-%  PCAを実行し、固有ベクトル（このけーすでは固有顔）を可視化します。
-%  最初の36個の固有顔表示します。
+%  PCAを実行し、固有ベクトル（このケースでは固有顔）を可視化します。
+%  最初の36個の固有顔を表示します。
 %
 fprintf(['\nRunning PCA on face dataset.\n' ...
          '(this might take a minute or two ...)\n\n']);
@@ -211,7 +211,7 @@ sel = floor(rand(1000, 1) * size(X, 1)) + 1;
 palette = hsv(K);
 colors = palette(idx(sel), :);
 
-%  データと重心メンバーシップを3Dで可視化する
+%  データと重心のメンバーシップを3Dで可視化する
 figure;
 scatter3(X(sel, 1), X(sel, 2), X(sel, 3), 10, colors);
 title('Pixel dataset plotted in 3D. Color shows centroid memberships');
@@ -219,7 +219,7 @@ fprintf('Program paused. Press enter to continue.\n');
 pause;
 
 %% === パート 8(b): オプション（非評価）演習：可視化のためのPCA ===
-% PCAを使用してこのクラウドを2Dに射影して可視化します。
+% PCAを使用して、このデータ点を2Dに射影して可視化します。
 
 % PCAを使用するために平均を引く
 [X_norm, mu, sigma] = featureNormalize(X);

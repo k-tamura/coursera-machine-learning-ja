@@ -1,5 +1,5 @@
 %% 機械学習オンラインクラス
-%  演習 8 | Anomaly Detection and Collaborative Filtering
+%  演習 8 | 異常検出と協調フィルタリング
 %
 %  指示
 %  ------------
@@ -15,26 +15,26 @@
 %  変更する必要はありません。
 %
 
-%% =============== パート 1: Loading movie ratings dataset ================
-%  You will start by loading the movie ratings dataset to understand the
-%  structure of the data.
+%% =============== パート 1: 映画の評価データセットのロード ================
+%  映画の評価データセットをロードして、データの構造を理解することから
+%  始めます。
 %  
 fprintf('Loading movie ratings dataset.\n\n');
 
-%  Load data
+%  データをロードする
 load ('ex8_movies.mat');
 
-%  Y is a 1682x943 matrix, containing ratings (1-5) of 1682 movies on 
-%  943 users
+%  Yは1682×943の行列で、943人のユーザーに1682の映画の評価（1〜5）が 
+%  含まれています。
 %
-%  R is a 1682x943 matrix, where R(i,j) = 1 if and only if user j gave a
-%  rating to movie i
+%  Rは1682×943行列であり、ユーザーjが映画iに評価を与えた場合にのみ
+%  R(i,j) = 1となります。
 
-%  From the matrix, we can compute statistics like average rating.
+%  行列から、平均評価のような統計を計算することができます。
 fprintf('Average rating for movie 1 (Toy Story): %f / 5\n\n', ...
         mean(Y(1, R(1, :))));
 
-%  We can "visualize" the ratings matrix by plotting it with imagesc
+%  評価行列をimagescでプロットすることによって、「可視化」することができます。
 imagesc(Y);
 ylabel('Movies');
 xlabel('Users');
@@ -42,23 +42,23 @@ xlabel('Users');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ============ パート 2: Collaborative Filtering Cost Function ===========
-%  You will now implement the cost function for collaborative filtering.
-%  To help you debug your cost function, we have included set of weights
-%  that we trained on that. Specifically, you should complete the code in 
-%  cofiCostFunc.m to return J.
+%% ============ パート 2: 協調フィルタリングのコスト関数 ===========
+%  ここで、協調フィルタリングのコスト関数を実装します。
+%  コスト関数をデバッグするのに役立つように、トレーニングしたウェイトの
+%  セットを含めました。具体的には、cofiCostFunc.mのコードを完成させて
+%  Jを返す必要があります。
 
-%  Load pre-trained weights (X, Theta, num_users, num_movies, num_features)
+%  事前にトレーニングされたウェイトをロードする (X, Theta, num_users, num_movies, num_features)
 load ('ex8_movieParams.mat');
 
-%  Reduce the data set size so that this runs faster
+%  これがより速く実行されるようにデータセットのサイズを減らす
 num_users = 4; num_movies = 5; num_features = 3;
 X = X(1:num_movies, 1:num_features);
 Theta = Theta(1:num_users, 1:num_features);
 Y = Y(1:num_movies, 1:num_users);
 R = R(1:num_movies, 1:num_users);
 
-%  Evaluate cost function
+%  コスト関数を評価する
 J = cofiCostFunc([X(:) ; Theta(:)], Y, R, num_users, num_movies, ...
                num_features, 0);
            
@@ -69,27 +69,27 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ============== パート 3: Collaborative Filtering Gradient ==============
-%  Once your cost function matches up with ours, you should now implement 
-%  the collaborative filtering gradient function. Specifically, you should 
-%  complete the code in cofiCostFunc.m to return the grad argument.
+%% ============== パート 3: 協調フィルタリングの勾配 ==============
+%  コスト関数が一致したら、今度は協調フィルタリングの勾配関数を
+%  実装する必要があります。具体的には、cofiCostFunc.mのコードを
+%  完成させて、引数gradを返す必要があります。
 %  
 fprintf('\nChecking Gradients (without regularization) ... \n');
 
-%  Check gradients by running checkNNGradients
+%  heckNNGradientsを実行して勾配をチェックする
 checkCostFunction;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ========= パート 4: Collaborative Filtering Cost Regularization ========
-%  Now, you should implement regularization for the cost function for 
-%  collaborative filtering. You can implement it by adding the cost of
-%  regularization to the original cost computation.
+%% ========= パート 4: 協調フィルタリングのコストの正則化 ========
+%  ここで、協調フィルタリングのコスト関数の正則化を実装する必要があります。
+%  正則化のコストを元のコスト計算に追加することで実装できます。
+%  
 %  
 
-%  Evaluate cost function
+%  コスト関数を評価する
 J = cofiCostFunc([X(:) ; Theta(:)], Y, R, num_users, num_movies, ...
                num_features, 1.5);
            
@@ -100,41 +100,41 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ======= パート 5: Collaborative Filtering Gradient Regularization ======
-%  Once your cost matches up with ours, you should proceed to implement 
-%  regularization for the gradient. 
+%% ======= パート 5: 協調フィルタリングの勾配の正則化 ======
+%  コストが想定値と一致したら、勾配の正則化を実装する必要があります。
+%  
 %
 
 %  
 fprintf('\nChecking Gradients (with regularization) ... \n');
 
-%  Check gradients by running checkNNGradients
+%  checkNNGradientsを実行して勾配をチェックする
 checkCostFunction(1.5);
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ============== パート 6: Entering ratings for a new user ===============
-%  Before we will train the collaborative filtering model, we will first
-%  add ratings that correspond to a new user that we just observed. This
-%  part of the code will also allow you to put in your own ratings for the
-%  movies in our dataset!
+%% ============== パート 6: 新規ユーザーの評価を入力する ===============
+%  協調フィルタリング・モデルをトレーニングする前に、新しいユーザーに
+%  対応する評価を追加します。コードのこの部分では、データセット内に独自の
+%  映画の評価を入れることもできます！
+%  
 %
 movieList = loadMovieList();
 
-%  Initialize my ratings
+%  自分の評価を初期化する
 my_ratings = zeros(1682, 1);
 
-% Check the file movie_idx.txt for id of each movie in our dataset
-% For example, Toy Story (1995) has ID 1, so to rate it "4", you can set
+% データセット内の各映画のidについては、ファイルmovie_idx.txtを確認してください。
+% たとえば、Toy Story（1995）はIDが1なので、「4」と評価すると、次のように設定できます。
 my_ratings(1) = 4;
 
-% Or suppose did not enjoy Silence of the Lambs (1991), you can set
+% または、羊たちの沈黙（1991）を楽しんでいなかったと仮定すると、次のように設定できます。
 my_ratings(98) = 2;
 
-% We have selected a few movies we liked / did not like and the ratings we
-% gave are as follows:
+% 好きだった/好きではなかった映画をいくつか選んでおり、与えた評価は以下の通りです。
+% 
 my_ratings(7) = 3;
 my_ratings(12)= 5;
 my_ratings(54) = 4;
@@ -157,50 +157,50 @@ fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
 
-%% ================== パート 7: Learning Movie Ratings ====================
-%  Now, you will train the collaborative filtering model on a movie rating 
-%  dataset of 1682 movies and 943 users
+%% ================== パート 7: 映画の評価の学習 ====================
+%  ここで、1682本の映画と943人のユーザーの映画の評価データセットで、
+%  協調フィルタリング・モデルをトレーニングします。
 %
 
 fprintf('\nTraining collaborative filtering...\n');
 
-%  Load data
+%  データをロードする
 load('ex8_movies.mat');
 
-%  Y is a 1682x943 matrix, containing ratings (1-5) of 1682 movies by 
-%  943 users
+%  Yは1682×943の行列で、943人のユーザーによる1682本の映画の評価（1-5）を
+%  含みます。
 %
-%  R is a 1682x943 matrix, where R(i,j) = 1 if and only if user j gave a
-%  rating to movie i
+%  Rは1682×943行列であり、ユーザーjが映画iに評価を与えた場合にのみ
+%  R(i,j) = 1となります。
 
-%  Add our own ratings to the data matrix
+%  独自の評価をデータ行列に追加する
 Y = [my_ratings Y];
 R = [(my_ratings ~= 0) R];
 
-%  Normalize Ratings
+%  評価を正則化する
 [Ynorm, Ymean] = normalizeRatings(Y, R);
 
-%  Useful Values
+%  有用な値
 num_users = size(Y, 2);
 num_movies = size(Y, 1);
 num_features = 10;
 
-% Set Initial Parameters (Theta, X)
+% 初期パラメーター（Theta、X）を設定する
 X = randn(num_movies, num_features);
 Theta = randn(num_users, num_features);
 
 initial_parameters = [X(:); Theta(:)];
 
-% Set options for fmincg
+% fmincgのオプションを設定する
 options = optimset('GradObj', 'on', 'MaxIter', 100);
 
-% Set Regularization
+% 正則化を設定する
 lambda = 10;
 theta = fmincg (@(t)(cofiCostFunc(t, Ynorm, R, num_users, num_movies, ...
                                 num_features, lambda)), ...
                 initial_parameters, options);
 
-% Unfold the returned theta back into U and W
+% 返されたthetaを展開してUとWに戻す
 X = reshape(theta(1:num_movies*num_features), num_movies, num_features);
 Theta = reshape(theta(num_movies*num_features+1:end), ...
                 num_users, num_features);
@@ -210,9 +210,9 @@ fprintf('Recommender system learning completed.\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-%% ================== パート 8: Recommendation for you ====================
-%  After training the model, you can now make recommendations by computing
-%  the predictions matrix.
+%% ================== パート 8: あなたへのお勧め ====================
+%  モデルをトレーニングすると、予測行列を計算することで、お勧めを
+%  行うことができます。
 %
 
 p = X * Theta';

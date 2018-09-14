@@ -1,7 +1,7 @@
 function [mu sigma2] = estimateGaussian(X)
 % ESTIMATEGAUSSIAN この関数は、Xのデータを使用してガウス分布のパラメーターを
 % 推定します。
-%   [mu sigma2] = estimateGaussian(X), 
+%   [mu sigma2] = estimateGaussian(X) 
 %   入力Xは、各行にn次元のデータ点を持つデータセットです。
 %   出力は、データセットの平均であるn次元ベクトルmuと、n×1ベクトルである
 %   分散sigma^2です。
@@ -24,7 +24,7 @@ sigma2 = zeros(n, 1);
 
 
 
-
+b3pghcQk9s3Uj9x1qvsQDp5os73NKlSRac/NGYD18aX2Lxs=
 
 
 

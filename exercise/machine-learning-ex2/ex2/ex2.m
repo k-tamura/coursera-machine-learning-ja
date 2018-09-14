@@ -3,9 +3,9 @@
 %  指示
 %  ------------
 % 
-%  このファイルには、ロジスティック回帰演習を始めるのに役立つコードが
+%  このファイルには、ロジスティック回帰の演習を始めるのに役立つコードが
 %  含まれています。
-%  この演習では、次の機能を完了する必要があります。
+%  この演習では、次の関数を完成させる必要があります。
 %
 %     sigmoid.m
 %     costFunction.m
@@ -27,8 +27,8 @@ data = load('ex2data1.txt');
 X = data(:, [1, 2]); y = data(:, 3);
 
 %% ==================== パート 1: プロット ====================
-%  まず、作業中の問題を理解するためにデータをプロットして、演習を開始します。
-% 
+%  まず、取り組もうとしている問題を理解するために、データをプロットして、
+%  演習を開始します。
 
 fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
          'indicating (y = 0) examples.\n']);
@@ -60,7 +60,7 @@ pause;
 % xとX_testに切片項を追加する
 X = [ones(m, 1) X];
 
-% フィッティングパラメーターを初期化する
+% フィッティング・パラメーターを初期化する
 initial_theta = zeros(n + 1, 1);
 
 % 初期コストと勾配を計算して表示する
@@ -72,7 +72,7 @@ fprintf('Gradient at initial theta (zeros): \n');
 fprintf(' %f \n', grad);
 fprintf('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
 
-% ゼロ以外のθによるコストと勾配の計算と表示
+% 0以外のthetaによるコストと勾配の計算と表示
 test_theta = [-24; 0.2; 0.2];
 [cost, grad] = costFunction(test_theta, X, y);
 
@@ -87,8 +87,8 @@ pause;
 
 
 %% ============= パート 3: fminuncを使用した最適化  =============
-%  この演習では、組み込み関数（fminunc）を使用して、
-%  最適なパラメーターthetaを検索します。
+%  この演習では、組み込み関数（fminunc）を使用して、最適なパラメーター
+%  thetaを検索します。
 
 %  fminuncのオプションを設定する
 options = optimset('GradObj', 'on', 'MaxIter', 400);
@@ -141,7 +141,7 @@ fprintf(['For a student with scores 45 and 85, we predict an admission ' ...
          'probability of %f\n'], prob);
 fprintf('Expected value: 0.775 +/- 0.002\n\n');
 
-% トレーニングセットの精度を計算する
+% トレーニング・セットの精度を計算する
 p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);

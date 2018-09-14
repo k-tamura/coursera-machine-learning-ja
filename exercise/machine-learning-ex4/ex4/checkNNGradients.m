@@ -1,8 +1,8 @@
 function checkNNGradients(lambda)
-%CHECKNNGRADIENTS バックプロパゲーションの勾配をチェックするために、
-%小さなニューラル・ネットワークを作成します。
-%   CHECKNNGRADIENTS(lambda) は、バックプロパゲーション勾配をチェックする
-%   小さなニューラルネットワークを作成し、バックプロパゲーションのコードと
+% CHECKNNGRADIENTS 小さなニューラル・ネットワークを作成して、
+% バックプロパゲーションの勾配をチェックます。
+%   CHECKNNGRADIENTS(lambda) は、バックプロパゲーション勾配をチェックするために、
+%   小さなニューラル・ネットワークを作成し、バックプロパゲーションのコードと
 %   数値的勾配（computeNumericalGradientを使用して計算された）によって生成された
 %   解析的勾配を出力します。これらの2つの勾配計算は、非常に類似した値になるはずです。
 %   
@@ -24,7 +24,7 @@ Theta2 = debugInitializeWeights(num_labels, hidden_layer_size);
 X  = debugInitializeWeights(m, input_layer_size - 1);
 y  = 1 + mod(1:m, num_labels)';
 
-% パラメーターのアンロール
+% パラメーターをアンロールする
 nn_params = [Theta1(:) ; Theta2(:)];
 
 % コスト関数の省略形
@@ -34,15 +34,15 @@ costFunc = @(p) nnCostFunction(p, input_layer_size, hidden_layer_size, ...
 [cost, grad] = costFunc(nn_params);
 numgrad = computeNumericalGradient(costFunc, nn_params);
 
-% 2つの勾配計算を視覚的に調べます。
+% 2つの勾配計算を視覚的に調べる。
 % 2つの列は非常に似ているはずです。
 disp([numgrad grad]);
 fprintf(['The above two columns you get should be very similar.\n' ...
          '(Left-Your Numerical Gradient, Right-Analytical Gradient)\n\n']);
 
 % 2つの解のノルムの差を評価する。 
-% 正しい実装であり、computeNumericalGradient.mでEPSILON = 0.0001を使用していると仮定すると、
-% 以下のdiffは1e-9より小さくなるはずです
+% 正しい実装であり、computeNumericalGradient.mでEPSILON = 0.0001を使用していると
+% 仮定すると、以下のdiffは1e-9より小さくなるはずです
 diff = norm(numgrad-grad)/norm(numgrad+grad);
 
 fprintf(['If your backpropagation implementation is correct, then \n' ...

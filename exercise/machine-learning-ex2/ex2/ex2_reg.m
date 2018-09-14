@@ -100,7 +100,7 @@ pause;
 %  lambdaに次の値を試してください：0、1、10、100
 %  
 %  lambdaを変えるときに決定境界はどのように変化するでしょうか？ 
-%  トレーニングセットの精度はどのように変化するでしょうか？
+%  トレーニング・セットの精度はどのように変化するでしょうか？
 %
 
 % フィッティング・パラメーターを初期化する
@@ -128,7 +128,7 @@ ylabel('Microchip Test 2')
 legend('y = 1', 'y = 0', 'Decision boundary')
 hold off;
 
-% トレーニングセットの精度を計算する
+% トレーニング・セットの精度を計算する
 p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);

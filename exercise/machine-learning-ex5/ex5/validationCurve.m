@@ -1,12 +1,12 @@
 function [lambda_vec, error_train, error_val] = ...
     validationCurve(X, y, Xval, yval)
-% VALIDATIONCURVE lambdaを選択するために使用できるバリデーション曲線をプロットするために必要な、
-% トレーニング誤差とバリデーション誤差を生成します。
+% VALIDATIONCURVE lambdaを選択するために使用できるバリデーション曲線を
+% プロットするために必要な、トレーニング誤差とバリデーション誤差を生成します。
 %   [lambda_vec, error_train, error_val] = ...
 %       VALIDATIONCURVE(X, y, Xval, yval)は、異なるlambdaの値に対する
 %       トレーニング誤差とバリデーション誤差（error_trainとerror_val）を返します。
-%       トレーニング・セット（X, y）とバリデーション・セット（Xval, yval）が与えられます。
-%       
+%       トレーニング・セット（X, y）とバリデーション・セット（Xval, yval）が
+%       与えられます。
 %
 
 % lambdaの選択値（これは変更しないでください）
@@ -17,12 +17,12 @@ error_train = zeros(length(lambda_vec), 1);
 error_val = zeros(length(lambda_vec), 1);
 
 % ====================== ここにコードを実装する ======================
-% 指示: トレーニング誤差をerror_trainに、バリデーション誤差をerror_valセットして返すには、
-%       この関数を実装します。ベクトルlambda_vecは、誤差（すなわち、error_train（i））の
-%       各計算に使用する異なるパラメーターlambdaを含みます。
-%       error_val（i）には、lambda = lambda_vec(i)でトレーニングした後に得られる誤差を
+% 指示: トレーニング誤差をerror_trainに、バリデーション誤差をerror_valに
+%       セットして返すには、この関数を実装します。ベクトルlambda_vecは、
+%       誤差（すなわち、error_train(i)）の各計算に使用する異なる
+%       パラメーターlambdaを含みます。error_val(i)には、
+%       lambda = lambda_vec(i)でトレーニングした後に得られる誤差を
 %       与える必要があります。
-%       
 %       
 %
 % 注意: 次のようにlambda_vecをループすることができます。
@@ -31,7 +31,7 @@ error_val = zeros(length(lambda_vec), 1);
 %           lambda = lambda_vec(i);
 %           % 正則化パラメーターlambdaで線形回帰をトレーニングするときの
 %           % トレーニング誤差とバリデーション誤差を計算します。
-%           % error_train（i）とerror_val（i）に結果を格納する必要があります。
+%           % error_train(i)とerror_val(i)に結果を格納する必要があります。
 %           % 
 %           ....
 %           

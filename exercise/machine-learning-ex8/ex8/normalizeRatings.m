@@ -1,8 +1,8 @@
 function [Ynorm, Ymean] = normalizeRatings(Y, R)
-%NORMALIZERATINGS Preprocess data by subtracting mean rating for every 
-%movie (every row)
-%   [Ynorm, Ymean] = NORMALIZERATINGS(Y, R) normalized Y so that each movie
-%   has a rating of 0 on average, and returns the mean rating in Ymean.
+% NORMALIZERATINGS すべての映画（すべての行）の平均評価を引いてデータを
+% 前処理します。
+%   [Ynorm, Ymean] = NORMALIZERATINGS(Y, R)は、各映画の平均評価が0に
+%   なるようにYを正規化し、Ymeanに平均評価をセットして返します。
 %
 
 [m, n] = size(Y);
