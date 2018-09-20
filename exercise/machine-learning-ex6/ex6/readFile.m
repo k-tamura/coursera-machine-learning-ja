@@ -1,5 +1,5 @@
 function file_contents = readFile(filename)
-%READFILE ファイルを読み込み、ファイル全体を返します。 
+%READFILE ファイルを読み込み、内容全体を返します。 
 %   file_contents = READFILE(filename) はファイルを読み込み、その内容全体を
 %   file_contentsに返します
 %

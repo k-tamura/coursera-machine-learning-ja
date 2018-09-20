@@ -1,8 +1,8 @@
 function x = emailFeatures(word_indices)
-% EMAILFEATURES ベクトルword_indicesをとり、単語インデックスから
+% EMAILFEATURES ベクトルword_indicesを取り込み、単語インデックスから
 % フィーチャー・ベクトルを生成する
-%   x = EMAILFEATURES(word_indices)は、ベクトルword_indicesをとり、
-% 単語インデックスからフィーチャー・ベクトルを生成する
+%   x = EMAILFEATURES(word_indices)は、ベクトルword_indicesを取り込み、
+% 単語インデックスからフィーチャー・ベクトルを生成します。
 
 % 辞書内の総単語数
 n = 1899;
@@ -15,7 +15,7 @@ x = zeros(n, 1);
 %       この関数を実装します。電子メールの処理を容易にするため、各電子メールを
 %       事前に処理し、電子メール内の各単語を1899語の固定ディクショナリーの
 %       インデックスに変換しています。変数word_indicesには、1つの電子メールに
-%       出現する単語のインデックスのリストが含まれています。
+%       現れる単語のインデックスのリストが含まれています。
 %       
 %       具体的には、電子メールに次のようなテキストがある場合、
 % 

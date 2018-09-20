@@ -6,14 +6,14 @@ function [model] = svmTrain(X, Y, C, kernelFunction, ...
 %   SVM分類器をトレーニングし、トレーニングされたモデルを返します。 
 %   Xは、トレーニング・サンプルの行列です。各行はトレーニング・サンプルであり、 
 %   j番目の列はj番目のフィーチャーを保持します。Yは、正のサンプルでは1、 
-%   負のサンプルでは0を含む列行列です。Cは標準のSVM正則化パラメーターです。
+%   負のサンプルでは0となる列行列です。Cは標準のSVMの正則化パラメーターです。
 %   tolは、浮動小数点数の等価性を判定するために使用される許容値です。
 %   max_passesは、アルゴリズムが終了する前に、（アルファに変更を加えずに）
 %   データセットに対する反復回数を制御します。
 %
 % 注意: これは、SVMをトレーニングするためのSMOアルゴリズムの簡略版です。 
-%      実際には、SVM分類器をトレーニングする場合は、次のような最適化されたパッケージを
-%      使用することをお勧めします。 
+%      実際には、SVM分類器をトレーニングする場合は、次のような最適化された
+%      パッケージを使用することをお勧めします。 
 %
 %           LIBSVM   (http://www.csie.ntu.edu.tw/~cjlin/libsvm/)
 %           SVMLight (http://svmlight.joachims.org/)
@@ -28,7 +28,7 @@ if ~exist('max_passes', 'var') || isempty(max_passes)
     max_passes = 5;
 end
 
-% データパラメーター
+% データ・パラメーター
 m = size(X, 1);
 n = size(X, 2);
 
@@ -45,11 +45,11 @@ L = 0;
 H = 0;
 
 % 今回扱うデータセットは小さいので、カーネル行列を事前に計算します
-% （実際には、大きなデータセットを扱う最適化されたSVMパッケージでは
+% （実際には、大きなデータセットを扱う最適化されたSVMパッケージでは、
 % これを行うことはありません）。
 % 
-% ここでカーネルのベクトル化バージョンを最適化して、SVMトレーニングを高速化します。
-% 
+% ここでカーネルのベクトル化バージョンを最適化して、SVMのトレーニングを
+% 高速化します。
 if strcmp(func2str(kernelFunction), 'linearKernel')
     % 線形カーネルのベクトル化された計算
     % これは、すべてのサンプルのペアでカーネルを計算することと同じです。
@@ -121,14 +121,14 @@ while passes < max_passes,
                 continue;
             end
             
-            % (12)と(15)を使ってアルファjの新しい値を計算し、クリップします。
+            % (12)と(15)を使って、alphas(j)の新しい値を計算し、クリップします。
             alphas(j) = alphas(j) - (Y(j) * (E(i) - E(j))) / eta;
             
             % クリップ
             alphas(j) = min (H, alphas(j));
             alphas(j) = max (L, alphas(j));
             
-            % アルファの変化が大きいかどうかを調べる
+            % alphaの変化が大きいかどうかを調べる
             if (abs(alphas(j) - alpha_j_old) < tol),
                 % continue to next i. 
                 % replace anyway
@@ -136,7 +136,7 @@ while passes < max_passes,
                 continue;
             end
             
-            % (16)を用いてアルファiの値を決定する。
+            % (16)を用いてalphas(i)の値を決定する。
             alphas(i) = alphas(i) + Y(i)*Y(j)*(alpha_j_old - alphas(j));
             
             % (17)と(18)をそれぞれ使ってb1とb2を計算する。

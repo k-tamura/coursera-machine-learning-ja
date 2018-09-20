@@ -1,7 +1,7 @@
 function [C, sigma] = dataset3Params(X, y, Xval, yval)
 % DATASET3PARAMS 選択したCとsigmaを演習のパート3に返します。
-% ここでは、RBFカーネルでSVMに使用するのに最適な学習パラメーター（C、sigma）を選択します。
-%
+% ここでは、RBFカーネルでSVMに使用するのに最適な学習パラメーター（C、sigma）を
+% 選択します。
 %   [C, sigma] = DATASET3PARAMS(X, y, Xval, yval) は選択したCとsigmaを返します。 
 %   クロス・バリデーション・セットに基づいて最適なCおよびsigmaを返すには、
 %   この関数を完成させる必要があります。
@@ -18,7 +18,7 @@ sigma = 0.3;
 %       たとえば、predictions = svmPredict(model, Xval); は、
 %       クロスバリデーションセットの予測を返します。
 %
-%  注意: 予測誤差は、次の式を使用して計算できます。
+%  注意: 予測の誤差は、次の式を使用して計算できます。
 %        mean(double(predictions ~= yval))
 %
 

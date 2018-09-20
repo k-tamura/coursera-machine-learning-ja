@@ -1,5 +1,5 @@
 function visualizeBoundary(X, y, model, varargin)
-%VISUALIZEBOUNDARY SVMによって学習された非線形決定境界をプロットする
+%VISUALIZEBOUNDARY SVMによって学習された非線形の決定境界をプロットする
 %   VISUALIZEBOUNDARYLINEAR(X, y, model)は、SVMによって学習された非線形の 
 %   決定境界線をプロットし、その上にデータを重ねます
 

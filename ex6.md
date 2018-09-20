@@ -27,8 +27,8 @@
  - [\*] `gaussianKernel.m` - SVM用のガウス・カーネル
  - [\*] `dataset3Params.m` - データセット3に使用するパラメーター
  - `ex6_spam.m` - 演習の後半のOctave/MATLABスクリプト
- - `spamTrain.mat` - スパムトレーニング・セット
- - `spamTest.mat` - スパムテスト・セット
+ - `spamTrain.mat` - スパム・トレーニング・セット
+ - `spamTest.mat` - スパム・テスト・セット
  - `emailSample1.txt` - サンプルメール1
  - `emailSample2.txt` - サンプルメール2
  - `spamSample1.txt` - スパムのサンプル1
@@ -69,7 +69,7 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 この演習の前半では、サポート・ベクター・マシン（SVM）とさまざまな2Dデータセットのサンプルを使用します。
 これらのデータセットを試してみることで、SVMの仕組みやSVMでガウス・カーネルを使用する方法の直感を得ることができます。
 演習の後半では、サポート・ベクター・マシンを使用してスパム分類器を作成します。
-提供されたスクリプト`ex6.m`は、演習の前半を進めるに役立ちます。
+提供されたスクリプト`ex6.m`は、演習の前半を進めるのに役立ちます。
 
 ### 1.1. サンプルデータセット1
 
@@ -84,10 +84,10 @@ MATLABのドキュメントは、[MATLABのドキュメントページ](http://j
 &nbsp;&ensp;&nbsp;&ensp; 図1: サンプルデータセット1
 
 演習のこのパートでは、SVMでさまざまな値のパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />を使用してみます。
-簡単に言うと、パラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />は、誤分類されたトレーニング・サンプルのペナルティーを制御する正の値です。
+簡単に言うと、パラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />は、誤って分類されたトレーニング・サンプルのペナルティーを制御する正の値です。
 大きなパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />は、すべてのサンプルを正しく分類するようにSVMに指示します。
-Cは<img src="https://latex.codecogs.com/gif.latex?\frac{1}{\lambda&space;}" title="\frac{1}{\lambda }" />と同様の役割を果たします。
-ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />はロジスティック回帰のためにこれまで使用していた正則化パラメーターです。
+<img src="https://latex.codecogs.com/gif.latex?C" title="C" />は<img src="https://latex.codecogs.com/gif.latex?\inline&space;\frac{1}{\lambda&space;}" title="\frac{1}{\lambda }" />と同様の役割を果たします。
+ここで、<img src="https://latex.codecogs.com/gif.latex?\inline&space;\lambda" title="\lambda" />はロジスティック回帰にこれまで使用していた正則化パラメーターです。
 
 ![図2 C=1でのSVM決定境界（サンプルデータセット1](images/ex6/ex6-F2.png "図2 C=1でのSVM決定境界（サンプルデータセット1")
 
@@ -117,7 +117,7 @@ Cは<img src="https://latex.codecogs.com/gif.latex?\frac{1}{\lambda&space;}" tit
 
 あなたがすべきことは、このデータセット上で異なる値の<img src="https://latex.codecogs.com/gif.latex?C" title="C" />を試すことです。
 具体的には、スクリプトの<img src="https://latex.codecogs.com/gif.latex?C" title="C" />の値を<img src="https://latex.codecogs.com/gif.latex?C&space;=&space;100" title="C = 100" />に変更し、SVMトレーニングを再度実行する必要があります。
-<img src="https://latex.codecogs.com/gif.latex?C&space;=&space;100" title="C = 100" />の場合、SVMはすべての単一のサンプルを正しく分類するようになりますが、データの自然な適合をするような決定境界にはなりません（図3）。
+<img src="https://latex.codecogs.com/gif.latex?C&space;=&space;100" title="C = 100" />の場合、SVMはすべての単一のサンプルを正しく分類するようになりますが、データに自然に適合するような決定境界にはなりません（図3）。
 
 ### 1.2. ガウス・カーネルを用いたSVM
 
@@ -127,11 +127,11 @@ Cは<img src="https://latex.codecogs.com/gif.latex?\frac{1}{\lambda&space;}" tit
 #### 1.2.1. ガウス・カーネル
 
 SVMで非線形の決定境界を見つけるには、最初にガウス・カーネルを実装する必要があります。
-ガウス・カーネルは、一対のサンプル<img src="https://latex.codecogs.com/gif.latex?(x^{(i)},&space;x^{(j)})" title="(x^{(i)}, x^{(j)})" />の間の「距離」を測定する類似関数として考えることができます。
+ガウス・カーネルは、一対のサンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;(x^{(i)},&space;x^{(j)})" title="(x^{(i)}, x^{(j)})" />の間の「距離」を測定する類似関数として考えることができます。
 ガウス・カーネルはまた、バンド幅パラメーター<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />によってパラメーター化されます。
 このパラメーターはサンプルが離れていくにつれて、類似度メトリックがどれだけ速く（0に）減少するかを決定します。
 
-`gaussianKernel.m`のコードを完成させて、2つのサンプル<img src="https://latex.codecogs.com/gif.latex?(x^{(i)},&space;x^{(j)})" title="(x^{(i)}, x^{(j)})" />の間のガウス・カーネルを計算する必要があります。
+`gaussianKernel.m`のコードを完成させて、2つのサンプル<img src="https://latex.codecogs.com/gif.latex?\inline&space;(x^{(i)},&space;x^{(j)})" title="(x^{(i)}, x^{(j)})" />の間のガウス・カーネルを計算する必要があります。
 ガウス・カーネル関数は、以下のように定義されます。
 
 ![式1](images/ex6/ex6-NF1.png)
@@ -174,12 +174,12 @@ SVMで非線形の決定境界を見つけるには、最初にガウス・カ�
 `ex6.m`で提供されたコードは、`dataset3Params.m`からロードされたパラメーターを使用して、トレーニング・セット`(X, y)`でSVM分類器をトレーニングします。
 
 あなたがすべきことは、クロス・バリデーション・セット`Xval`、`yval`を使用して、使用する最良の<img src="https://latex.codecogs.com/gif.latex?C" title="C" />および<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />パラメーターを決定することです。
-パラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />と<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を検索するのに役立つ追加のコードを書く必要があります。
+パラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />と<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を見つけるのに役立つ追加のコードを書く必要があります。
 <img src="https://latex.codecogs.com/gif.latex?C" title="C" />と<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />の両方について、乗法的なステップで値を試すことをお勧めします（例：<img src="https://latex.codecogs.com/gif.latex?0.01,&space;0.03,&space;0.1,&space;0.3,&space;1,&space;3,&space;10,&space;30" title="0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30" />）。
 <img src="https://latex.codecogs.com/gif.latex?C" title="C" />と<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />のすべての可能な値のペア（たとえば、<img src="https://latex.codecogs.com/gif.latex?C&space;=&space;0.3" title="C = 0.3" />と<img src="https://latex.codecogs.com/gif.latex?\sigma&space;=&space;0.1" title="\sigma = 0.1" />）を試してください。
 たとえば、<img src="https://latex.codecogs.com/gif.latex?C" title="C" />と<img src="https://latex.codecogs.com/gif.latex?\sigma^{2}" title="\sigma^{2}" />に対して上記の8つの値をそれぞれ試してみると、合計で<img src="https://latex.codecogs.com/gif.latex?8^{2}&space;=&space;64" title="8^{2} = 64" />の異なるモデルをトレーニングし、評価することになります（クロス・バリデーション・セットで）。
 
-使用する最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />および<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を決定してそれを返すように、`dataset3Params.m`のコードを変更してください。
+使用する最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />および<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を決定して、それを返すように`dataset3Params.m`のコードを変更してください。
 最適のパラメーターで、SVMが返す決定境界を図7に示します。
 
 ![図7 SVM（ガウス・カーネル）決定境界（サンプルデータセット3）](images/ex6/ex6-F7.png "図7 SVM（ガウス・カーネル）決定境界（サンプルデータセット3）")
@@ -190,7 +190,7 @@ SVMで非線形の決定境界を見つけるには、最初にガウス・カ�
 
 **実装のヒント：**
 
-使用する最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />および<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を選択するためにクロス・バリデーションを実装する場合は、クロス・バリデーション・セットの誤差を評価する必要があります。
+使用する最適なパラメーター<img src="https://latex.codecogs.com/gif.latex?C" title="C" />および<img src="https://latex.codecogs.com/gif.latex?\sigma" title="\sigma" />を選択するためにクロス・バリデーションを実装する際は、クロス・バリデーション・セットの誤差を評価する必要があります。
 分類において、誤差は、誤って分類されたクロス・バリデーション・サンプルの割合として定義されることを思い出してください。
 Octave/MATLABでは、`mean(double(predictions ~= yval))`を使用してこの誤差を計算できます。
 ここで、`prediction`はSVMからのすべての予測を含むベクトルで、`yval`はクロス・バリデーション・セットから取得した真のラベルです。
@@ -303,23 +303,23 @@ mail list send an email to emailaddr
 電子メールを前処理すると、図9のような電子メールごとの単語リストが表示されます。
 次のステップは、分類器で使用したい単語と、除外したい単語を選択することです。
 
-この演習では、最も頻繁に出現する単語のみを、考慮した単語（語彙リスト）として選択しました。
-トレーニング・セットではめったに発生しない単語は少数の電子メールにしか含まれていないため、モデルがトレーニング・セットにオーバーフィットする可能性があります。
+この演習では、最も頻繁に現れる単語のみを、重視する単語のセット（語彙リスト）として選択しました。
+トレーニング・セットにはめったに現れる単語は少数の電子メールにしか含まれていないため、モデルがトレーニング・セットにオーバーフィットする可能性があります。
 完全な語彙リストは、ファイル`vocab.txt`にあり、図10にも示されています。
-語彙リストは、スパムコーパスで少なくとも100回発生するすべての単語を選択することで選出され、1899語のリストになりました。
+語彙リストは、スパムコーパスで少なくとも100回現れるすべての単語を選択することで選出され、1899語のリストになりました。
 実際には、約10,000〜50,000語の語彙リストがよく使われます。
 
 語彙リストが与えられると、図9のような事前処理された電子メールの各単語を、語彙リスト内の単語のインデックスを含む単語インデックスのリストにマッピングすることができます。
-図11は、サンプル電子メールのマッピングを示しています。
-具体的には、サンプル電子メールでは、「anyone」という単語が最初に「anyon」に正規化されてから、語彙リストのインデックス86にマッピングされました。
+図11は、サンプルの電子メールのマッピングを示しています。
+具体的には、サンプルの電子メールでは、「anyone」という単語が最初に「anyon」に正規化されてから、語彙リストのインデックス86にマッピングされました。
 
 あなたがすべきことは、このマッピングを実行するために`processEmail.m`のコードを完成させることです。
-コードでは、処理された電子メールからの単一の単語である文字列`str`が与えられます。
-語彙リスト`vocabList`の中の単語を調べ、単語が語彙リストに存在するかどうかを調べてください。
+コード内で、処理された電子メールから取得した単一の単語は、文字列`str`で与えられます。
+語彙リスト`vocabList`の中を調べ、この単語が存在するかどうかを調べてください。
 単語が存在する場合は、その単語のインデックスを変数`word_indices`に追加する必要があります。
-単語が存在せず、したがって語彙にない場合は、単語をスキップできます。
+単語が存在しない場合は、単語をスキップできます。
 
-`processEmail.m`を実装してからスクリプト`ex6_spam.m`が電子メールサンプルでコードを実行すると、図9および図11のような出力が表示されます。
+`processEmail.m`を実装すると、スクリプト`ex6_spam.m`は電子メールサンプルでコードを実行し、図9および図11のような出力が表示されます。
 
 ----
 
@@ -340,7 +340,7 @@ Octave/MATLABでは、セル配列は通常の配列（つまりベクトル）�
 
 次に各電子メールを<img src="https://latex.codecogs.com/gif.latex?\mathbb{R}^{n}" title="\mathbb{R}^{n}" />のベクトルに変換するフィーチャーの抽出処理を実装します。
 この演習では、語彙リストで<img src="https://latex.codecogs.com/gif.latex?n&space;=&space;\&hash;" title="n = \#" />の単語を使用します。
-具体的には、電子メールのフィーチャー<img src="https://latex.codecogs.com/gif.latex?x_{i}&space;\in&space;\left&space;\{\0,&space;1&space;\}" title="x_{i} \in \left \{\0, 1 \}" />は、辞書内の<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目の単語が電子メール内に出現するかどうかに対応します。
+具体的には、電子メールのフィーチャー<img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{i}&space;\in&space;\left&space;\{&space;0,&space;1&space;\right&space;\}" title="x_{i} \in \left \{ 0, 1 \right \}" />は、辞書内の<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目の単語が電子メール内に出現するかどうかに対応します。
 つまり、電子メールに<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目の単語がある場合は<img src="https://latex.codecogs.com/gif.latex?x^{(i)}&space;=&space;1" title="x^{(i)} = 1" />、電子メールに<img src="https://latex.codecogs.com/gif.latex?i" title="i" />番目の単語がない場合は<img src="https://latex.codecogs.com/gif.latex?x^{(i)}&space;=&space;0" title="x^{(i)} = 0" />となります。
 したがって、一般的な電子メールでは、このフィーチャーは次のようになります。
 
@@ -355,7 +355,7 @@ Octave/MATLABでは、セル配列は通常の配列（つまりベクトル）�
 
 ### 2.3. スパム分類のためのSVMトレーニング
 
-フィーチャー抽出機能を完成させたら、`ex6_spam.m`の次のステップで、SVM分類器をトレーニングするために使用される前処理されたトレーニング・データセットを読み込みます。
+フィーチャーの抽出機能が完成したら、`ex6_spam.m`の次のステップで、SVM分類器をトレーニングするために使用される前処理されたトレーニング・データセットを読み込みます。
 `spamTrain.mat`には、スパムメールと非スパムメールのトレーニング・サンプルが4000件含まれていますが、`spamTest.mat`には1000件のテストサンプルが含まれています。
 オリジナルの電子メールは、それぞれ`processEmail`関数と`emailFeatures`関数を使用して処理され、ベクトル<img src="https://latex.codecogs.com/gif.latex?x^{(i)}&space;\in&space;\mathbb{R}^{1899}" title="x^{(i)} \in \mathbb{R}^{1899}" />に変換されました。
 
@@ -371,29 +371,31 @@ most lo ga dollarnumb
 
 &nbsp;&ensp;&nbsp;&ensp; 図12: 迷惑メールの上位予測
  
-スパム分類器の仕組みをよりよく理解するために、パラメーターを検査して、分類器がスパムを最も予測していると考える単語を確認することができます。
+スパム分類器の仕組みをよりよく理解するために、パラメーターを検査して、分類器が最もスパムと予測していると考えられる単語を確認することができます。
 `ex6_spam.m`の次のステップでは、分類器で最大の正の値を持つパラメーターが検索され、対応する単語が表示されます（図12）。
-したがって、電子メールに「guarantee」、「remove」、「dollar」、「price」などの単語が含まれていると（図12の上部の予測変数）、スパムとして分類される可能性があります。
+したがって、電子メールに「guarantee」、「remove」、「dollar」、「price」など（図12で示された上位予測）の単語が含まれていると、スパムとして分類される可能性があります。
 
 ### 2.5. オプション（非評価）の演習：自分のメールを試してみる
 
 スパム分類器をトレーニングしたので、自分のメールでそれを試してみることができます。
 スターター・コードには、2つの電子メールのサンプル（`emailSample1.txt`と`emailSample2.txt`）と2つのスパムのサンプル（`spamSample1.txt`と`spamSample2.txt`）が含まれています。
-`ex6 spam.m `の最後のパートは、最初のスパムのサンプルにスパム分類器を実行し、学習したSVMを使用して分類します。
-ここで提供している他のサンプルを試して、分類器が正しいかどうかを確認する必要があります。
-また、サンプル（プレーン・テキスト・ファイル）を独自のメールに置き換えることで、自分のメールを試すこともできます。
+`ex6_spam.m`の最後のパートは、最初のスパムのサンプルにスパム分類器を実行し、学習したSVMを使用して分類します。
+ここで提供している他のサンプルで、分類器が正しいかどうかを確認してみてください。
+また、サンプル（プレーン・テキスト・ファイル）を自分のメールに置き換えることで、自分のメールを試すこともできます。
 
 *このオプションの（非評価）演習は、解答を提出する必要はありません。*
 
 ### 2.6. オプション（非評価）の演習：独自のデータセットを構築する
 
 この演習では、前処理されたトレーニング・セットとテスト・セットを提供しました。
-これらのデータセットは、今完了した同じ関数（`processEmail.m`と`emailFeatures.m`）を使用して作成されました。
-このオプション（非評価）の演習、SpamAssassin Pubic Corpusの元の電子メールを使用して独自のデータセットを構築します。
+これらのデータセットは、今完成させた同じ関数（`processEmail.m`と`emailFeatures.m`）を使用して作成されました。
+このオプション（非評価）の演習では、SpamAssassin Pubic Corpusの元の電子メールを使用して、独自のデータセットを構築します。
+
 このオプション（非評価）の演習で、あなたがすべきことは、[パブリックコーパス](http://spamassassin.apache.org/old/publiccorpus/)からオリジナルのファイルをダウンロードし、それらを抽出することです。
 それらを抽出したら、それぞれの電子メールで`processEmail`（※4）および`emailFeatures`関数を実行して、各電子メールからフィーチャー・ベクトルを抽出する必要があります。
 これにより、サンプルのデータセット`X`、`y`を構築できます。
 その後、データセットを無作為にトレーニング・セット、クロス・バリデーション・セット、テスト・セットに分割する必要があります。
+
 独自のデータセットを作成する際には、（データセット内に出現する高頻度の単語を選択して）独自の語彙リストを作成し、役立つと思われるフィーチャーを追加することをお勧めします。
 最後に、[LIBSVM](http://www.csie.ntu.edu.tw/%7Ecjlin/libsvm/)など高度に最適化されたSVMツールボックスを使用することもお勧めします。
 

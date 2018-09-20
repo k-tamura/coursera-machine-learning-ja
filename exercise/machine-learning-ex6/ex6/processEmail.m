@@ -32,7 +32,7 @@ email_contents = regexprep(email_contents, '<[^<>]+>', ' ');
 % 0〜9の間の1つ以上の文字を探す
 email_contents = regexprep(email_contents, '[0-9]+', 'number');
 
-% URLSを処理する
+% URLを処理する
 % http://またはhttps:で始まる文字列を探します。
 email_contents = regexprep(email_contents, ...
                            '(http|https)://[^\s]*', 'httpaddr');

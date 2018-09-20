@@ -8,9 +8,9 @@ function pred = svmPredict(model, X)
 %
 
 % 列ベクトルを取得しているかどうかを確認し、その場合は、単一のサンプルについて
-% 予測を行うだけでよいと仮定する
+% 予測を行うだけでよいと仮定します
 if (size(X, 2) == 1)
-    % サンプルは行にする必要がある
+    % サンプルは行にする必要があります
     X = X';
 end
 
@@ -20,7 +20,7 @@ p = zeros(m, 1);
 pred = zeros(m, 1);
 
 if strcmp(func2str(model.kernelFunction), 'linearKernel')
-    % 線形カーネルを扱う場合は、直接、重みとバイアスを使用することができる
+    % 線形カーネルを扱う場合は、直接、重みとバイアスを使用することができます
     % 
     p = X * model.w + model.b;
 elseif strfind(func2str(model.kernelFunction), 'gaussianKernel')
