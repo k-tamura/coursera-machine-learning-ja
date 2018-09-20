@@ -49,7 +49,7 @@ OctaveまたはMATLABがインストールされていない場合は、コー�
 
 Octave/MATLABコマンドラインでは、`help`の後に関数名を入力すると、組み込み関数のドキュメントが表示されます。
 たとえば、`help plot`はプロットのヘルプ情報を表示します。
-Octave関数の詳細のドキュメントは、[Octaveのドキュメントページ](www.gnu.org/software/octave/doc/interpreter/)にあります。
+Octave関数の詳細なドキュメントは、[Octaveのドキュメントページ](www.gnu.org/software/octave/doc/interpreter/)にあります。
 MATLABのドキュメントは、[MATLABのドキュメントページ](http://jp.mathworks.com/help/matlab/?refresh=true)にあります。
 
 また、オンライン・ディスカッションを使用して、他の学生との演習について話し合うことを強く推奨します。

@@ -41,7 +41,7 @@ OctaveまたはMATLABがインストールされていない場合は、コー�
 
 Octave/MATLABコマンドラインでは、`help`の後に関数名を入力すると、組み込み関数のドキュメントが表示されます。
 たとえば、`help plot`はプロットのヘルプ情報を表示します。
-Octave関数の詳細のドキュメントは、[Octaveのドキュメントページ](www.gnu.org/software/octave/doc/interpreter/)にあります。
+Octave関数の詳細なドキュメントは、[Octaveのドキュメントページ](www.gnu.org/software/octave/doc/interpreter/)にあります。
 MATLABのドキュメントは、[MATLABのドキュメントページ](http://jp.mathworks.com/help/matlab/?refresh=true)にあります。
 
 また、オンライン・ディスカッションを使用して、他の学生との演習について話し合うことを強く推奨します。
@@ -108,7 +108,7 @@ plot(X(neg, 1), X(neg, 2), 'ko', 'MarkerFaceColor', 'y', ...
 コードはベクトルでも行列でも動作するはずです。
 行列の場合、関数はすべての要素に対してシグモイド関数を実行する必要があります。
 
-Octave/MATLABコマンドラインで`submit`と入力すると、評価のための解答を提出できます。
+Octave/MATLABコマンドラインで`submit`と入力すると、評価のために解答を提出できます。
 送信スクリプトは、ログイン用の電子メールと送信トークンを要求し、送信するファイルを尋ねます。
 Webページから課題のための提出トークンを取得することができます。
 
