@@ -11,9 +11,9 @@ Aspect Ratio | アスペクト比 |  | https://ja.wikipedia.org/wiki/%E3%82%A2%E
 Axis | 軸 |  | 
 Backpropagation | バックプロパゲーション |  | https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AF%E3%83%97%E3%83%AD%E3%83%91%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
 Bandwidth | バンド幅 |  | 
-Batch Gradient Descent | バッチ最急降下法 |  | 
+Batch Gradient Descent | バッチ最急降下法 | バッチ勾配降下法 | 
 Bias | バイアス |  | 
-Bias Unit | バイアスユニット | バイアス・ニューロン | 
+Bias Unit | バイアスユニット |  | バイアス・ニューロンと同意
 Binary Vector | バイナリー・ベクトル | 二値ベクトル | 
 Ceiling Analysis | 天井分析 |  | 
 Classification | 分類 |  | 
@@ -29,8 +29,8 @@ Convention | コンベンション | 慣習 |
 Convergence | 収束 |  | 
 Cost Function | コスト関数 |  | 目的関数と同意
 Covariance Matrix | 共分散行列 |  | https://ja.wikipedia.org/wiki/%E5%88%86%E6%95%A3%E5%85%B1%E5%88%86%E6%95%A3%E8%A1%8C%E5%88%97
-Cross Validation | クロス・バリデーション |  | 
-Cross Validation Set | クロス・バリデーション・セット |  | 
+Cross Validation | クロス・バリデーション | 交差検証 | 
+Cross Validation Set | クロス・バリデーション・セット | 交差検証セット | 
 Data Point | データ点 |  | 
 Dataset | データセット |  | 
 Decision Boundary | 決定境界 |  | 
@@ -58,9 +58,9 @@ Feature Scaling | フィーチャー・スケーリング |  |
 Feedforward Propagation | フィードフォワード・プロパゲーション |  | 
 Gaussian Distribution | ガウス分布 | 正規分布 | https://ja.wikipedia.org/wiki/%E6%AD%A3%E8%A6%8F%E5%88%86%E5%B8%83
 Gaussian Kernel | ガウス・カーネル |  | 
-Generalization | 一般化 |  | 
+Generalization | 一般化 | 汎化 | 
 Gradient | 勾配 | 傾き | 
-Gradient Descent | 最急降下法 |  | 
+Gradient Descent | 最急降下法 | 勾配降下法 | 
 Ground Truth | グラウンド・トゥルース |  | https://kotobank.jp/word/ground%20truth-1234260
 Hidden Layer | 隠れ層 |  | 
 Hypothesis Function | 仮説関数 |  | 
@@ -149,8 +149,8 @@ Term | 項 |  |
 Test Set | テストセット |  | 
 three-dimensional matrix | 三次元行列 |  | 
 Threshold | 閾値 | しきい値 | 
-Training | トレーニング |  | 
-Training Set | トレーニング・セット | トレーニング | 
+Training | トレーニング | 訓練 | 
+Training Set | トレーニング・セット | 訓練セット | 
 Transposed Matrix | 転置行列 |  | https://ja.wikipedia.org/wiki/%E8%BB%A2%E7%BD%AE%E8%A1%8C%E5%88%97
 True Negative | 真陰性 |  | 
 True Positive | 真陽性 |  | 
@@ -159,5 +159,5 @@ Unsupervised Learning | 教師なし学習 |  | https://ja.wikipedia.org/wiki/%E
 Variance | 分散 |  | 
 Vector | ベクトル | ベクター | 
 Vectorization | ベクトル化 |  | 
-Visualization | 可視化 |  | 
+Visualization | 可視化 | 視覚化 | 
 Weight | ウェイト | 重み | 
