@@ -9,7 +9,7 @@ Anomaly Detection | 異常検知 |  |
 Artificial Data Synthesis | 人工データ合成 |  | 
 Aspect Ratio | アスペクト比 |  | https://ja.wikipedia.org/wiki/%E3%82%A2%E3%82%B9%E3%83%9A%E3%82%AF%E3%83%88%E6%AF%94
 Axis | 軸 |  | 
-Backpropagation | バックプロパゲーション |  | https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AF%E3%83%97%E3%83%AD%E3%83%91%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
+Backpropagation | バックプロパゲーション | 誤差逆伝播法 | https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%83%E3%82%AF%E3%83%97%E3%83%AD%E3%83%91%E3%82%B2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
 Bandwidth | バンド幅 |  | 
 Batch Gradient Descent | バッチ最急降下法 | バッチ勾配降下法 | 
 Bias | バイアス |  | 
@@ -31,7 +31,7 @@ Cost Function | コスト関数 |  | 目的関数と同意
 Covariance Matrix | 共分散行列 |  | https://ja.wikipedia.org/wiki/%E5%88%86%E6%95%A3%E5%85%B1%E5%88%86%E6%95%A3%E8%A1%8C%E5%88%97
 Cross Validation | クロス・バリデーション | 交差検証 | 
 Cross Validation Set | クロス・バリデーション・セット | 交差検証セット | 
-Data Point | データ点 |  | 
+Data Point | データ点 | データポイント | 
 Dataset | データセット |  | 
 Decision Boundary | 決定境界 |  | 
 Deep Learning | ディープ・ラーニング | 深層学習 | https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%A3%E3%83%BC%E3%83%97%E3%83%A9%E3%83%BC%E3%83%8B%E3%83%B3%E3%82%B0
@@ -71,7 +71,7 @@ Intercept Term | 切片項 |  |
 Inverse Matrix | 逆行列 |  | 
 Invertible Matrix | 可逆行列 |  | 正則行列行列、非特異行列と同意
 Kernel | カーネル |  | 
-K-means | K-means | k平均法 | https://ja.wikipedia.org/wiki/K%E5%B9%B3%E5%9D%87%E6%B3%95
+K-means | K-means | k平均法、K最近傍法 | https://ja.wikipedia.org/wiki/K%E5%B9%B3%E5%9D%87%E6%B3%95
 Landmark | ランドマーク |  | 
 Layer | 層 | レイヤー | 
 Learning Algorithm | 学習アルゴリズム |  | 
@@ -92,7 +92,6 @@ MATLAB | MATLAB |  |
 Matrix | 行列 |  | https://ja.wikipedia.org/wiki/%E8%A1%8C%E5%88%97
 Maximum Likelihood Estimation | 最尤推定 | 最尤法 | https://ja.wikipedia.org/wiki/%E6%9C%80%E5%B0%A4%E6%8E%A8%E5%AE%9A
 Mean normalization | 平均正規化 |  | 
-Mean Normalize | 平均標準化 |  | 
 Mean Value | 平均値 |  | 
 Mini-Batch Gradient Descent | ミニバッチ最急降下法 | ミニバッチ勾配降下法 | 
 Multiclass Classification | 多クラス分類 | 複数クラス分類、マルチクラス分類 | 
