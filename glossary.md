@@ -52,7 +52,7 @@ Error Term | 誤差項 |  |
 F Score | F値 |  | https://ja.wikipedia.org/wiki/F%E5%80%A4
 False Negative | 偽陰性 |  | 
 False Positive | 偽陽性 |  | 
-Feature | フィーチャー | 特徴 | 説明変数と同意
+Feature | フィーチャー | 特徴、特徴量 | 説明変数と同意
 Feature Learning | フィーチャー・ラーニング |  | 
 Feature Scaling | フィーチャー・スケーリング |  | 
 Feedforward Propagation | フィードフォワード・プロパゲーション |  | 
@@ -71,7 +71,7 @@ Intercept Term | 切片項 |  |
 Inverse Matrix | 逆行列 |  | 
 Invertible Matrix | 可逆行列 |  | 正則行列行列、非特異行列と同意
 Kernel | カーネル |  | 
-K-means | K-means | k平均法、K最近傍法 | https://ja.wikipedia.org/wiki/K%E5%B9%B3%E5%9D%87%E6%B3%95
+K-means | K-means | k平均法 | https://ja.wikipedia.org/wiki/K%E5%B9%B3%E5%9D%87%E6%B3%95
 Landmark | ランドマーク |  | 
 Layer | 層 | レイヤー | 
 Learning Algorithm | 学習アルゴリズム |  | 
@@ -153,7 +153,7 @@ Training Set | トレーニング・セット | 訓練セット |
 Transposed Matrix | 転置行列 |  | https://ja.wikipedia.org/wiki/%E8%BB%A2%E7%BD%AE%E8%A1%8C%E5%88%97
 True Negative | 真陰性 |  | 
 True Positive | 真陽性 |  | 
-Underfitting | アンダーフィッティング |  | 
+Underfitting | アンダーフィッティング、適合不足 |  | 
 Unsupervised Learning | 教師なし学習 |  | https://ja.wikipedia.org/wiki/%E6%95%99%E5%B8%AB%E3%81%AA%E3%81%97%E5%AD%A6%E7%BF%92
 Variance | 分散 |  | 
 Vector | ベクトル | ベクター | 
